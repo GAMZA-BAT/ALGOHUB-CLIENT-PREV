@@ -11,18 +11,8 @@ const color = {
   darkgray: '#444446',
 
   // Main
-
-  naverSkyBlue: '#EDF3FD',
-  myplaceBlue: '#4596E2', // badge
-  naverBlue: '#287CFF',
-
-  naverRightGreen: '#EAF8F2',
-  naverGreen: '#00C05A',
-
-  // badge
-  myplacePink: '#FF98A0',
-  likebtnRed85: '#FD6777',
-  likebtnRed100: '#FD4D5F',
+  mainBlue: '#282183',
+  mainPink: '#FF7A7A',
 } as const;
 
 const title = {
@@ -65,20 +55,6 @@ const borderRadius = {
   medium: '15px',
   small: '8px',
 } as const;
-
-// 디자인 요청
-// const spacing = {
-//     spacing1: "",
-//     spacing2: "",
-//     spacing3: "12px",
-//     spacing4: "16px",
-//     spacing5: "24px",
-//     spacing6: "31px",
-//     spacing7: "48px",
-//     spacing8: "64px",
-//     spacing9: "96px",
-//     spacing10: "128px",
-// } as const;
 
 export const Theme = {
   color,

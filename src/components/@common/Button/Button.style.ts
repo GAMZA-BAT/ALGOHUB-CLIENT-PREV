@@ -21,7 +21,7 @@ export const btnStyle = css({
 export const btnVariant = {
   next: css({
     color: 'white',
-    backgroundColor: Theme.color.naverBlue,
+    backgroundColor: Theme.color.mainBlue,
   }),
 
   review: css({
@@ -32,7 +32,7 @@ export const btnVariant = {
 
   look: css({
     color: 'white',
-    backgroundColor: Theme.color.naverBlue,
+    backgroundColor: Theme.color.mainPink,
   }),
 };
 
