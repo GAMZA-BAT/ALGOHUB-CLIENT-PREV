@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, ReactElement, ReactNode } from 'react';
 
-import { btnSize, btnStyle, btnVariant } from '@/components/@common/button/Button.style';
+import { btnSize, btnStyle, btnVariant } from '@/components/@common/Button/Button.style';
 
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'next' | 'review' | 'look';

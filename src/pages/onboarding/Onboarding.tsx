@@ -2,9 +2,9 @@ import { css } from '@emotion/react';
 
 import { useNavigate } from 'react-router-dom';
 
-import Button from '@/components/@common/button/Button';
+import Button from '@/components/@common/Button/Button';
 
-import bottomImg from '@/assets/img/OnboardingBottom.png';
+import bottomImg from '@/assets/img/onboardingBottom.png';
 
 import { Theme } from '@/styles/theme';
 
