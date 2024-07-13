@@ -30,7 +30,6 @@ const LoginPage = () => {
 
     try {
       const response = await signIn({ email, password });
-      alert('로그인 성공');
       AuthManager.getInstance().setToken(response.token);
     } catch (e) {
       alertError(e, '로그인에 실패했습니다.');

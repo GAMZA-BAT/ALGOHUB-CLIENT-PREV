@@ -1,4 +1,4 @@
-const ANONYMOUS_AUTH_TOKEN = 'anonymous';
+export const ANONYMOUS_AUTH_TOKEN = 'anonymous';
 
 export class AuthManager {
     private static instance: AuthManager;
@@ -29,6 +29,9 @@ export class AuthManager {
         this.token = token;
         localStorage.setItem('token', token);
     }
-
-
+    
+    public clearToken() {
+        this.token = ANONYMOUS_AUTH_TOKEN;
+        localStorage.removeItem('token');
+    }
 }
