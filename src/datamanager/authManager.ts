@@ -9,11 +9,12 @@ export class AuthManager {
     public static getInstance(): AuthManager {
         if (!AuthManager.instance) {
             AuthManager.instance = new AuthManager();
+            AuthManager.instance.init();
         }
         return AuthManager.instance;
     }
 
-    public async init(){
+    public init(){
         if (!AuthManager.instance) {
             throw new Error('AuthManager is not instantiated');
         }

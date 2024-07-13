@@ -31,9 +31,7 @@ const LoginPage = () => {
     try {
       const response = await signIn({ email, password });
       alert('로그인 성공');
-      // navigate('/main');
       AuthManager.getInstance().setToken(response.token);
-      console.log(await getUserInfo());
     } catch (e) {
       alertError(e, '로그인에 실패했습니다.');
     }

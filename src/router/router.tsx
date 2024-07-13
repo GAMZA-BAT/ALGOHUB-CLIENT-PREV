@@ -23,14 +23,6 @@ const router = createBrowserRouter([
         path: 'signup',
         element: <SignupPage />,
       },
-      // {
-      //   path: 'review/:reservationId',
-      //   element: <ReviewPage />,
-      // },
-      // {
-      //   path: 'done/:reservationId',
-      //   element: <DonePage />,
-      // },
     ],
   },
 ]);

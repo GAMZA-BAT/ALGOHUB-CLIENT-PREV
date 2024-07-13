@@ -9,7 +9,7 @@ export const requestToUser  = (
     path: string,
     init: RequestInit,
     idToken?: string) => {
-        const url = `${SERVER_ENDPOINT}/user/${path}`;
+        const url = `${SERVER_ENDPOINT}/user` + (path ? `/${path}` : '');
         const headers = {
             Authorization: `Bearer ${idToken}`,
             ...init.headers,

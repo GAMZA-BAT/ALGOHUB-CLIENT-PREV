@@ -10,7 +10,6 @@ const useImageUploader = () => {
             const blob = new Blob([file], { type: file.type });
             setSelectedImage(blob);
 
-            // Blob을 URL로 변환하여 이미지 미리보기
             const url = URL.createObjectURL(blob);
             setImageUrl(url);
         }
