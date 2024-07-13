@@ -8,8 +8,13 @@ import bottomImg from '@/assets/img/onboardingBottom.png';
 
 import { Theme } from '@/styles/theme';
 
+import { AuthManager } from '@/datamanager/authManager';
+
 const Onboarding = () => {
   const navigate = useNavigate();
+  if (AuthManager.getInstance().getToken()) {
+    navigate('/user-dashboard');
+  }
 
   return (
     <div css={wrapper}>
