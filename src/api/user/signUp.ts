@@ -1,3 +1,5 @@
+import { AuthManager } from "@/datamanager/authManager";
+import { ApiError } from "@/type/errorResponse";
 import { requestToUser } from "@/utils/server";
 
 interface SignUpRequest {
@@ -20,8 +22,10 @@ const signUp = async (signUpRequest: SignUpRequest) => {
     });
 
     if (!response.ok) {
-        throw new Error('Failed to sign up');
+        throw new ApiError(await response.json());
     }
+
+    AuthManager.getInstance().setToken(await response.text());
 
     return response;
 };

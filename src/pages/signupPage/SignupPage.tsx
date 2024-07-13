@@ -8,7 +8,9 @@ import MaskIcon from '@/components/icon/MaskIcon';
 
 import useImageUploader from '@/hooks/image/useImageUploader';
 
-import signUp from '@/api/signUp';
+import signUp from '@/api/user/signUp';
+
+import alertError from '@/utils/alertError';
 
 import profileIcon from '@/assets/svgs/ic_profile_circle.svg';
 
@@ -42,7 +44,7 @@ const SignupPage = () => {
       await signUp({ email, password, nickname, profileImage: imageUrl ?? profileIcon });
       navigate('/login');
     } catch (e) {
-      alert('회원가입에 실패했습니다');
+      alertError(e, '회원 가입에 실패했습니다.');
     }
   };
 

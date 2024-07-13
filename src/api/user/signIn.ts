@@ -1,4 +1,5 @@
 import { ContentType } from "@/constants/server";
+import { ApiError } from "@/type/errorResponse";
 import { jsonifyResponse, requestToUser } from "@/utils/server";
 
 interface SignInRequest {
@@ -20,7 +21,7 @@ const signIn = async (signInRequest: SignInRequest) => {
         body: JSON.stringify(signInRequest),
     })
     if (!response.ok) {
-        throw new Error('Failed to sign in');
+        throw new ApiError(await response.json());
     }
     
     return jsonifyResponse<SignInResponse>(response) 

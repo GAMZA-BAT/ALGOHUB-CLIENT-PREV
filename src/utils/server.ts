@@ -18,6 +18,5 @@ export const requestToUser  = (
     }
 
 export const jsonifyResponse = <T>(response: Response): Promise<T> => {
-
     return response.json();
 }

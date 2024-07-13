@@ -5,9 +5,14 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '@/components/@common/Button/Button';
 
-import signIn from '@/api/signIn';
+import getUserInfo from '@/api/user/getUserInfo';
+import signIn from '@/api/user/signIn';
+
+import alertError from '@/utils/alertError';
 
 import Logo from '@/assets/img/ic_algohub_purple.png';
+
+import { AuthManager } from '@/datamanager/authManager';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -24,13 +29,13 @@ const LoginPage = () => {
     }
 
     try {
-      const token = await signIn({ email, password });
-      console.log(token);
-
+      const response = await signIn({ email, password });
       alert('로그인 성공');
       // navigate('/main');
+      AuthManager.getInstance().setToken(response.token);
+      console.log(await getUserInfo());
     } catch (e) {
-      alert('로그인에 실패했습니다');
+      alertError(e, '로그인에 실패했습니다.');
     }
   };
 
