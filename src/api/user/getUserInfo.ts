@@ -1,3 +1,4 @@
+import { AuthManager } from "@/datamanager/authManager";
 import { requestToUser, jsonifyResponse } from "@/utils/server";
 
 interface User {
@@ -8,7 +9,7 @@ interface User {
 
 const getUserInfo = async () => {
     const token = AuthManager.getInstance().getToken();
-    const response = await requestToUser('info', {
+    const response = await requestToUser('', {
         method: 'GET',
     },
     token);
