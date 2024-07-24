@@ -4,17 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '@/components/@common/Button/Button';
 
+import useAuthRedirect from '@/hooks/useAuth';
+
 import bottomImg from '@/assets/img/onboardingBottom.png';
 
 import { Theme } from '@/styles/theme';
 
-import { AuthManager } from '@/datamanager/authManager';
-
 const Onboarding = () => {
   const navigate = useNavigate();
-  if (AuthManager.getInstance().getToken()) {
-    navigate('/user-dashboard');
-  }
+  useAuthRedirect();
 
   return (
     <div css={wrapper}>

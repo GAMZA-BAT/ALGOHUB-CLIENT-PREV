@@ -19,6 +19,7 @@ const SignupPage = () => {
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
   const nicknameRef = useRef<HTMLInputElement>(null);
+  const bjNicknameRef = useRef<HTMLInputElement>(null);
 
   const { imageUrl, handleImageUpload } = useImageUploader();
 
@@ -29,8 +30,9 @@ const SignupPage = () => {
     const password = passwordRef.current?.value;
     const confirmPassword = confirmPasswordRef.current?.value;
     const nickname = nicknameRef.current?.value;
+    const bjNickname = bjNicknameRef.current?.value;
 
-    if (!email || !password || !confirmPassword || !nickname) {
+    if (!email || !password || !confirmPassword || !nickname || !bjNickname) {
       alert('모든 칸을 입력해주세요');
       return;
     }
@@ -41,7 +43,13 @@ const SignupPage = () => {
     }
 
     try {
-      await signUp({ email, password, nickname, profileImage: imageUrl ?? profileIcon });
+      await signUp({
+        email,
+        password,
+        nickname,
+        bjNickname,
+        profileImage: imageUrl ?? profileIcon,
+      });
       navigate('/login');
     } catch (e) {
       alertError(e, '회원 가입에 실패했습니다.');
@@ -75,6 +83,10 @@ const SignupPage = () => {
           <div css={inputCss}>
             <div style={{ fontSize: '25px' }}>Nickname</div>
             <input ref={nicknameRef} css={textArea} type="text"></input>
+          </div>
+          <div css={inputCss}>
+            <div style={{ fontSize: '25px' }}>BOJ Nickname (required)</div>
+            <input ref={bjNicknameRef} css={textArea} type="text"></input>
           </div>
         </div>
         <Button style={{ height: '50px', fontSize: '25px' }} onClick={handleSignUp}>

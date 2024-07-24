@@ -1,11 +1,7 @@
 import { AuthManager } from "@/datamanager/authManager";
+import User from "@/type/user";
 import { requestToUser, jsonifyResponse } from "@/utils/server";
 
-interface User {
-    email: string;
-    nickname: string;
-    profileImage: string;
-}
 
 const getUserInfo = async () => {
     const token = AuthManager.getInstance().getToken();
