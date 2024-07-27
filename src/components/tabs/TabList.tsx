@@ -1,6 +1,7 @@
 import find from '@/assets/svgs/ic_find.svg';
 import homeIcon from '@/assets/svgs/ic_home.svg';
 import plusCircle from '@/assets/svgs/ic_plus_circle.svg';
+import settingIc from '@/assets/svgs/ic_setting.svg';
 
 import NavTab from '../@common/navbar/NavTab';
 
@@ -17,11 +18,11 @@ const JoinGroup = () => {
 };
 
 const ProblemList = () => {
-  return <NavTab src={} title="Problem-List" />;
+  return <NavTab src={find} title="Problem-List" />;
 };
 
 const Settings = () => {
-  return <NavTab src={} title="Settings" />;
+  return <NavTab src={settingIc} title="Settings" />;
 };
 
 export const TabList = {
@@ -29,5 +30,5 @@ export const TabList = {
   CreateGroup,
   JoinGroup,
   ProblemList,
-  Settings
+  Settings,
 };

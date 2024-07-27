@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
 
+import { useState } from 'react';
+
 import SideContent from '@/components/@common/SideContent';
 import WithAuth from '@/components/@common/auth/withAuth';
 import Navbar from '@/components/@common/navbar/Navbar';
@@ -10,10 +12,12 @@ import { AuthManager } from '@/datamanager/authManager';
 import GroupList from './GroupList';
 
 const UserDashboard = () => {
+  const [selectedTab, setSelectedTab] = useState<number>(0);
+
   const user = AuthManager.getInstance().getUser();
   return (
     <>
-      <Navbar>
+      <Navbar selectedTab={selectedTab} setSelectedTab={setSelectedTab}>
         <TabList.Dashboard />
         <TabList.CreateGroup />
         <TabList.JoinGroup />

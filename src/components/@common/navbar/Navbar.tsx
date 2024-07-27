@@ -6,10 +6,11 @@ import { Theme } from '@/styles/theme';
 
 interface NavbarProps {
   children: ReactNode[];
+  selectedTab: number;
+  setSelectedTab: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Navbar = ({ children }: NavbarProps) => {
-  const [selectedTab, setSelectedTab] = useState<number>(0);
+const Navbar = ({ children, selectedTab, setSelectedTab }: NavbarProps) => {
   return (
     <div css={Container}>
       <div css={TabContainer}>
