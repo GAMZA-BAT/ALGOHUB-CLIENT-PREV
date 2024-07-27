@@ -9,15 +9,25 @@ const Dashboard = () => {
 };
 
 const CreateGroup = () => {
-  return <NavTab src={plusCircle} title="Create Group" />;
+  return <NavTab src={plusCircle} title="Create-Group" />;
 };
 
 const JoinGroup = () => {
-  return <NavTab src={find} title="Find Group" />;
+  return <NavTab src={find} title="Find-Group" />;
+};
+
+const ProblemList = () => {
+  return <NavTab src={} title="Problem-List" />;
+};
+
+const Settings = () => {
+  return <NavTab src={} title="Settings" />;
 };
 
 export const TabList = {
   Dashboard,
   CreateGroup,
   JoinGroup,
+  ProblemList,
+  Settings
 };

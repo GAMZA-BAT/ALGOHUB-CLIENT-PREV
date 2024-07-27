@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
+import GroupDashboard from '@/pages/groupDashboard/GroupDashboard';
 import LoginPage from '@/pages/loginPage/LoginPage';
 import Onboarding from '@/pages/onboarding/Onboarding';
 import SignupPage from '@/pages/signupPage/SignupPage';
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: 'user-dashboard',
         element: <UserDashboard />,
+      },
+      {
+        path: 'group-dashboard',
+        element: <GroupDashboard />,
       },
     ],
   },
