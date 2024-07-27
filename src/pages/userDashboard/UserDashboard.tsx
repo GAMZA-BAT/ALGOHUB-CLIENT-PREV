@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 import SideContent from '@/components/@common/SideContent';
-import WithAuth from '@/components/@common/auth/WithAuth';
+import WithAuth from '@/components/@common/auth/withAuth';
 import Navbar from '@/components/@common/navbar/Navbar';
 import { TabList } from '@/components/tabs/TabList';
 
