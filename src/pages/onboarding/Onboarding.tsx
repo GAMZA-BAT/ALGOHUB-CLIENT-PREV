@@ -4,12 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '@/components/@common/Button/Button';
 
+import useAuthRedirect from '@/hooks/useAuth';
+
 import bottomImg from '@/assets/img/onboardingBottom.png';
 
 import { Theme } from '@/styles/theme';
 
 const Onboarding = () => {
   const navigate = useNavigate();
+  useAuthRedirect();
 
   return (
     <div css={wrapper}>

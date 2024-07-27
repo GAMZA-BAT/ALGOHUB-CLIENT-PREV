@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { ANONYMOUS_AUTH_TOKEN, AuthManager } from '@/datamanager/authManager';
 
-const withAuth = <P extends object>(WrappedComponent: ComponentType<P>): React.FC<P> => {
+const WithAuth = <P extends object>(WrappedComponent: ComponentType<P>): React.FC<P> => {
   const ComponentWithAuth: React.FC<P> = (props: P) => {
     const navigate = useNavigate();
 
@@ -18,4 +18,4 @@ const withAuth = <P extends object>(WrappedComponent: ComponentType<P>): React.F
   return ComponentWithAuth;
 };
 
-export default withAuth;
+export default WithAuth;

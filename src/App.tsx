@@ -1,10 +1,25 @@
 import { css } from '@emotion/react';
 
+import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import Header from '@/components/@common/header/Header';
 
+import { AuthManager } from './datamanager/authManager';
+
 function App() {
+  const [isAuthInitialized, setIsAuthInitialized] = useState<boolean>(false);
+  useEffect(() => {
+    const init = async () => {
+      await AuthManager.getInstance().init();
+      setIsAuthInitialized(true);
+    };
+    init();
+  }, []);
+
+  if (!isAuthInitialized) {
+    return null;
+  }
   return (
     <div css={wrapper}>
       <Header />

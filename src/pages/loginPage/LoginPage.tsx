@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '@/components/@common/Button/Button';
 
+import useAuthRedirect from '@/hooks/useAuth';
+
 import getUserInfo from '@/api/user/getUserInfo';
 import signIn from '@/api/user/signIn';
 
@@ -19,6 +21,8 @@ const LoginPage = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
+  useAuthRedirect();
+
   const handleSignIn = async () => {
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
@@ -31,6 +35,8 @@ const LoginPage = () => {
     try {
       const response = await signIn({ email, password });
       AuthManager.getInstance().setToken(response.token);
+      AuthManager.getInstance().setUser(await getUserInfo());
+      navigate('/user-dashboard');
     } catch (e) {
       alertError(e, '로그인에 실패했습니다.');
     }
