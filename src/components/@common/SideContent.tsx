@@ -2,8 +2,6 @@ import { css } from '@emotion/react';
 
 import { ReactNode } from 'react';
 
-import pencil from '@/assets/svgs/ic_pencil.svg';
-
 import MaskIcon from '../icon/MaskIcon';
 
 interface SideContentProps {
@@ -21,16 +19,14 @@ const SideContent = (props: SideContentProps) => {
       <div css={TitleContainer}>
         <div css={TitleWrapper}>
           <div css={Title}>{props.title}</div>
-          <div css={PencilWrapper}>
-            <MaskIcon width={28} height={28} src={pencil} />
-          </div>
+          <div css={PencilWrapper}></div>
         </div>
         <div css={Detail}>{props.detail}</div>
       </div>
       {props.description && (
         <div css={DescriptionWrapper}>
           <div css={Detail}> {props.description}</div>
-          <div css={seperator} />
+          <hr css={seperator} />
         </div>
       )}
       {props.children}
@@ -43,7 +39,6 @@ export default SideContent;
 const Container = css`
   display: flex;
   flex-direction: column;
-  width: 28%;
   gap: 4px;
   padding: 8px;
 `;
@@ -73,11 +68,11 @@ const PencilWrapper = css`
 `;
 
 const Title = css`
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: 600;
 `;
 
-const Detail = css`
+export const Detail = css`
   font-size: 1.3rem;
   font-family: 'Pretendard-regular';
   font-weight: 200;
@@ -86,7 +81,7 @@ const Detail = css`
 const DescriptionWrapper = css`
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
+  padding-top: 30px;
   gap: 4px;
   padding-left: 12px;
 `;
