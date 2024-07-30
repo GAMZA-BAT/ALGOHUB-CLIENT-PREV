@@ -67,8 +67,8 @@ const PencilWrapper = css`
   }
 `;
 
-const Title = css`
-  font-size: 1.7rem;
+export const Title = css`
+  font-size: 2rem;
   font-weight: 600;
 `;
 
