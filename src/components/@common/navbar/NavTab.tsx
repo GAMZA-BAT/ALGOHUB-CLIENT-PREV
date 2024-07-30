@@ -5,11 +5,12 @@ import MaskIcon from '@/components/icon/MaskIcon';
 interface NavTabProps {
   src: string;
   title: string;
+  onClick?: () => void;
 }
 
-const NavTab = ({ src, title }: NavTabProps) => {
+const NavTab = ({ src, title, onClick }: NavTabProps) => {
   return (
-    <div css={Wrapper}>
+    <div css={Wrapper} onClick={onClick}>
       <MaskIcon width={30} height={30} src={src} />
       <div>{title}</div>
     </div>

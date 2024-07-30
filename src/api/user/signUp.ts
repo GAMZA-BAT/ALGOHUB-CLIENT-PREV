@@ -1,4 +1,5 @@
 import { ApiError } from "@/type/errorResponse";
+import { imageUrlToBlob } from "@/utils/image";
 import { requestToUser } from "@/utils/server";
 
 interface SignUpRequest {
@@ -28,10 +29,5 @@ const signUp = async (signUpRequest: SignUpRequest) => {
     return response;
 };
 
-const imageUrlToBlob = async (imageUrl: string) => {
-    const response = await fetch(imageUrl);
-    const blob = await response.blob();
-    return blob;
-}
 
 export default signUp;
