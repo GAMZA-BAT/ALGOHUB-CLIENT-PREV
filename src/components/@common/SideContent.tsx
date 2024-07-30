@@ -86,7 +86,7 @@ const DescriptionWrapper = css`
   padding-left: 12px;
 `;
 
-const seperator = css`
+export const seperator = css`
   width: 100%;
   border: 1px solid #c2c2c2;
 `;

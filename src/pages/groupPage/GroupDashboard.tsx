@@ -1,8 +1,9 @@
 import { css } from '@emotion/react';
 
-import RankingBox from '@/pages/groupPage/GroupDashboard/RankingBox';
+import RankingBox from '@/pages/groupPage/components/RankingBox';
 
-import { Title } from '@/components/@common/SideContent';
+import LevelIcon from '@/components/@common/LevelIcon';
+import { Title, seperator } from '@/components/@common/SideContent';
 
 import AlgoHubLogoS from '@/assets/img/AlgoHubLogoS.png';
 
@@ -15,6 +16,8 @@ const GroupDashboard = () => {
         <RankingBox ranking={3} name={'Hwang-do'} solved={18} src={AlgoHubLogoS} />
       </section>
       <p css={Title}>Today's Problem</p>
+      <hr css={seperator} />
+      <LevelIcon level={3} />
     </div>
   );
 };

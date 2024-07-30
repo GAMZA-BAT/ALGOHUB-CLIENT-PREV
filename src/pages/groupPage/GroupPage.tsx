@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 import { useState } from 'react';
 
-import GroupDashboard from '@/pages/groupPage/GroupDashboard/GroupDashboard';
+import GroupDashboard from '@/pages/groupPage/GroupDashboard';
 import ProblemList from '@/pages/groupPage/ProblemList';
 import Setting from '@/pages/groupPage/Setting';
 
