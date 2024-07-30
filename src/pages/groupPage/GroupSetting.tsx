@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Setting = () => {
+const GroupSetting = () => {
   return <div>Setting</div>;
 };
 
-export default Setting;
+export default GroupSetting;

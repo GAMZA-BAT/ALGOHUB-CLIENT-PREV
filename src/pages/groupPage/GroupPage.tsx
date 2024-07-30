@@ -1,10 +1,7 @@
 import { css } from '@emotion/react';
 
-import { useState } from 'react';
-
-import GroupDashboard from '@/pages/groupPage/GroupDashboard';
-import ProblemList from '@/pages/groupPage/ProblemList';
-import Setting from '@/pages/groupPage/Setting';
+import { useEffect, useState } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import SideContent, { Detail } from '@/components/@common/SideContent';
 import Navbar from '@/components/@common/navbar/Navbar';
@@ -15,16 +12,20 @@ import AlgoHubLogoS from '@/assets/img/AlgoHubLogoS.png';
 
 const GroupPage = () => {
   const [selectedTab, setSelectedTab] = useState<number>(0);
-  const renderTsx = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
     switch (selectedTab) {
       case 0:
-        return <GroupDashboard />;
+        navigate('/group');
+        break;
       case 1:
-        return <ProblemList />;
+        navigate('./problem-list');
+        break;
       case 2:
-        return <Setting />;
+        navigate('./setting');
+        break;
     }
-  };
+  }, [selectedTab]);
   return (
     <>
       <Navbar selectedTab={selectedTab} setSelectedTab={setSelectedTab}>
@@ -50,7 +51,9 @@ const GroupPage = () => {
             </section>
           </div>
         </section>
-        <article css={Container}>{renderTsx()}</article>
+        <article css={Container}>
+          <Outlet />
+        </article>
       </div>
     </>
   );

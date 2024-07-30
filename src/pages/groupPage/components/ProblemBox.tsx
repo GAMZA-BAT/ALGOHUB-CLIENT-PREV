@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
 
+import { useNavigate } from 'react-router-dom';
+
 import LevelIcon from '@/components/@common/LevelIcon';
 import CheckboxIcon from '@/components/icon/CheckboxIcon';
 
@@ -14,6 +16,7 @@ interface problemBoxPropType {
   accuracy: number;
   isChecked: boolean;
   isExpired?: boolean;
+  isClickActive?: boolean;
 }
 const ProblemBox = ({
   level,
@@ -24,9 +27,15 @@ const ProblemBox = ({
   accuracy,
   isChecked,
   isExpired = false,
+  isClickActive = true,
 }: problemBoxPropType) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    isClickActive && navigate('/group/problem-detail', { state: { problemId: level } });
+  };
+
   return (
-    <div css={Wrapper}>
+    <div css={Wrapper} onClick={handleClick}>
       <section css={MetaContainer}>
         <LevelIcon level={level} />
         <div css={Twoline}>

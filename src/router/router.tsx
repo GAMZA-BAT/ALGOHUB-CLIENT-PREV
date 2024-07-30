@@ -1,6 +1,10 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
+import GroupDashboard from '@/pages/groupPage/GroupDashboard';
 import GroupPage from '@/pages/groupPage/GroupPage';
+import GroupSetting from '@/pages/groupPage/GroupSetting';
+import ProblemDetail from '@/pages/groupPage/ProblemDetail';
+import ProblemList from '@/pages/groupPage/ProblemList';
 import LoginPage from '@/pages/loginPage/LoginPage';
 import Onboarding from '@/pages/onboarding/Onboarding';
 import SignupPage from '@/pages/signupPage/SignupPage';
@@ -32,6 +36,24 @@ const router = createBrowserRouter([
       {
         path: 'group',
         element: <GroupPage />,
+        children: [
+          {
+            index: true,
+            element: <GroupDashboard />,
+          },
+          {
+            path: 'problem-list',
+            element: <ProblemList />,
+          },
+          {
+            path: 'problem-detail',
+            element: <ProblemDetail />,
+          },
+          {
+            path: 'setting',
+            element: <GroupSetting />,
+          },
+        ],
       },
     ],
   },
