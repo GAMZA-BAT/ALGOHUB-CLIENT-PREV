@@ -39,13 +39,7 @@ const ProblemDetail = () => {
         <h3>코드길이</h3>
         <h3>결과</h3>
       </section>
-      <article
-        css={css`
-          display: flex;
-          flex-direction: column;
-          gap: 200px;
-        `}
-      >
+      <article>
         <SubmitBox
           level={problemId}
           nickname={'jnary'}
@@ -120,5 +114,5 @@ const CategoryWrapper = css`
 
   width: 100%;
 
-  padding: 20px 90px 0 80px;
+  padding: 20px 110px 0 100px;
 `;

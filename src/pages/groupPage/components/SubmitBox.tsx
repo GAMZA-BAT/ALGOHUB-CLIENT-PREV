@@ -74,7 +74,7 @@ export default SubmitBox;
 
 const Wrapper = css`
   display: flex;
-  padding: 20px 40px 20px 20px;
+  padding: 20px 40px 0 20px;
   gap: 20px;
 `;
 
