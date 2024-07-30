@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 
 import LevelIcon from '@/components/@common/LevelIcon';
 
 import CheckBoxIc from '@/assets/svgs/ic_check_box.svg?react';
+import XmarkBoxIc from '@/assets/svgs/ic_xmark_box.svg?react';
 
 import { Theme } from '@/styles/theme';
 
@@ -15,6 +15,7 @@ interface problemBoxPropType {
   memberCnt: number;
   accuracy: number;
   isChecked: boolean;
+  isExpired?: boolean;
 }
 const ProblemBox = ({
   level,
@@ -24,6 +25,7 @@ const ProblemBox = ({
   memberCnt,
   accuracy,
   isChecked,
+  isExpired = false,
 }: problemBoxPropType) => {
   return (
     <div css={Wrapper}>
@@ -59,11 +61,15 @@ const ProblemBox = ({
           <h3>accurancy</h3>
           <p css={SubStyle}>{accuracy}%</p>
         </div>
-        <CheckBoxIc
-          width={'30px'}
-          height={'30px'}
-          fill={isChecked ? Theme.color.darkgray : Theme.color.lowLightGray}
-        />
+        {isExpired ? (
+          <XmarkBoxIc width={'40px'} height={'40px'} fill={'#d2001a'} />
+        ) : (
+          <CheckBoxIc
+            width={'40px'}
+            height={'40px'}
+            fill={isChecked ? Theme.color.darkgray : Theme.color.lowLightGray}
+          />
+        )}
       </section>
     </div>
   );
