@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
 
+import ProblemBox from '@/pages/groupPage/components/ProblemBox';
 import RankingBox from '@/pages/groupPage/components/RankingBox';
 
-import LevelIcon from '@/components/@common/LevelIcon';
-import { Title, seperator } from '@/components/@common/SideContent';
+import { seperator } from '@/components/@common/SideContent';
 
 import AlgoHubLogoS from '@/assets/img/AlgoHubLogoS.png';
 
@@ -17,7 +17,30 @@ const GroupDashboard = () => {
       </section>
       <p css={Title}>Today's Problem</p>
       <hr css={seperator} />
-      <LevelIcon level={3} />
+      <ProblemBox
+        level={13}
+        title={'ACM Craft'}
+        duration={'2024.08.31 - 2024.08.31'}
+        submitCnt={88}
+        memberCnt={158}
+        accuracy={70}
+      />
+      <ProblemBox
+        level={20}
+        title={'동적연결성과 쿼리'}
+        duration={'2024.08.31 - 2024.08.31'}
+        submitCnt={88}
+        memberCnt={158}
+        accuracy={70}
+      />
+      <ProblemBox
+        level={10}
+        title={'체스판 다시 칠하기'}
+        duration={'2024.08.31 - 2024.08.31'}
+        submitCnt={88}
+        memberCnt={158}
+        accuracy={70}
+      />
     </div>
   );
 };
@@ -34,6 +57,13 @@ const Wrapper = css`
   border-radius: 15px;
 
   background-color: white;
+`;
+
+const Title = css`
+  font-size: 2rem;
+  font-weight: 600;
+
+  margin-bottom: 1rem;
 `;
 
 const RankingWrapper = css`

@@ -1,4 +1,6 @@
 const levelNames = [
+  '',
+
   'ic_bronze5',
   'ic_bronze4',
   'ic_bronze3',
