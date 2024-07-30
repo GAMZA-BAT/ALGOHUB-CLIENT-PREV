@@ -1,13 +1,42 @@
 import { css } from '@emotion/react';
 
+import { useState } from 'react';
+
 import ProblemBox from '@/pages/groupPage/components/ProblemBox';
 
 import { seperator } from '@/components/@common/SideContent';
+import CheckboxIcon from '@/components/icon/CheckboxIcon';
+
+import { Theme } from '@/styles/theme';
 
 const ProblemList = () => {
+  const [isUnsolvedOnly, setIsUnsolvedOnly] = useState(false);
+
+  const handleUnsolvedOnlyClick = () => {
+    setIsUnsolvedOnly((prev) => !prev);
+  };
   return (
     <div css={Wrapper}>
-      <h1 css={Meta}>In Progress</h1>
+      <section
+        css={css`
+          display: flex;
+          justify-content: space-between;
+          padding-right: 20px;
+        `}
+      >
+        <h1 css={Meta}>In Progress</h1>
+        <div
+          css={css`
+            display: flex;
+            gap: 10px;
+            align-items: center;
+          `}
+          onClick={handleUnsolvedOnlyClick}
+        >
+          <p css={GrayFont}>unsolved-only</p>
+          <CheckboxIcon isChecked={isUnsolvedOnly} />
+        </div>
+      </section>
       <hr css={seperator} />
       {/* ProblemList */}
       <h1
@@ -44,4 +73,9 @@ const Wrapper = css`
 const Meta = css`
   font-size: 2rem;
   padding-bottom: 15px;
+`;
+
+const GrayFont = css`
+  font-size: 1.5rem;
+  color: ${Theme.color.mediumGray};
 `;

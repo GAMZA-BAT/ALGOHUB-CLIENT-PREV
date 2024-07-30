@@ -1,11 +1,9 @@
 import { css } from '@emotion/react';
 
 import LevelIcon from '@/components/@common/LevelIcon';
+import CheckboxIcon from '@/components/icon/CheckboxIcon';
 
-import CheckBoxIc from '@/assets/svgs/ic_check_box.svg?react';
 import XmarkBoxIc from '@/assets/svgs/ic_xmark_box.svg?react';
-
-import { Theme } from '@/styles/theme';
 
 interface problemBoxPropType {
   level: number;
@@ -64,11 +62,7 @@ const ProblemBox = ({
         {isExpired ? (
           <XmarkBoxIc width={'40px'} height={'40px'} fill={'#d2001a'} />
         ) : (
-          <CheckBoxIc
-            width={'40px'}
-            height={'40px'}
-            fill={isChecked ? Theme.color.darkgray : Theme.color.lowLightGray}
-          />
+          <CheckboxIcon isChecked={isChecked} />
         )}
       </section>
     </div>
