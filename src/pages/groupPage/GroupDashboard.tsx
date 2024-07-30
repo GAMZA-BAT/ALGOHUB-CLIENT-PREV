@@ -24,6 +24,7 @@ const GroupDashboard = () => {
         submitCnt={88}
         memberCnt={158}
         accuracy={70}
+        isChecked={false}
       />
       <ProblemBox
         level={20}
@@ -32,6 +33,7 @@ const GroupDashboard = () => {
         submitCnt={88}
         memberCnt={158}
         accuracy={70}
+        isChecked={false}
       />
       <ProblemBox
         level={10}
@@ -40,6 +42,7 @@ const GroupDashboard = () => {
         submitCnt={88}
         memberCnt={158}
         accuracy={70}
+        isChecked={true}
       />
     </div>
   );
