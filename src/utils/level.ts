@@ -40,6 +40,48 @@ const levelNames = [
   'ic_master',
 ];
 
+export const levelColor = [
+  '',
+
+  '#ad5600',
+  '#ad5600',
+  '#ad5600',
+  '#ad5600',
+  '#ad5600',
+
+  '#435f7a',
+  '#435f7a',
+  '#435f7a',
+  '#435f7a',
+  '#435f7a',
+
+  '#ec9a00',
+  '#ec9a00',
+  '#ec9a00',
+  '#ec9a00',
+  '#ec9a00',
+
+  '#27e2a4',
+  '#27e2a4',
+  '#27e2a4',
+  '#27e2a4',
+  '#27e2a4',
+
+  '#00b4fc',
+  '#00b4fc',
+  '#00b4fc',
+  '#00b4fc',
+  '#00b4fc',
+
+  '#ff0062',
+  '#ff0062',
+  '#ff0062',
+  '#ff0062',
+  '#ff0062',
+
+  '#f97eaf',
+]
+
 export const importLevelSVG = async (level: number) => {
   const fileName = levelNames[level];
   const svg = await import(`@/assets/svgs/level/${fileName}.svg`);

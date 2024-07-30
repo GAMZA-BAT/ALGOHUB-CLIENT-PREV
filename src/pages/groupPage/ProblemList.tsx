@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import ProblemBox from '@/pages/groupPage/components/ProblemBox';
 
@@ -12,7 +11,6 @@ import { Theme } from '@/styles/theme';
 
 const ProblemList = () => {
   const [isUnsolvedOnly, setIsUnsolvedOnly] = useState(false);
-  const navigate = useNavigate();
 
   const handleUnsolvedOnlyClick = () => {
     setIsUnsolvedOnly((prev) => !prev);
