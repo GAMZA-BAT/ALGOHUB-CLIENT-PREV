@@ -33,7 +33,7 @@ const GroupPage = () => {
       <Navbar selectedTab={selectedTab} setSelectedTab={setSelectedTab}>
         <TabList.Dashboard />
         <TabList.ProblemList />
-        <TabList.Settings />
+        <TabList.GroupSettings />
       </Navbar>
       <div css={Wrapper}>
         {isSetting ? (
