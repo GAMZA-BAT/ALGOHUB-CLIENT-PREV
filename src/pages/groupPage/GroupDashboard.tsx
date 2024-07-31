@@ -7,6 +7,7 @@ import RankingBox from '@/pages/groupPage/components/RankingBox';
 
 import { seperator } from '@/components/@common/SideContent';
 
+import { useGroupRanking } from '@/hooks/query/useGroupQuery';
 import { useProblemDeadlineReached } from '@/hooks/query/useProblemQuery';
 
 import { ProblemList } from '@/type/problem';
@@ -14,11 +15,18 @@ import { ProblemList } from '@/type/problem';
 import AlgoHubLogoS from '@/assets/img/AlgoHubLogoS.png';
 
 const GroupDashboard = () => {
+  const groupId = +(localStorage.getItem('groupId') || '0');
   const {
     data: problemData,
     error: problemError,
     isLoading: isProblemLoading,
-  } = useProblemDeadlineReached(+(localStorage.getItem('groupId') || '0'));
+  } = useProblemDeadlineReached(groupId);
+
+  // const {
+  //   data: rankingData,
+  //   error: rankingError,
+  //   isLoading: isRankingLoading,
+  // } = useGroupRanking(groupId);
 
   if (isProblemLoading) return <></>;
   return (

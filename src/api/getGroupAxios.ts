@@ -9,4 +9,15 @@ export const getGroupMemberListAxios = (groupId: number) => {
       }
     }
   )
-} 
+}
+
+export const getGroupRanking = (groupId: number) => {
+  return authAxios.get(
+    '/group/ranking',
+    {
+      params: {
+        groupId,
+      }
+    }
+  )
+}

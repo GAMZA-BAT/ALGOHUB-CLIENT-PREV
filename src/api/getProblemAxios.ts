@@ -9,4 +9,15 @@ export const getProblemDeadlineReachedAxios = (groupId: number) => {
       }
     }
   )
-} 
+}
+
+export const getProblemAxios = (groupId: number) => {
+  return authAxios.get(
+    '/problem',
+    {
+      params: {
+        groupId,
+      }
+    }
+  )
+}
