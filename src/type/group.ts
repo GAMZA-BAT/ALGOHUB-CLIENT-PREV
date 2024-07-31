@@ -11,3 +11,9 @@ export interface GroupMeta {
     endDate: string;
     introduction?: string;
 }
+
+export interface MemberListAPI {
+    id: number;
+    nickname: string;
+    profileImage: string;
+}

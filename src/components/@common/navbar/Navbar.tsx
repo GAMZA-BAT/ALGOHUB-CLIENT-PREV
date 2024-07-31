@@ -7,7 +7,7 @@ import { Theme } from '@/styles/theme';
 interface NavbarProps {
   children: ReactNode[];
   selectedTab: number;
-  setSelectedTab: React.Dispatch<React.SetStateAction<number>>;
+  setSelectedTab: (idx: number) => void;
 }
 
 const Navbar = ({ children, selectedTab, setSelectedTab }: NavbarProps) => {

@@ -1,12 +1,18 @@
 import { css } from '@emotion/react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { Group } from '@/type/group';
 
 import ic_crown from '@/assets/img/ic_crown.png';
 
 const GroupItem = ({ group }: { group: Group }) => {
+  const navigate = useNavigate();
+  const handleGroupClick = () => {
+    navigate('/group', { state: { groupId: group.id } });
+  };
   return (
-    <div css={GroupWrapper}>
+    <div css={GroupWrapper} onClick={handleGroupClick}>
       <img css={GroupImage} src={group.groupImage} />
       <div css={TitleWrapper}>{group.name}</div>
       <div css={dateWrapper}>{`${group.startDate} ~ ${group.endDate}`}</div>
