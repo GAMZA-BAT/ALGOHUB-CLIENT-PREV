@@ -10,9 +10,8 @@ import Onboarding from '@/pages/onboarding/Onboarding';
 import SignupPage from '@/pages/signupPage/SignupPage';
 import UserDashboard from '@/pages/userDashboard/UserDashboard';
 
-import CreateGroup from '@/components/@common/modal/CreateGroup';
 import CustomModal from '@/components/@common/modal/CustomModal';
-import SolvedDetail from '@/components/@common/modal/SolvedDetail';
+import SolvedDetail from '@/components/@common/modal/SolvedDetail/SolvedDetail';
 
 import App from '@/App';
 

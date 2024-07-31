@@ -8,15 +8,15 @@ import {
 } from '@/pages/groupPage/components/ProblemBox';
 
 import LevelIcon from '@/components/@common/LevelIcon';
-import { seperator } from '@/components/@common/SideContent';
+import CodeHighlighter from '@/components/@common/modal/SolvedDetail/CodeHighlighter';
 
 import CloseIcon from '@/assets/svgs/ic_close.svg?react';
+import SendIcon from '@/assets/svgs/ic_send_plane.svg?react';
 
-import { useModalDispatch } from '@/contexts/modalContext';
+import { closeModal } from '@/contexts/modalContext';
 
 const SolvedDetail = () => {
-  const dispatch = useModalDispatch();
-
+  const code = 'const ProblemBox = ({level,title,duration,submitCnt,memberCnt,accuracy,isChecked,';
   return (
     <div css={Wrapper}>
       <header css={HeaderContainer}>
@@ -34,19 +34,17 @@ const SolvedDetail = () => {
           <p css={HeaderInfoStyle}>467B</p>
           <p css={HeaderInfoStyle}>Correct!</p>
         </section>
-        <CloseIcon
-          width={30}
-          height={30}
-          onClick={() => {
-            dispatch({
-              type: 'CLOSE_MODAL',
-            });
-          }}
-        />
+        <CloseIcon width={30} height={30} onClick={closeModal} />
       </header>
       <body css={Container}>
-        <section css={CodeWrapper}></section>
-        <section css={CommentWrapper}></section>
+        <CodeHighlighter code={code} />
+        <section css={CommentWrapper}>
+          <section css={CommentContainer}></section>
+          <section css={InputContainer}>
+            <textarea css={InputStyle} />
+            <SendIcon width={40} height={40} />
+          </section>
+        </section>
       </body>
     </div>
   );
@@ -83,15 +81,29 @@ const Container = css`
   height: 100%;
 `;
 
-const CodeWrapper = css`
-  width: 50%;
-  height: 100%;
-
-  background-color: red;
-`;
-
 const CommentWrapper = css`
   width: 50%;
   height: 100%;
-  background-color: blue;
+`;
+
+const CommentContainer = css`
+  height: 90%;
+  background-color: pink;
+  overflow-y: scroll;
+`;
+
+const InputContainer = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10%;
+  padding: 20px;
+`;
+
+const InputStyle = css`
+  width: 90%;
+  padding: 10px;
+  font-size: 25px;
+  border-radius: 12px;
+  letter-spacing: 2px;
 `;

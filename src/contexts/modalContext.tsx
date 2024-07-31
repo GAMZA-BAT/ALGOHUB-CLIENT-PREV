@@ -2,7 +2,7 @@ import { Dispatch, ReactNode, createContext, useContext, useReducer } from 'reac
 
 import CreateGroup from '@/components/@common/modal/CreateGroup';
 import FindGroup from '@/components/@common/modal/FindGroup';
-import SolvedDetail from '@/components/@common/modal/SolvedDetail';
+import SolvedDetail from '@/components/@common/modal/SolvedDetail/SolvedDetail';
 
 export type ModalType = 'findGroup' | 'createGroup' | 'solvedDetail' | 'none';
 
@@ -84,4 +84,11 @@ const getModal = (type: ModalType) => {
     case 'none':
       return null;
   }
+};
+
+export const closeModal = () => {
+  const dispatch = useModalDispatch();
+  dispatch({
+    type: 'CLOSE_MODAL',
+  });
 };
