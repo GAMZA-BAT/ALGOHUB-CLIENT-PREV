@@ -34,7 +34,7 @@ const GroupSetting = () => {
           />
         </div>
         <h2 css={Meta}>Description</h2>
-        <input css={textArea} placeholder="그룹을 간단하게 소개해주세요." />
+        <textarea css={longTextArea} placeholder="그룹을 간단하게 소개해주세요." />
       </section>
       <section css={MembersContainer}>
         <h2
@@ -81,6 +81,16 @@ const DateWrapper = css`
 
 const textArea = css`
   width: 100%;
+  padding: 10px;
+  font-size: 25px;
+  border-radius: 12px;
+  letter-spacing: 2px;
+  background-color: #fcfcfc;
+`;
+
+const longTextArea = css`
+  width: 100%;
+  height: 100%;
   padding: 10px;
   font-size: 25px;
   border-radius: 12px;
