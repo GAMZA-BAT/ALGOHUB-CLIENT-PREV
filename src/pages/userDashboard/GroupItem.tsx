@@ -9,7 +9,8 @@ import ic_crown from '@/assets/img/ic_crown.png';
 const GroupItem = ({ group }: { group: Group }) => {
   const navigate = useNavigate();
   const handleGroupClick = () => {
-    navigate('/group', { state: { groupId: group.id } });
+    localStorage.setItem('groupId', group.id + '');
+    navigate('/group');
   };
   return (
     <div css={GroupWrapper} onClick={handleGroupClick}>

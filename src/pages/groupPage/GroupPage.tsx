@@ -20,19 +20,7 @@ const GroupPage = () => {
   const location = useLocation();
   const [, setSearchParams] = useSearchParams();
   const isSetting = location.pathname === '/group/setting';
-
-  const [groupId, setGroupId] = useState<number>(0);
-
-  useEffect(() => {
-    const idFromState = location.state?.groupId || null;
-    const idFromSearch = location.search.match(/id=([^&]*)/)?.[1] || null;
-
-    setGroupId(idFromState || idFromSearch);
-
-    if (!location.search && idFromState) {
-      setSearchParams({ id: idFromState });
-    }
-  }, [location.state, location.search, setSearchParams]);
+  const groupId = +(localStorage.getItem('groupId') || '0');
 
   const {
     data: memberData,

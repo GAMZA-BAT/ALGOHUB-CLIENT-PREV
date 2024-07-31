@@ -1,8 +1,8 @@
 import { authAxios } from "@/api"
 
-export const getGroupMemberListAxios = (groupId: number) => {
+export const getProblemDeadlineReachedAxios = (groupId: number) => {
   return authAxios.get(
-    `/group/member-list`,
+    `/problem/deadline-reached`,
     {
       params: {
         groupId,

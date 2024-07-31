@@ -1,13 +1,26 @@
 import { css } from '@emotion/react';
 
+import { useLocation } from 'react-router-dom';
+
 import ProblemBox from '@/pages/groupPage/components/ProblemBox';
 import RankingBox from '@/pages/groupPage/components/RankingBox';
 
 import { seperator } from '@/components/@common/SideContent';
 
+import { useProblemDeadlineReached } from '@/hooks/query/useProblemQuery';
+
+import { ProblemList } from '@/type/problem';
+
 import AlgoHubLogoS from '@/assets/img/AlgoHubLogoS.png';
 
 const GroupDashboard = () => {
+  const {
+    data: problemData,
+    error: problemError,
+    isLoading: isProblemLoading,
+  } = useProblemDeadlineReached(+(localStorage.getItem('groupId') || '0'));
+
+  if (isProblemLoading) return <></>;
   return (
     <div css={Wrapper}>
       <section css={RankingWrapper}>
@@ -17,33 +30,18 @@ const GroupDashboard = () => {
       </section>
       <p css={Title}>Today's Problem</p>
       <hr css={seperator} />
-      <ProblemBox
-        level={13}
-        title={'ACM Craft'}
-        duration={'2024.08.31 - 2024.08.31'}
-        submitCnt={88}
-        memberCnt={158}
-        accuracy={70}
-        isChecked={false}
-      />
-      <ProblemBox
-        level={20}
-        title={'동적연결성과 쿼리'}
-        duration={'2024.08.31 - 2024.08.31'}
-        submitCnt={88}
-        memberCnt={158}
-        accuracy={70}
-        isChecked={false}
-      />
-      <ProblemBox
-        level={10}
-        title={'체스판 다시 칠하기'}
-        duration={'2024.08.31 - 2024.08.31'}
-        submitCnt={88}
-        memberCnt={158}
-        accuracy={70}
-        isChecked={true}
-      />
+      {problemData.map((problem: ProblemList) => (
+        <ProblemBox
+          key={problem.problemId}
+          level={problem.level}
+          title={problem.title}
+          duration={`${problem.startDate} ~ ${problem.endDate}`}
+          submitCnt={problem.submitMemberCount}
+          memberCnt={problem.memberCount}
+          accuracy={problem.accurancy}
+          isChecked={problem.solved}
+        />
+      ))}
     </div>
   );
 };
