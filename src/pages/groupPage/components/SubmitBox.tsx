@@ -4,6 +4,8 @@ import MaskIcon from '@/components/icon/MaskIcon';
 
 import MessageIc from '@/assets/svgs/ic_message.svg?react';
 
+import { useModalDispatch } from '@/contexts/modalContext';
+
 import { adjustBrightness } from '../../../utils/adjustBrightness';
 import { levelColor } from '../../../utils/level';
 
@@ -43,8 +45,17 @@ const SubmitBox = ({
         return 0;
     }
   };
+
+  const dispatch = useModalDispatch();
+  const handleModalOpen = () => {
+    console.log('click solved detail');
+    dispatch({
+      type: 'OPEN_MODAL',
+      payload: 'solvedDetail',
+    });
+  };
   return (
-    <div css={Wrapper}>
+    <div css={Wrapper} onClick={handleModalOpen}>
       <MaskIcon width={50} height={50} src={problemImage} isCircle={true} />
       <section
         css={[

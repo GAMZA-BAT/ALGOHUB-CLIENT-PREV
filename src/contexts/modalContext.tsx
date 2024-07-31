@@ -2,8 +2,9 @@ import { Dispatch, ReactNode, createContext, useContext, useReducer } from 'reac
 
 import CreateGroup from '@/components/@common/modal/CreateGroup';
 import FindGroup from '@/components/@common/modal/FindGroup';
+import SolvedDetail from '@/components/@common/modal/SolvedDetail';
 
-export type ModalType = 'findGroup' | 'createGroup' | 'none';
+export type ModalType = 'findGroup' | 'createGroup' | 'solvedDetail' | 'none';
 
 interface ModalContextType {
   isOpen: boolean;
@@ -78,6 +79,8 @@ const getModal = (type: ModalType) => {
       return <FindGroup />;
     case 'createGroup':
       return <CreateGroup />;
+    case 'solvedDetail':
+      return <SolvedDetail />;
     case 'none':
       return null;
   }

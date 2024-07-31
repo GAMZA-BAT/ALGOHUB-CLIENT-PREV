@@ -12,6 +12,7 @@ import UserDashboard from '@/pages/userDashboard/UserDashboard';
 
 import CreateGroup from '@/components/@common/modal/CreateGroup';
 import CustomModal from '@/components/@common/modal/CustomModal';
+import SolvedDetail from '@/components/@common/modal/SolvedDetail';
 
 import App from '@/App';
 
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
             element: <GroupSetting />,
           },
         ],
+      },
+      {
+        path: 'solvedDetail',
+        element: <SolvedDetail />,
       },
     ],
   },

@@ -39,7 +39,7 @@ const ProblemBox = ({
       <section css={MetaContainer}>
         <LevelIcon level={level} />
         <div css={Twoline}>
-          <h2>{title}</h2>
+          <p css={TitleStyle}>{title}</p>
           <p css={DurationStyle}>{duration}</p>
         </div>
       </section>
@@ -91,14 +91,22 @@ const Wrapper = css`
   border-bottom: 1px solid lightgray;
 `;
 
-const MetaContainer = css`
+export const MetaContainer = css`
   display: flex;
+  align-items: center;
   gap: 20px;
 `;
 
-const DurationStyle = css`
+export const TitleStyle = css`
+  font-family: 'Pretendard-semibold';
+  font-weight: 600;
+
+  font-size: 30px;
+`;
+export const DurationStyle = css`
   font-family: 'Pretendard-regular';
   font-weight: 200;
+  font-size: 20px;
 `;
 
 const SubStyle = css`
@@ -108,9 +116,10 @@ const SubStyle = css`
   color: gray;
 `;
 
-const Twoline = css`
+export const Twoline = css`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
 `;
 
