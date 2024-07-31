@@ -7,15 +7,28 @@ import ProblemBox from '@/pages/groupPage/components/ProblemBox';
 import { seperator } from '@/components/@common/SideContent';
 import CheckboxIcon from '@/components/icon/CheckboxIcon';
 
+import { useProblem } from '@/hooks/query/useProblemQuery';
+
+import { ProblemData } from '@/type/problem';
+
 import { Theme } from '@/styles/theme';
 
 const ProblemList = () => {
   const [isUnsolvedOnly, setIsUnsolvedOnly] = useState(false);
+  const groupId = +(localStorage.getItem('groupId') || '0');
 
+  const {
+    data: problemData,
+    error: problemError,
+    isLoading: isProblemLoading,
+  } = useProblem(groupId);
+
+  console.log({ problemData });
   const handleUnsolvedOnlyClick = () => {
     setIsUnsolvedOnly((prev) => !prev);
   };
 
+  if (isProblemLoading) return <></>;
   return (
     <div css={Wrapper}>
       <section
@@ -39,15 +52,20 @@ const ProblemList = () => {
         </div>
       </section>
       <hr css={seperator} />
-      <ProblemBox
-        level={13}
-        title={'ACM Craft'}
-        duration={'2024.08.31 - 2024.08.31'}
-        submitCnt={88}
-        memberCnt={158}
-        accuracy={70}
-        isChecked={false}
-      />
+      {problemData
+        .filter((problem: ProblemData) => (isUnsolvedOnly ? problem.solved : true))
+        .map((problem: ProblemData) => (
+          <ProblemBox
+            key={problem.problemId}
+            level={problem.level}
+            title={problem.title}
+            duration={`${problem.startDate} ~ ${problem.endDate}`}
+            submitCnt={problem.submitMemberCount}
+            memberCnt={problem.memberCount}
+            accuracy={problem.accurancy}
+            isChecked={problem.solved}
+          />
+        ))}
       <h1
         css={[
           Meta,

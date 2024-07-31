@@ -10,7 +10,7 @@ import { seperator } from '@/components/@common/SideContent';
 import { useGroupRanking } from '@/hooks/query/useGroupQuery';
 import { useProblemDeadlineReached } from '@/hooks/query/useProblemQuery';
 
-import { ProblemList } from '@/type/problem';
+import { ProblemData } from '@/type/problem';
 
 import AlgoHubLogoS from '@/assets/img/AlgoHubLogoS.png';
 
@@ -38,7 +38,7 @@ const GroupDashboard = () => {
       </section>
       <p css={Title}>Today's Problem</p>
       <hr css={seperator} />
-      {problemData.map((problem: ProblemList) => (
+      {problemData.map((problem: ProblemData) => (
         <ProblemBox
           key={problem.problemId}
           level={problem.level}

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import MaskIcon from '@/components/icon/MaskIcon';
 
-import { getGroupMetaByCode, joinGroup } from '@/api/group/getGroupList';
+import { getGroupMetaByCode, joinGroup } from '@/api/getGroupList';
 
 import alertError from '@/utils/alertError';
 

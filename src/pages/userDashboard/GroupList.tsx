@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 import { useEffect, useState } from 'react';
 
-import { getGroupList } from '@/api/group/getGroupList';
+import { getGroupList } from '@/api/getGroupList';
 
 import alertError from '@/utils/alertError';
 

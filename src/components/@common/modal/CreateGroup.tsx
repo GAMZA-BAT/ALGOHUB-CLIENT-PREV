@@ -9,7 +9,7 @@ import MaskIcon from '@/components/icon/MaskIcon';
 
 import useImageUploader from '@/hooks/image/useImageUploader';
 
-import { createGroup } from '@/api/group/getGroupList';
+import { createGroup } from '@/api/getGroupList';
 
 import alertError from '@/utils/alertError';
 
