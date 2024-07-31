@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 import { useEffect, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import SideContent, { Detail } from '@/components/@common/SideContent';
 import Navbar from '@/components/@common/navbar/Navbar';
@@ -13,6 +13,8 @@ import AlgoHubLogoS from '@/assets/img/AlgoHubLogoS.png';
 const GroupPage = () => {
   const [selectedTab, setSelectedTab] = useState<number>(0);
   const navigate = useNavigate();
+  const isSetting = useLocation().pathname === '/group/setting';
+
   useEffect(() => {
     switch (selectedTab) {
       case 0:
@@ -34,26 +36,32 @@ const GroupPage = () => {
         <TabList.Settings />
       </Navbar>
       <div css={Wrapper}>
-        <section css={GroupInfoContainer}>
-          <SideContent
-            imageSrc={AlgoHubLogoS}
-            title="숭실대학교 여름방학 스터디"
-            detail="2024.07.01 - 2024.08.31"
-            description="애들아 열심히 하자 빠이팅"
-          />
-          <div css={MemberListWrapper}>
-            <h1>Members</h1>
-            <section css={MemberListContainer}>
-              <section css={MemberContainer}>
-                <MaskIcon width={80} height={80} src={AlgoHubLogoS} isCircle={true} />
-                <h3 css={Detail}>j-nary</h3>
-              </section>
-            </section>
-          </div>
-        </section>
-        <article css={Container}>
+        {isSetting ? (
           <Outlet />
-        </article>
+        ) : (
+          <>
+            <section css={GroupInfoContainer}>
+              <SideContent
+                imageSrc={AlgoHubLogoS}
+                title="숭실대학교 여름방학 스터디"
+                detail="2024.07.01 - 2024.08.31"
+                description="애들아 열심히 하자 빠이팅"
+              />
+              <div css={MemberListWrapper}>
+                <h1>Members</h1>
+                <section css={MemberListContainer}>
+                  <section css={MemberContainer}>
+                    <MaskIcon width={80} height={80} src={AlgoHubLogoS} isCircle={true} />
+                    <h3 css={Detail}>j-nary</h3>
+                  </section>
+                </section>
+              </div>
+            </section>
+            <article css={Container}>
+              <Outlet />
+            </article>
+          </>
+        )}
       </div>
     </>
   );
