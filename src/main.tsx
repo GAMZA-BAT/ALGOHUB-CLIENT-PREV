@@ -15,15 +15,15 @@ import { ModalProvider } from './contexts/modalContext';
 
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={Theme}>
-        <ModalProvider>
-          <Global styles={GlobalStyle} />
-          <AppRouter />
-        </ModalProvider>
-      </ThemeProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <ThemeProvider theme={Theme}>
+      <ModalProvider>
+        <Global styles={GlobalStyle} />
+        <AppRouter />
+      </ModalProvider>
+    </ThemeProvider>
+    <ReactQueryDevtools initialIsOpen={false} />
+  </QueryClientProvider>,
+  // </React.StrictMode>,
 );

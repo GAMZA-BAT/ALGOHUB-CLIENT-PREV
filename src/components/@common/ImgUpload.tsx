@@ -62,9 +62,9 @@ const ImageInputLabel = css`
 const ImgCircle = css`
   overflow: hidden;
 
-  width: 11.7rem;
-  height: 11.7rem;
-  border-radius: 117px;
+  width: 13rem;
+  height: 13rem;
+  border-radius: 50%;
 
   & > img {
     width: 100%;

@@ -12,7 +12,9 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@mui/material": "^5.16.5",
+    "@material-ui/core": "^4.12.4",
+    "@mui/material": "^5.16.6",
+    "@mui/styles": "^5.16.6",
     "@tanstack/react-query": "^5.37.1",
     "@tanstack/react-query-devtools": "^5.37.1",
     "axios": "^1.7.1",
