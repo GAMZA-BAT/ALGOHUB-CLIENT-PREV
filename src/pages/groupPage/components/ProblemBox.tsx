@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import LevelIcon from '@/components/@common/LevelIcon';
 import CheckboxIcon from '@/components/icon/CheckboxIcon';
 
-import { ProblemData } from '@/type/problem';
+import { ProblemDataType } from '@/type/problem';
 
 import XmarkBoxIc from '@/assets/svgs/ic_xmark_box.svg?react';
 
 interface problemBoxPropType {
   isExpired?: boolean;
   isClickActive?: boolean;
-  problem: ProblemData;
+  problem: ProblemDataType;
   onClick?: () => void;
 }
 const ProblemBox = ({ problem, isExpired = false, isClickActive = true }: problemBoxPropType) => {

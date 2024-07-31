@@ -7,13 +7,26 @@ import SubmitBox from '@/pages/groupPage/components/SubmitBox';
 
 import { seperator } from '@/components/@common/SideContent';
 
-import AlgoHubLogoS from '@/assets/img/AlgoHubLogoS.png';
+import { useGetSolution } from '@/hooks/query/useSolutionQuery';
+
+import { ProblemDataType } from '@/type/problem';
+import { SolutionDataType } from '@/type/solution';
+
 import AngleLeftIc from '@/assets/svgs/ic_angle_left.svg?react';
 
 const ProblemDetail = () => {
   const navigate = useNavigate();
-  const problem = useLocation().state.problem;
+  const problem: ProblemDataType = useLocation().state.problem;
 
+  const {
+    data: solutionsData,
+    error: solutionsError,
+    isLoading: isSolutionsLoading,
+  } = useGetSolution(problem.problemId);
+
+  console.log({ solutionsData });
+
+  if (isSolutionsLoading) return <></>;
   return (
     <div css={Wrapper}>
       <section css={Meta}>
@@ -31,53 +44,16 @@ const ProblemDetail = () => {
         <h3>결과</h3>
       </section>
       <article>
-        <SubmitBox
-          level={problem.level}
-          nickname={'jnary'}
-          problemImage={AlgoHubLogoS}
-          solvedDate={'2024-08-30 23:59:59'}
-          isCorrect={false}
-          memoryUsage={2020}
-          executionTime={0}
-          language={'C++17'}
-          codeLength={467}
-          variant={'first'}
-        />
-        <SubmitBox
-          level={problem.level}
-          nickname={'jnary'}
-          problemImage={AlgoHubLogoS}
-          solvedDate={'2024-08-30 23:59:59'}
-          isCorrect={false}
-          memoryUsage={2020}
-          executionTime={0}
-          language={'C++17'}
-          codeLength={467}
-          variant={'secondary'}
-        />
-        <SubmitBox
-          level={problem.level}
-          nickname={'jnary'}
-          problemImage={AlgoHubLogoS}
-          solvedDate={'2024-08-30 23:59:59'}
-          isCorrect={false}
-          memoryUsage={2020}
-          executionTime={0}
-          language={'C++17'}
-          codeLength={467}
-          variant={'third'}
-        />
-        <SubmitBox
-          level={problem.level}
-          nickname={'jnary'}
-          problemImage={AlgoHubLogoS}
-          solvedDate={'2024-08-30 23:59:59'}
-          isCorrect={false}
-          memoryUsage={2020}
-          executionTime={0}
-          language={'C++17'}
-          codeLength={467}
-        />
+        {solutionsData.map((solution: SolutionDataType, idx: number) => (
+          <SubmitBox
+            key={solution.solutionId}
+            level={problem.level}
+            solution={solution}
+            variant={
+              idx === 0 ? 'first' : idx === 1 ? 'secondary' : idx === 2 ? 'third' : 'default'
+            }
+          />
+        ))}
       </article>
     </div>
   );

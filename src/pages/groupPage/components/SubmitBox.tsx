@@ -2,6 +2,8 @@ import { css } from '@emotion/react';
 
 import MaskIcon from '@/components/icon/MaskIcon';
 
+import { SolutionDataType } from '@/type/solution';
+
 import MessageIc from '@/assets/svgs/ic_message.svg?react';
 
 import { useModalDispatch } from '@/contexts/modalContext';
@@ -11,28 +13,10 @@ import { levelColor } from '../../../utils/level';
 
 interface submitBoxPropType {
   variant?: 'first' | 'secondary' | 'third' | 'default';
+  solution: SolutionDataType;
   level: number;
-  nickname: string;
-  problemImage: string;
-  solvedDate: string;
-  isCorrect: boolean;
-  memoryUsage: number;
-  executionTime: number;
-  language: string;
-  codeLength: number;
 }
-const SubmitBox = ({
-  variant = 'default',
-  level,
-  problemImage,
-  nickname,
-  solvedDate,
-  memoryUsage,
-  executionTime,
-  language,
-  codeLength,
-  isCorrect,
-}: submitBoxPropType) => {
+const SubmitBox = ({ variant = 'default', solution, level }: submitBoxPropType) => {
   const alpha = (): number => {
     switch (variant) {
       case 'first':
@@ -48,7 +32,7 @@ const SubmitBox = ({
 
   const dispatch = useModalDispatch();
   const handleModalOpen = () => {
-    console.log('click solved detail');
+    localStorage.setItem('solutionId', solution.solutionId + '');
     dispatch({
       type: 'OPEN_MODAL',
       payload: 'solvedDetail',
@@ -56,7 +40,7 @@ const SubmitBox = ({
   };
   return (
     <div css={Wrapper} onClick={handleModalOpen}>
-      <MaskIcon width={50} height={50} src={problemImage} isCircle={true} />
+      <MaskIcon width={50} height={50} src={solution.profileImage} isCircle={true} />
       <section
         css={[
           Container,
@@ -65,13 +49,13 @@ const SubmitBox = ({
           `,
         ]}
       >
-        <h2>{nickname}</h2>
-        <p>{solvedDate}</p>
-        <p>{memoryUsage}KB</p>
-        <p>{executionTime}ms</p>
-        <p>{language}</p>
-        <p>{codeLength}B</p>
-        <p>{isCorrect ? 'Correct!' : 'InCorrect!'}</p>
+        <h2>{solution.nickname}</h2>
+        <p>{solution.solvedDate}</p>
+        <p>{solution.memoryUsage}KB</p>
+        <p>{solution.executionTime}ms</p>
+        <p>{solution.language}</p>
+        <p>{solution.codeLength}B</p>
+        <p>{solution.isCorrect ? 'Correct!' : 'InCorrect!'}</p>
       </section>
       <div css={CommentWrapper}>
         <MessageIc width={30} height={30} />

@@ -9,7 +9,7 @@ import CheckboxIcon from '@/components/icon/CheckboxIcon';
 
 import { useProblem } from '@/hooks/query/useProblemQuery';
 
-import { ProblemData } from '@/type/problem';
+import { ProblemDataType } from '@/type/problem';
 
 import { Theme } from '@/styles/theme';
 
@@ -53,8 +53,8 @@ const ProblemList = () => {
       </section>
       <hr css={seperator} />
       {problemData
-        .filter((problem: ProblemData) => (isUnsolvedOnly ? problem.solved : true))
-        .map((problem: ProblemData) => (
+        .filter((problem: ProblemDataType) => (isUnsolvedOnly ? problem.solved : true))
+        .map((problem: ProblemDataType) => (
           <ProblemBox key={problem.problemId} problem={problem} />
         ))}
       <h1

@@ -1,4 +1,4 @@
-export interface ProblemData {
+export interface ProblemDataType {
   title: string;
   problemId: number;
   link: string;
