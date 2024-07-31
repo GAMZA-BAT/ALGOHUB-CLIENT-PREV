@@ -11,6 +11,8 @@ import LevelIcon from '@/components/@common/LevelIcon';
 import CodeHighlighter from '@/components/@common/modal/SolvedDetail/CodeHighlighter';
 import CommentBox from '@/components/@common/modal/SolvedDetail/CommentBox';
 
+import { useGetSolution } from '@/hooks/query/useSolutionQuery';
+
 import testImg from '@/assets/img/ic_algohub_purple.png';
 import CloseIcon from '@/assets/svgs/ic_close.svg?react';
 import SendIcon from '@/assets/svgs/ic_send_plane.svg?react';
@@ -18,7 +20,12 @@ import SendIcon from '@/assets/svgs/ic_send_plane.svg?react';
 import { closeModal } from '@/contexts/modalContext';
 
 const SolvedDetail = () => {
-  const code = 'const ProblemBox = ({level,title,duration,submitCnt,memberCnt,accuracy,isChecked,';
+  // const {
+  //   data: solutionsData,
+  //   error: solutionsError,
+  //   isLoading: isSolutionsLoading,
+  // } = useGetSolution(problem.problemId);
+
   return (
     <div css={Wrapper}>
       <header css={HeaderContainer}>
@@ -39,7 +46,7 @@ const SolvedDetail = () => {
         <CloseIcon width={30} height={30} onClick={closeModal} />
       </header>
       <body css={Container}>
-        <CodeHighlighter code={code} />
+        <CodeHighlighter code={'const hello'} />
         <section css={CommentWrapper}>
           <section css={CommentContainer}>
             <CommentBox
