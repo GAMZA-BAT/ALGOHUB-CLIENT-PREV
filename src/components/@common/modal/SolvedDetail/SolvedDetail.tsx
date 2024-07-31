@@ -9,7 +9,9 @@ import {
 
 import LevelIcon from '@/components/@common/LevelIcon';
 import CodeHighlighter from '@/components/@common/modal/SolvedDetail/CodeHighlighter';
+import CommentBox from '@/components/@common/modal/SolvedDetail/CommentBox';
 
+import testImg from '@/assets/img/ic_algohub_purple.png';
 import CloseIcon from '@/assets/svgs/ic_close.svg?react';
 import SendIcon from '@/assets/svgs/ic_send_plane.svg?react';
 
@@ -39,7 +41,15 @@ const SolvedDetail = () => {
       <body css={Container}>
         <CodeHighlighter code={code} />
         <section css={CommentWrapper}>
-          <section css={CommentContainer}></section>
+          <section css={CommentContainer}>
+            <CommentBox
+              imgSrc={testImg}
+              nickName={'rladmstn'}
+              comment={
+                '이 부분은 dfs 부분이군요! 잘 구현하셨네요 그런데 메모리 복잡도를 조금 더 신경 써보는 건 어떻게 생각하세요?'
+              }
+            />
+          </section>
           <section css={InputContainer}>
             <textarea css={InputStyle} />
             <SendIcon width={40} height={40} />
