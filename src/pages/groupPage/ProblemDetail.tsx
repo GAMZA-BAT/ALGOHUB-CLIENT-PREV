@@ -44,7 +44,7 @@ const ProblemDetail = () => {
           level={problemId}
           nickname={'jnary'}
           problemImage={AlgoHubLogoS}
-          solvedDate={'2024-08-30'}
+          solvedDate={'2024-08-30 23:59:59'}
           isCorrect={false}
           memoryUsage={2020}
           executionTime={0}
@@ -56,7 +56,7 @@ const ProblemDetail = () => {
           level={problemId}
           nickname={'jnary'}
           problemImage={AlgoHubLogoS}
-          solvedDate={'2024-08-30'}
+          solvedDate={'2024-08-30 23:59:59'}
           isCorrect={false}
           memoryUsage={2020}
           executionTime={0}
@@ -68,7 +68,7 @@ const ProblemDetail = () => {
           level={problemId}
           nickname={'jnary'}
           problemImage={AlgoHubLogoS}
-          solvedDate={'2024-08-30'}
+          solvedDate={'2024-08-30 23:59:59'}
           isCorrect={false}
           memoryUsage={2020}
           executionTime={0}
@@ -80,7 +80,7 @@ const ProblemDetail = () => {
           level={problemId}
           nickname={'jnary'}
           problemImage={AlgoHubLogoS}
-          solvedDate={'2024-08-30'}
+          solvedDate={'2024-08-30 23:59:59'}
           isCorrect={false}
           memoryUsage={2020}
           executionTime={0}
@@ -106,7 +106,7 @@ const Meta = css`
 
 const CategoryWrapper = css`
   display: grid;
-  grid-template-columns: 0.8fr 1.5fr 1.3fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.8fr 1.8fr 1.3fr 1fr 1fr 1fr 1fr;
 
   justify-content: center;
   justify-items: center;

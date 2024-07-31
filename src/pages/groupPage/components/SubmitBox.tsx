@@ -91,7 +91,7 @@ const Wrapper = css`
 
 const Container = css`
   display: grid;
-  grid-template-columns: 0.8fr 1.5fr 1.3fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.8fr 1.8fr 1.3fr 1fr 1fr 1fr 1fr;
 
   justify-content: center;
   justify-items: center;
