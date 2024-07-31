@@ -5,42 +5,29 @@ import { useNavigate } from 'react-router-dom';
 import LevelIcon from '@/components/@common/LevelIcon';
 import CheckboxIcon from '@/components/icon/CheckboxIcon';
 
+import { ProblemData } from '@/type/problem';
+
 import XmarkBoxIc from '@/assets/svgs/ic_xmark_box.svg?react';
 
 interface problemBoxPropType {
-  level: number;
-  title: string;
-  duration: string;
-  submitCnt: number;
-  memberCnt: number;
-  accuracy: number;
-  isChecked: boolean;
   isExpired?: boolean;
   isClickActive?: boolean;
+  problem: ProblemData;
+  onClick?: () => void;
 }
-const ProblemBox = ({
-  level,
-  title,
-  duration,
-  submitCnt,
-  memberCnt,
-  accuracy,
-  isChecked,
-  isExpired = false,
-  isClickActive = true,
-}: problemBoxPropType) => {
+const ProblemBox = ({ problem, isExpired = false, isClickActive = true }: problemBoxPropType) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    isClickActive && navigate('/group/problem-detail', { state: { problemId: level } });
+    isClickActive && navigate('/group/problem-detail', { state: { problem: problem } });
   };
 
   return (
     <div css={Wrapper} onClick={handleClick}>
       <section css={MetaContainer}>
-        <LevelIcon level={level} />
+        <LevelIcon level={problem.level} />
         <div css={Twoline}>
-          <p css={TitleStyle}>{title}</p>
-          <p css={DurationStyle}>{duration}</p>
+          <p css={TitleStyle}>{problem.title}</p>
+          <p css={DurationStyle}>{`${problem.startDate} ~ ${problem.endDate}`}</p>
         </div>
       </section>
       <section css={DetailContainer}>
@@ -54,7 +41,7 @@ const ProblemBox = ({
         >
           <h3>solved</h3>
           <p css={SubStyle}>
-            {submitCnt}/{memberCnt}
+            {problem.submitMemberCount}/{problem.memberCount}
           </p>
         </div>
         <div
@@ -66,12 +53,12 @@ const ProblemBox = ({
           ]}
         >
           <h3>accurancy</h3>
-          <p css={SubStyle}>{accuracy}%</p>
+          <p css={SubStyle}>{problem.accurancy}%</p>
         </div>
         {isExpired ? (
           <XmarkBoxIc width={'40px'} height={'40px'} fill={'#d2001a'} />
         ) : (
-          <CheckboxIcon isChecked={isChecked} />
+          <CheckboxIcon isChecked={problem.solved} />
         )}
       </section>
     </div>

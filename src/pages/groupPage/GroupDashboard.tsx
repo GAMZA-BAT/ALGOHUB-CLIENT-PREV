@@ -39,16 +39,7 @@ const GroupDashboard = () => {
       <p css={Title}>Today's Problem</p>
       <hr css={seperator} />
       {problemData.map((problem: ProblemData) => (
-        <ProblemBox
-          key={problem.problemId}
-          level={problem.level}
-          title={problem.title}
-          duration={`${problem.startDate} ~ ${problem.endDate}`}
-          submitCnt={problem.submitMemberCount}
-          memberCnt={problem.memberCount}
-          accuracy={problem.accurancy}
-          isChecked={problem.solved}
-        />
+        <ProblemBox key={problem.problemId} problem={problem} />
       ))}
     </div>
   );

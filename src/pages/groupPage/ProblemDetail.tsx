@@ -12,22 +12,13 @@ import AngleLeftIc from '@/assets/svgs/ic_angle_left.svg?react';
 
 const ProblemDetail = () => {
   const navigate = useNavigate();
-  const problemId = useLocation().state.problemId;
+  const problem = useLocation().state.problem;
 
   return (
     <div css={Wrapper}>
       <section css={Meta}>
         <AngleLeftIc width={'40px'} height={'40px'} onClick={() => navigate(-1)} />
-        <ProblemBox
-          level={problemId}
-          title={''}
-          duration={''}
-          submitCnt={0}
-          memberCnt={0}
-          accuracy={0}
-          isChecked={false}
-          isClickActive={false}
-        />
+        <ProblemBox problem={problem} isClickActive={false} />
       </section>
       <hr css={seperator} />
       <section css={CategoryWrapper}>
@@ -41,7 +32,7 @@ const ProblemDetail = () => {
       </section>
       <article>
         <SubmitBox
-          level={problemId}
+          level={problem.level}
           nickname={'jnary'}
           problemImage={AlgoHubLogoS}
           solvedDate={'2024-08-30 23:59:59'}
@@ -53,7 +44,7 @@ const ProblemDetail = () => {
           variant={'first'}
         />
         <SubmitBox
-          level={problemId}
+          level={problem.level}
           nickname={'jnary'}
           problemImage={AlgoHubLogoS}
           solvedDate={'2024-08-30 23:59:59'}
@@ -65,7 +56,7 @@ const ProblemDetail = () => {
           variant={'secondary'}
         />
         <SubmitBox
-          level={problemId}
+          level={problem.level}
           nickname={'jnary'}
           problemImage={AlgoHubLogoS}
           solvedDate={'2024-08-30 23:59:59'}
@@ -77,7 +68,7 @@ const ProblemDetail = () => {
           variant={'third'}
         />
         <SubmitBox
-          level={problemId}
+          level={problem.level}
           nickname={'jnary'}
           problemImage={AlgoHubLogoS}
           solvedDate={'2024-08-30 23:59:59'}

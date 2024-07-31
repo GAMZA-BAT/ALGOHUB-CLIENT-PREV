@@ -55,16 +55,7 @@ const ProblemList = () => {
       {problemData
         .filter((problem: ProblemData) => (isUnsolvedOnly ? problem.solved : true))
         .map((problem: ProblemData) => (
-          <ProblemBox
-            key={problem.problemId}
-            level={problem.level}
-            title={problem.title}
-            duration={`${problem.startDate} ~ ${problem.endDate}`}
-            submitCnt={problem.submitMemberCount}
-            memberCnt={problem.memberCount}
-            accuracy={problem.accurancy}
-            isChecked={problem.solved}
-          />
+          <ProblemBox key={problem.problemId} problem={problem} />
         ))}
       <h1
         css={[
@@ -77,7 +68,8 @@ const ProblemList = () => {
         Expired
       </h1>
       <hr css={seperator} />
-      <ProblemBox
+      {/* <ProblemBox
+        id={0}
         level={1}
         title={''}
         duration={''}
@@ -86,7 +78,7 @@ const ProblemList = () => {
         accuracy={0}
         isChecked={false}
         isExpired
-      />
+      /> */}
     </div>
   );
 };
