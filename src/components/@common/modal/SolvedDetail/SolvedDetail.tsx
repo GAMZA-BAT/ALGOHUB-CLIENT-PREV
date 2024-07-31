@@ -97,8 +97,9 @@ const CommentWrapper = css`
 `;
 
 const CommentContainer = css`
+  display: flex;
+  flex-direction: column-reverse;
   height: 90%;
-  background-color: pink;
   overflow-y: scroll;
 `;
 
