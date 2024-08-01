@@ -10,6 +10,7 @@ import Onboarding from '@/pages/onboarding/Onboarding';
 import SignupPage from '@/pages/signupPage/SignupPage';
 import UserDashboard from '@/pages/userDashboard/UserDashboard';
 
+import SidePannel from '@/components/@common/SidePannel';
 import SolvedDetail from '@/components/@common/modal/SolvedDetail/SolvedDetail';
 
 import App from '@/App';
@@ -66,5 +67,10 @@ const router = createBrowserRouter([
 ]);
 
 export const AppRouter = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <SidePannel />
+    </>
+  );
 };

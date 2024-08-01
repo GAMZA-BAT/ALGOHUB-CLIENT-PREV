@@ -1,4 +1,6 @@
 import { css } from '@emotion/react';
+import { format } from 'date-fns';
+import { s } from 'vite/dist/node/types.d-aGj9QkWt';
 
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
@@ -31,7 +33,7 @@ const GroupSetting = () => {
 
   const groupInfoMutation = usePatchGroupInfo();
   const initialImage = groupData?.groupImage || defaultImg;
-  const [imageFile, setImageFile] = useState<string>(initialImage);
+  const [imageFile, setImageFile] = useState<string>('');
   const [groupName, setGroupName] = useState(groupData?.name + '');
   const [startDate, setStartDate] = useState<Date | null>(new Date(groupData?.startDate + ''));
   const [endDate, setEndDate] = useState<Date | null>(new Date(groupData?.endDate + ''));
@@ -39,13 +41,13 @@ const GroupSetting = () => {
   const [isSaveActive, setIsSaveActive] = useState(false);
 
   useEffect(() => {
-    if (!groupData) return;
+    if (!groupData || !startDate || !endDate) return;
 
     if (
-      imageFile !== initialImage ||
+      imageFile ||
       groupName !== groupData?.name + '' ||
-      startDate + '' !== groupData?.startDate + '' ||
-      endDate + '' !== groupData?.endDate + '' ||
+      format(startDate, 'yyyy-MM-dd') + '' !== groupData?.startDate + '' ||
+      format(endDate, 'yyyy-MM-dd') + '' !== groupData?.endDate + '' ||
       description !== groupData?.introduction + ''
     )
       setIsSaveActive(true);
@@ -56,8 +58,8 @@ const GroupSetting = () => {
     groupInfoMutation.mutate({
       id: groupId,
       name: groupName,
-      startDate: startDate + '',
-      endDate: endDate + '',
+      startDate: format(startDate + '', 'yyyy-MM-dd'),
+      endDate: format(endDate + '', 'yyyy-MM-dd') + '',
       introduction: description,
       groupImage: imageFile,
     });
@@ -67,7 +69,7 @@ const GroupSetting = () => {
   return (
     <div css={Wrapper}>
       <section css={GroupInfoContainer}>
-        <ImgUpload imageFile={imageFile} setImageFile={setImageFile} />
+        <ImgUpload imageFile={imageFile ? imageFile : initialImage} setImageFile={setImageFile} />
         <h2 css={Meta}>Group name</h2>
         <input
           css={TextArea}

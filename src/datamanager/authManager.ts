@@ -37,6 +37,10 @@ export class AuthManager {
         }
     }
 
+    public isAnonymous(): boolean {
+        return this.token === ANONYMOUS_AUTH_TOKEN;
+    }
+
     public getToken(): string {
         return this.token;
     }

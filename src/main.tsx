@@ -15,8 +15,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   // <React.StrictMode>
   <QueryClientProvider client={queryClient}>
     <ThemeProvider theme={Theme}>
-      <Global styles={GlobalStyle} />
-      <AppRouter />
+        <SideProvider>
+          <Global styles={GlobalStyle} />
+          <AppRouter />
+        </SideProvider>
     </ThemeProvider>
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>,
