@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import Header from '@/components/@common/header/Header';
+import CustomModal from '@/components/@common/modal/CustomModal';
 
 import { AuthManager } from './datamanager/authManager';
 
@@ -21,10 +22,13 @@ function App() {
     return null;
   }
   return (
-    <div css={wrapper}>
-      <Header />
-      <Outlet />
-    </div>
+    <>
+      <div css={wrapper}>
+        <Header />
+        <Outlet />
+      </div>
+      <CustomModal />
+    </>
   );
 }
 

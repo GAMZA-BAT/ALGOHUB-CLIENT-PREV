@@ -71,29 +71,30 @@ const modalReducer = (state: ModalContextType, action: ModalAction): ModalContex
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(modalReducer, initialState);
 
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const location = useLocation();
-  // useEffect(() => {
-  //   const search = location.search.replace('?', '').split('=') as [ModalType, string];
-  //   const type = search?.[0];
-  //   const modalId = search?.[1];
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  useEffect(() => {
+    const search = location.search.replace('?', '').split('=') as [ModalType, string];
+    const type = search?.[0];
+    const modalId = search?.[1];
 
-  //   // url로 접근할 때
-  //   if (!state.isOpen && type) {
-  //     dispatch({
-  //       type: 'OPEN_MODAL',
-  //       payload: {
-  //         variant: type,
-  //         modalId,
-  //       },
-  //     });
-  //   }
+    // url로 접근할 때
+    if (!state.isOpen && type) {
+      dispatch({
+        type: 'OPEN_MODAL',
+        payload: {
+          variant: type,
+          modalId,
+        },
+      });
+    }
 
-  //   // 직접 열 때
-  //   else {
-  //     setSearchParams({[]});
-  //   }
-  // }, [state, searchParams, setSearchParams]);
+    // 직접 열 때
+    else {
+      setSearchParams({});
+    }
+  }, [state, searchParams, setSearchParams]);
+
   return (
     <modalContext.Provider value={state}>
       <modalDispatchContext.Provider value={dispatch}>{children}</modalDispatchContext.Provider>
@@ -114,9 +115,24 @@ const getModal = (type: ModalType) => {
   }
 };
 
-export const closeModal = () => {
+export const dispatchModalClose = () => {
   const dispatch = useModalDispatch();
   dispatch({
     type: 'CLOSE_MODAL',
   });
+};
+
+export const dispatchModalOpen = (variant: ModalType, modalId: string) => {
+  const dispatch = useModalDispatch();
+  const [, setSearchParams] = useSearchParams();
+
+  localStorage.setItem('solutionId', modalId);
+  dispatch({
+    type: 'OPEN_MODAL',
+    payload: {
+      variant,
+      modalId,
+    },
+  });
+  setSearchParams({ [variant]: modalId });
 };

@@ -16,7 +16,7 @@ import alertError from '@/utils/alertError';
 import ic_pencil from '@/assets/svgs/ic_pencil.svg';
 import profileIcon from '@/assets/svgs/ic_profile_circle.svg';
 
-import { closeModal, useModalDispatch } from '@/contexts/modalContext';
+import { dispatchModalClose, useModalDispatch } from '@/contexts/modalContext';
 
 import Button from '../Button/Button';
 import ModalTemplate from './ModalTemplate';
@@ -50,7 +50,7 @@ const CreateGroup = () => {
         introduction: groupDescription,
         profileImage: imageUrl ?? profileIcon,
       });
-      closeModal();
+      dispatchModalClose();
     } catch (e) {
       alertError(e, '그룹 생성에 실패했습니다.');
     }

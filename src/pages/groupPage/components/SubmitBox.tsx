@@ -6,7 +6,7 @@ import { SolutionDataType } from '@/type/solution';
 
 import MessageIc from '@/assets/svgs/ic_message.svg?react';
 
-import { useModalDispatch } from '@/contexts/modalContext';
+import { dispatchModalOpen, useModalDispatch } from '@/contexts/modalContext';
 
 import { adjustBrightness } from '../../../utils/adjustBrightness';
 import { levelColor } from '../../../utils/level';
@@ -30,16 +30,8 @@ const SubmitBox = ({ variant = 'default', solution, level }: submitBoxPropType) 
     }
   };
 
-  const dispatch = useModalDispatch();
-  const handleModalOpen = () => {
-    localStorage.setItem('solutionId', solution.solutionId + '');
-    dispatch({
-      type: 'OPEN_MODAL',
-      payload: 'solvedDetail',
-    });
-  };
   return (
-    <div css={Wrapper} onClick={handleModalOpen}>
+    <div css={Wrapper} onClick={() => dispatchModalOpen('solvedDetail', solution.solutionId + '')}>
       <MaskIcon width={50} height={50} src={solution.profileImage} isCircle={true} />
       <section
         css={[

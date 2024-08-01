@@ -3,7 +3,7 @@ import homeIcon from '@/assets/svgs/ic_home.svg';
 import plusCircle from '@/assets/svgs/ic_plus_circle.svg';
 import settingIc from '@/assets/svgs/ic_setting.svg';
 
-import { useModalDispatch } from '@/contexts/modalContext';
+import { dispatchModalOpen } from '@/contexts/modalContext';
 
 import NavTab from '../@common/navbar/NavTab';
 
@@ -21,36 +21,27 @@ const ProblemList = () => {
 
 const GroupSettings = () => {
   return <NavTab src={settingIc} title="Settings" />;
-}
+};
 
 const Settings = () => {
-  const dispatch = useModalDispatch();
-
   return (
     <NavTab
       src={plusCircle}
       title="Create Group"
       onClick={() => {
-        dispatch({
-          type: 'OPEN_MODAL',
-          payload: 'createGroup',
-        });
+        dispatchModalOpen('createGroup', '');
       }}
     />
   );
 };
 
 const JoinGroup = () => {
-  const dispatch = useModalDispatch();
   return (
     <NavTab
       src={find}
       title="Find Group"
       onClick={() => {
-        dispatch({
-          type: 'OPEN_MODAL',
-          payload: 'findGroup',
-        });
+        dispatchModalOpen('findGroup', '');
       }}
     />
   );

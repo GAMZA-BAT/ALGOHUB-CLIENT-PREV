@@ -12,6 +12,8 @@ import { useGetGroupInfo, useGroupMemberList } from '@/hooks/query/useGroupQuery
 
 import { MemberDataType } from '@/type/group';
 
+import crownIc from '@/assets/img/ic_crown.png';
+
 const GroupPage = () => {
   const [selectedTab, setSelectedTab] = useState<number>(0);
   const navigate = useNavigate();
@@ -73,6 +75,7 @@ const GroupPage = () => {
                   {memberData?.map((member: MemberDataType) => (
                     <div key={member.memberId} css={MemberContainer}>
                       <MaskIcon width={80} height={80} src={member.profileImage} isCircle={true} />
+                      {member.isOwner && <img src={crownIc} css={CrownIcon} />}
                       <h3 css={MemberName}>{member.nickname}</h3>
                     </div>
                   ))}
@@ -121,10 +124,19 @@ const MemberListContainer = css`
 
 const MemberContainer = css`
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 5px;
+`;
+
+const CrownIcon = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
 `;
 
 const MemberName = css`

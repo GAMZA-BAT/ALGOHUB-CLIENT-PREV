@@ -1,6 +1,5 @@
 import { Global, ThemeProvider } from '@emotion/react';
 
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

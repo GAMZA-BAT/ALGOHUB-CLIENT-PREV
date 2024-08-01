@@ -10,7 +10,6 @@ import Onboarding from '@/pages/onboarding/Onboarding';
 import SignupPage from '@/pages/signupPage/SignupPage';
 import UserDashboard from '@/pages/userDashboard/UserDashboard';
 
-import CustomModal from '@/components/@common/modal/CustomModal';
 import SolvedDetail from '@/components/@common/modal/SolvedDetail/SolvedDetail';
 
 import App from '@/App';
@@ -67,10 +66,5 @@ const router = createBrowserRouter([
 ]);
 
 export const AppRouter = () => {
-  return (
-    <>
-      <RouterProvider router={router} />
-      <CustomModal />
-    </>
-  );
+  return <RouterProvider router={router} />;
 };

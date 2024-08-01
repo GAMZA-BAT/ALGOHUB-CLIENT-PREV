@@ -17,7 +17,7 @@ import testImg from '@/assets/img/ic_algohub_purple.png';
 import CloseIcon from '@/assets/svgs/ic_close.svg?react';
 import SendIcon from '@/assets/svgs/ic_send_plane.svg?react';
 
-import { closeModal } from '@/contexts/modalContext';
+import { dispatchModalClose } from '@/contexts/modalContext';
 
 const SolvedDetail = () => {
   // const {
@@ -43,7 +43,7 @@ const SolvedDetail = () => {
           <p css={HeaderInfoStyle}>467B</p>
           <p css={HeaderInfoStyle}>Correct!</p>
         </section>
-        <CloseIcon width={30} height={30} onClick={closeModal} />
+        <CloseIcon width={30} height={30} onClick={dispatchModalClose} />
       </header>
       <body css={Container}>
         <CodeHighlighter code={'const hello'} />

@@ -13,7 +13,7 @@ import { GroupMeta } from '@/type/group';
 
 import ic_question from '@/assets/svgs/ic_question.svg';
 
-import { closeModal, useModalDispatch } from '@/contexts/modalContext';
+import { dispatchModalClose, useModalDispatch } from '@/contexts/modalContext';
 
 import Button from '../Button/Button';
 import ModalTemplate from './ModalTemplate';
@@ -41,7 +41,7 @@ const FindGroup = () => {
     } catch (e) {
       alertError(e, '그룹 가입에 실패했습니다.');
     }
-    closeModal();
+    dispatchModalClose();
   };
 
   return (
