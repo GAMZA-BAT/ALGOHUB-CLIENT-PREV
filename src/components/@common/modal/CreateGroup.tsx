@@ -19,6 +19,7 @@ import profileIcon from '@/assets/svgs/ic_profile_circle.svg';
 import { useModalDispatch } from '@/contexts/modalContext';
 
 import Button from '../Button/Button';
+import DurationPicker from '../DurationPicker';
 import ModalTemplate from './ModalTemplate';
 
 const CreateGroup = () => {
@@ -29,6 +30,7 @@ const CreateGroup = () => {
   const [endDate, setEndDate] = useState<Date | null>(new Date());
 
   const { imageUrl, handleImageUpload } = useImageUploader();
+  const dispatch = useModalDispatch();
 
   const onClickCreate = async () => {
     const groupName = groupNameRef.current?.value;
@@ -87,18 +89,11 @@ const CreateGroup = () => {
             <div css={inputWrapper}>
               <div style={{ fontSize: '1.4rem' }}>Duration</div>
               <div css={DateWrapper}>
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
-                  dateFormat="yyyy-MM-dd"
-                  css={textArea}
-                />
-                <div>~</div>
-                <DatePicker
-                  selected={endDate}
-                  onChange={(date) => setEndDate(date)}
-                  dateFormat="yyyy-MM-dd"
-                  css={textArea}
+                <DurationPicker
+                  startDate={startDate}
+                  setStartDate={setStartDate}
+                  endDate={endDate}
+                  setEndDate={setEndDate}
                 />
               </div>
             </div>

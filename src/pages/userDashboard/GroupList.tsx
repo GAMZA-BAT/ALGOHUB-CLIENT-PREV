@@ -8,6 +8,8 @@ import alertError from '@/utils/alertError';
 
 import { GroupListResponse, GroupType } from '@/type/group';
 
+import { useModalContext } from '@/contexts/modalContext';
+
 import GroupGrid from './GroupGrid';
 
 const GroupList = () => {
@@ -25,6 +27,7 @@ const GroupList = () => {
 };
 
 const useFetchList = () => {
+  const isOpen = useModalContext().isOpen;
   const [groupList, setGroupList] = useState<GroupListResponse | null>(null);
   useEffect(() => {
     const fetch = async () => {
@@ -36,7 +39,7 @@ const useFetchList = () => {
       }
     };
     fetch();
-  }, []);
+  }, [isOpen]);
   return groupList;
 };
 
