@@ -24,12 +24,20 @@ const ProblemBox = ({ problem, isExpired = false, isClickActive = true }: proble
     }
   };
 
+  const handleTitleClick = () => {
+    if (!isClickActive) {
+      window.location.href = problem.link;
+    }
+  };
+
   return (
     <div css={Wrapper} onClick={handleClick}>
       <section css={MetaContainer}>
         <LevelIcon level={problem.level} />
         <div css={Twoline}>
-          <p css={TitleStyle}>{problem.title}</p>
+          <p css={TitleStyle} onClick={handleTitleClick}>
+            {problem.title}
+          </p>
           <p css={DurationStyle}>{`${problem.startDate} ~ ${problem.endDate}`}</p>
         </div>
       </section>
@@ -92,6 +100,7 @@ export const TitleStyle = css`
   font-weight: 600;
 
   font-size: 30px;
+  cursor: pointer;
 `;
 export const DurationStyle = css`
   font-family: 'Pretendard-regular';
