@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker';
 
 import MembersTable from '@/pages/groupPage/components/MembersTable';
 
+import DurationPicker from '@/components/@common/DurationPicker';
 import ImgUpload from '@/components/@common/ImgUpload';
 
 import { useGroupInfo, useGroupMemberList } from '@/hooks/query/useGroupQuery';
@@ -36,26 +37,17 @@ const GroupSetting = () => {
         <ImgUpload imageFile={imageFile} setImageFile={setImageFile} />
         <h2 css={Meta}>Group name</h2>
         <input
-          css={textArea}
+          css={TextArea}
           value={groupName}
           onChange={(event) => setGroupName(event.target.value)}
         />
         <h2 css={Meta}>Duration</h2>
-        <div css={DateWrapper}>
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            dateFormat="yyyy-MM-dd"
-            css={textArea}
-          />
-          <div>~</div>
-          <DatePicker
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-            dateFormat="yyyy-MM-dd"
-            css={textArea}
-          />
-        </div>
+        <DurationPicker
+          startDate={startDate}
+          setStartDate={setStartDate}
+          endDate={endDate}
+          setEndDate={setEndDate}
+        />
         <h2 css={Meta}>Description</h2>
         <textarea
           css={LongTextArea}
@@ -100,13 +92,7 @@ const Meta = css`
   margin-bottom: 10px;
 `;
 
-const DateWrapper = css`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-
-const textArea = css`
+const TextArea = css`
   width: 100%;
   padding: 10px;
   font-size: 25px;
