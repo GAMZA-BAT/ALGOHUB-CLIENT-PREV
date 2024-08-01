@@ -1,19 +1,17 @@
 import { css } from '@emotion/react';
 
 import { useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import ProblemBox from '@/pages/groupPage/components/ProblemBox';
 import RankingBox from '@/pages/groupPage/components/RankingBox';
 
 import { seperator } from '@/components/@common/SideContent';
 
-import { useGroupRanking } from '@/hooks/query/useGroupQuery';
+import { useGroupRankingList } from '@/hooks/query/useGroupQuery';
 import { useProblemDeadlineReached } from '@/hooks/query/useProblemQuery';
 
 import { ProblemDataType } from '@/type/problem';
-
-import AlgoHubLogoS from '@/assets/img/AlgoHubLogoS.png';
 
 const GroupDashboard = () => {
   const [, setSearchParams] = useSearchParams();
@@ -25,24 +23,40 @@ const GroupDashboard = () => {
     isLoading: isProblemLoading,
   } = useProblemDeadlineReached(groupId);
 
-  // const {
-  //   data: rankingData,
-  //   error: rankingError,
-  //   isLoading: isRankingLoading,
-  // } = useGroupRanking(groupId);
+  const {
+    data: rankingData,
+    error: rankingError,
+    isLoading: isRankingLoading,
+  } = useGroupRankingList(groupId);
 
+  console.log({ rankingData });
   useEffect(() => {
     if (location.search) return;
     setSearchParams({ id: `${groupId}` });
   }, []);
 
-  if (isProblemLoading) return <></>;
+  if (!rankingData || isProblemLoading || isRankingLoading) return <></>;
   return (
     <div css={Wrapper}>
       <section css={RankingWrapper}>
-        <RankingBox ranking={2} name={'Hwang-do'} solved={18} src={AlgoHubLogoS} />
-        <RankingBox ranking={1} name={'Hwang-do'} solved={18} src={AlgoHubLogoS} />
-        <RankingBox ranking={3} name={'Hwang-do'} solved={18} src={AlgoHubLogoS} />
+        <RankingBox
+          ranking={2}
+          name={rankingData[1].userNickname + ''}
+          solved={+rankingData[1].solvedCount}
+          src={rankingData[1].profileImage}
+        />
+        <RankingBox
+          ranking={1}
+          name={rankingData[0].userNickname}
+          solved={rankingData[0].solvedCount}
+          src={rankingData[0].profileImage}
+        />
+        <RankingBox
+          ranking={3}
+          name={rankingData[2].userNickname}
+          solved={rankingData[2].solvedCount}
+          src={rankingData[2].profileImage}
+        />
       </section>
       <p css={Title}>Today's Problem</p>
       <hr css={seperator} />

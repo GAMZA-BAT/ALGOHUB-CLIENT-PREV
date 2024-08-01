@@ -20,3 +20,10 @@ export interface MemberDataType {
     isOwner: boolean;
     profileImage: string;
 }
+
+export interface GroupRankingType {
+    profileImage: string;
+    rank: number;
+    solvedCount: number;
+    userNickname: string;
+}

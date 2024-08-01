@@ -1,5 +1,5 @@
-import { getGroupInfo, getGroupMemberListAxios, getGroupRanking } from "@/api/groupAxios"
-import { GroupType, MemberDataType } from "@/type/group"
+import { getGroupInfo, getGroupMemberListAxios, getGroupRanking as getGroupRankingList } from "@/api/groupAxios"
+import { GroupRankingType, GroupType, MemberDataType } from "@/type/group"
 import { useQuery } from "@tanstack/react-query"
 
 export const useGroupMemberList = (groupId: number) => {
@@ -9,10 +9,10 @@ export const useGroupMemberList = (groupId: number) => {
   })
 }
 
-export const useGroupRanking = (groupId: number) => {
-  return useQuery({
+export const useGroupRankingList = (groupId: number) => {
+  return useQuery<GroupRankingType[], Error>({
     queryKey: ['groupRanking', groupId],
-    queryFn: () => getGroupRanking(groupId).then(res => res.data),
+    queryFn: () => getGroupRankingList(groupId).then(res => res.data),
   })
 }
 

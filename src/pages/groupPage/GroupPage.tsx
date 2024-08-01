@@ -8,7 +8,7 @@ import Navbar from '@/components/@common/navbar/Navbar';
 import MaskIcon from '@/components/icon/MaskIcon';
 import { TabList } from '@/components/tabs/TabList';
 
-import { useGetGroupInfo, useGroupMemberList, useGroupRanking } from '@/hooks/query/useGroupQuery';
+import { useGetGroupInfo, useGroupMemberList } from '@/hooks/query/useGroupQuery';
 
 import { MemberDataType } from '@/type/group';
 
@@ -25,11 +25,6 @@ const GroupPage = () => {
     isLoading: isMemberLoading,
   } = useGroupMemberList(groupId);
 
-  const {
-    data: rankingData,
-    error: rankingError,
-    isLoading: isRankingLoading,
-  } = useGroupRanking(groupId);
   const {
     data: groupData,
     error: groupError,
@@ -51,7 +46,7 @@ const GroupPage = () => {
     }
   };
 
-  if (isMemberLoading || isGroupLoading || isRankingLoading) return <></>;
+  if (isMemberLoading || isGroupLoading) return <></>;
   console.log({ memberData });
   return (
     <>
