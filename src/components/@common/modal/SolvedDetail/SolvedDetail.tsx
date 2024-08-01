@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import {
@@ -45,6 +45,16 @@ const SolvedDetail = () => {
 
   const commentMutation = usePostComment();
 
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (containerRef.current) {
+      const scrollHeight = containerRef.current.scrollHeight;
+      const height = containerRef.current.clientHeight;
+      const maxScrollTop = scrollHeight - height;
+      containerRef.current.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+    }
+  }, [commentData]);
+
   const handleCommentSend = () => {
     commentMutation.mutate({
       solutionId: +solutionId,
@@ -84,7 +94,7 @@ const SolvedDetail = () => {
       <body css={Container}>
         <CodeHighlighter code={solutionData?.content + ''} language={solutionData?.language + ''} />
         <section css={CommentWrapper}>
-          <section css={CommentContainer}>
+          <section css={CommentContainer} ref={containerRef}>
             {commentData?.map((comment) => (
               <CommentBox
                 key={comment.commentId}
@@ -148,7 +158,8 @@ const CommentWrapper = css`
 
 const CommentContainer = css`
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  justify-content: flex-end;
   height: 90%;
   overflow-y: scroll;
 `;
