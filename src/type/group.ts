@@ -13,7 +13,10 @@ export interface GroupMeta {
 }
 
 export interface MemberDataType {
-    id: number;
+    memberId: number;
     nickname: string;
+    joinDate: string;
+    achivement: string;
+    isOwner: boolean;
     profileImage: string;
 }

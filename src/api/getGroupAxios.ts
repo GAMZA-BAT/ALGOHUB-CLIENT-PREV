@@ -1,4 +1,5 @@
 import { authAxios } from "@/api"
+import { GroupMeta } from "@/type/group"
 
 export const getGroupMemberListAxios = (groupId: number) => {
   return authAxios.get(
@@ -28,6 +29,22 @@ export const getGroupInfo = (groupId: number) => {
     {
       params: {
         groupId,
+      }
+    }
+  )
+}
+
+export const patchGroupInfo = ({ id, name, startDate, endDate, introduction, groupImage }: GroupMeta) => {
+  return authAxios.patch(
+    '/group',
+    {
+      body: {
+        id,
+        name,
+        startDate,
+        endDate,
+        introduction,
+        groupImage,
       }
     }
   )

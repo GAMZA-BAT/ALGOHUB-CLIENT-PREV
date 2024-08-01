@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 
 import MembersTable from '@/pages/groupPage/components/MembersTable';
@@ -8,7 +8,8 @@ import MembersTable from '@/pages/groupPage/components/MembersTable';
 import DurationPicker from '@/components/@common/DurationPicker';
 import ImgUpload from '@/components/@common/ImgUpload';
 
-import { useGroupInfo, useGroupMemberList } from '@/hooks/query/useGroupQuery';
+import { usePatchGroupInfo } from '@/hooks/query/useGroupMutation';
+import { useGetGroupInfo, useGroupMemberList } from '@/hooks/query/useGroupQuery';
 
 import defaultImg from '@/assets/img/grayLogo.png';
 
@@ -22,13 +23,46 @@ const GroupSetting = () => {
     isLoading: isMemberLoading,
   } = useGroupMemberList(groupId);
 
-  const { data: groupData, error: groupError, isLoading: isGroupLoading } = useGroupInfo(groupId);
+  const {
+    data: groupData,
+    error: groupError,
+    isLoading: isGroupLoading,
+  } = useGetGroupInfo(groupId);
 
-  const [imageFile, setImageFile] = useState<string>(groupData?.groupImage || defaultImg);
+  const groupInfoMutation = usePatchGroupInfo();
+  const initialImage = groupData?.groupImage || defaultImg;
+  const [imageFile, setImageFile] = useState<string>(initialImage);
   const [groupName, setGroupName] = useState(groupData?.name + '');
   const [startDate, setStartDate] = useState<Date | null>(new Date(groupData?.startDate + ''));
   const [endDate, setEndDate] = useState<Date | null>(new Date(groupData?.endDate + ''));
   const [description, setDescription] = useState(groupData?.introduction + '');
+  const [isSaveActive, setIsSaveActive] = useState(false);
+
+  console.log({ imageFile });
+  useEffect(() => {
+    if (!groupData) return;
+
+    if (
+      imageFile !== initialImage ||
+      groupName !== groupData?.name + '' ||
+      startDate + '' !== groupData?.startDate + '' ||
+      endDate + '' !== groupData?.endDate + '' ||
+      description !== groupData?.introduction + ''
+    )
+      setIsSaveActive(true);
+    else setIsSaveActive(false);
+  }, [groupData, imageFile, groupName, startDate, endDate, description]);
+
+  const handleSubmitInfo = () => {
+    groupInfoMutation.mutate({
+      id: groupId,
+      name: groupName,
+      startDate: startDate + '',
+      endDate: endDate + '',
+      introduction: description,
+      groupImage: imageFile,
+    });
+  };
 
   if (isMemberLoading || isGroupLoading) return <></>;
   return (
@@ -55,7 +89,14 @@ const GroupSetting = () => {
           placeholder="그룹을 간단하게 소개해주세요."
           onChange={(event) => setDescription(event.target.value)}
         />
-        <button css={SaveBtnStyle}>SAVE</button>
+        <button
+          type="submit"
+          css={SaveBtnStyle}
+          onClick={handleSubmitInfo}
+          disabled={!isSaveActive}
+        >
+          SAVE
+        </button>
       </section>
       <section css={MembersContainer}>
         <h2
@@ -115,8 +156,14 @@ const SaveBtnStyle = css`
   padding: 10px;
   margin-top: 15px;
   border-radius: 10px;
-  background-color: ${Theme.color.mediumGray};
+  background-color: ${Theme.color.mainBlue};
   color: white;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: ${Theme.color.mediumGray};
+    cursor: not-allowed;
+  }
 `;
 
 const MembersContainer = css`

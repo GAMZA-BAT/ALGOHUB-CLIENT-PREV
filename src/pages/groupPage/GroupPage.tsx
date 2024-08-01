@@ -8,7 +8,7 @@ import Navbar from '@/components/@common/navbar/Navbar';
 import MaskIcon from '@/components/icon/MaskIcon';
 import { TabList } from '@/components/tabs/TabList';
 
-import { useGroupInfo, useGroupMemberList, useGroupRanking } from '@/hooks/query/useGroupQuery';
+import { useGetGroupInfo, useGroupMemberList, useGroupRanking } from '@/hooks/query/useGroupQuery';
 
 import { MemberDataType } from '@/type/group';
 
@@ -30,7 +30,11 @@ const GroupPage = () => {
     error: rankingError,
     isLoading: isRankingLoading,
   } = useGroupRanking(groupId);
-  const { data: groupData, error: groupError, isLoading: isGroupLoading } = useGroupInfo(groupId);
+  const {
+    data: groupData,
+    error: groupError,
+    isLoading: isGroupLoading,
+  } = useGetGroupInfo(groupId);
 
   const handleSelect = (index: number) => {
     setSelectedTab(index);
@@ -72,7 +76,7 @@ const GroupPage = () => {
                 <h1>Members</h1>
                 <section css={MemberListContainer}>
                   {memberData?.map((member: MemberDataType) => (
-                    <div key={member.id} css={MemberContainer}>
+                    <div key={member.memberId} css={MemberContainer}>
                       <MaskIcon width={80} height={80} src={member.profileImage} isCircle={true} />
                       <h3 css={MemberName}>{member.nickname}</h3>
                     </div>
