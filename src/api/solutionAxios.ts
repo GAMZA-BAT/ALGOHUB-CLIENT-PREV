@@ -8,3 +8,12 @@ export const getSolutionAxios = (problemId: number) => {
     }
   )
 }
+
+export const getSolutionByIdAxios = (solutionId: number) => {
+  return authAxios.get(
+    '/solution/solution',
+    {
+      params: { solutionId }
+    }
+  )
+}

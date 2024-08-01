@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
 
+import { useSearchParams } from 'react-router-dom';
+
 import {
   DurationStyle,
   MetaContainer,
@@ -11,7 +13,7 @@ import LevelIcon from '@/components/@common/LevelIcon';
 import CodeHighlighter from '@/components/@common/modal/SolvedDetail/CodeHighlighter';
 import CommentBox from '@/components/@common/modal/SolvedDetail/CommentBox';
 
-import { useGetSolution } from '@/hooks/query/useSolutionQuery';
+import { useGetSolutionById } from '@/hooks/query/useSolutionQuery';
 
 import testImg from '@/assets/img/ic_algohub_purple.png';
 import CloseIcon from '@/assets/svgs/ic_close.svg?react';
@@ -21,13 +23,16 @@ import { useModalDispatch } from '@/contexts/modalContext';
 
 const SolvedDetail = () => {
   const dispatch = useModalDispatch();
+  const [searchParams] = useSearchParams();
+  const solutionId = searchParams.get('solvedDetail') || 0;
 
-  // const {
-  //   data: solutionsData,
-  //   error: solutionsError,
-  //   isLoading: isSolutionsLoading,
-  // } = useGetSolution(problem.problemId);
+  const {
+    data: solutionsData,
+    error: solutionsError,
+    isLoading: isSolutionsLoading,
+  } = useGetSolutionById(+solutionId);
 
+  console.log({ solutionsData });
   return (
     <div css={Wrapper}>
       <header css={HeaderContainer}>
