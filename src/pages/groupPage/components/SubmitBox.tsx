@@ -59,7 +59,7 @@ const SubmitBox = ({ variant = 'default', solution, level }: submitBoxPropType) 
         ]}
       >
         <h2>{solution.nickname}</h2>
-        <p>{solution.solvedDate}</p>
+        <p>{solution.solvedDateTime}</p>
         <p>{solution.memoryUsage}KB</p>
         <p>{solution.executionTime}ms</p>
         <p>{solution.language}</p>

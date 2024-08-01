@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import {
@@ -13,12 +14,11 @@ import LevelIcon from '@/components/@common/LevelIcon';
 import CodeHighlighter from '@/components/@common/modal/SolvedDetail/CodeHighlighter';
 import CommentBox from '@/components/@common/modal/SolvedDetail/CommentBox';
 
-import { useGetComment } from '@/hooks/query/useCommentQuery';
+import { useGetComment, usePostComment } from '@/hooks/query/useCommentQuery';
 import { useGetSolutionById } from '@/hooks/query/useSolutionQuery';
 
 import { ProblemDataType } from '@/type/problem';
 
-import testImg from '@/assets/img/ic_algohub_purple.png';
 import CloseIcon from '@/assets/svgs/ic_close.svg?react';
 import SendIcon from '@/assets/svgs/ic_send_plane.svg?react';
 
@@ -27,8 +27,9 @@ import { useModalDispatch } from '@/contexts/modalContext';
 const SolvedDetail = () => {
   const dispatch = useModalDispatch();
   const [searchParams] = useSearchParams();
-  const solutionId = searchParams.get('solvedDetail') || 0;
+  const solutionId = searchParams.get('solvedDetail') || '0';
   const problem: ProblemDataType = JSON.parse(localStorage.getItem('problem') + '');
+  const [comment, setComment] = useState('');
 
   const {
     data: solutionData,
@@ -42,7 +43,16 @@ const SolvedDetail = () => {
     isLoading: isCommentLoading,
   } = useGetComment(+solutionId);
 
-  console.log({ commentData });
+  const commentMutation = usePostComment();
+
+  const handleCommentSend = () => {
+    commentMutation.mutate({
+      solutionId: +solutionId,
+      content: comment,
+    });
+
+    setComment('');
+  };
   if (isSolutionLoading || isCommentLoading) return <></>;
   return (
     <div css={Wrapper}>
@@ -54,7 +64,7 @@ const SolvedDetail = () => {
             <p css={DurationStyle}>{`${problem.startDate} ~ ${problem.endDate}`}</p>
           </div>
           <p css={HeaderInfoStyle}>{solutionData?.nickname}</p>
-          <p css={HeaderInfoStyle}>{solutionData?.solvedDate}</p>
+          <p css={HeaderInfoStyle}>{solutionData?.solvedDateTime}</p>
           <p css={HeaderInfoStyle}>{solutionData?.memoryUsage}KB</p>
           <p css={HeaderInfoStyle}>{solutionData?.executionTime}ms</p>
           <p css={HeaderInfoStyle}>{solutionData?.language}</p>
@@ -85,8 +95,13 @@ const SolvedDetail = () => {
             ))}
           </section>
           <section css={InputContainer}>
-            <textarea css={InputStyle} />
-            <SendIcon width={40} height={40} />
+            <textarea
+              css={InputStyle}
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              placeholder="댓글을 작성해주세요."
+            />
+            <SendIcon width={40} height={40} onClick={handleCommentSend} />
           </section>
         </section>
       </body>

@@ -5,7 +5,7 @@ import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 const CodeHighlighter = ({ code, language }: { code: string; language: string }) => {
   return (
     <SyntaxHighlighter
-      language={language}
+      language={'python'}
       style={dracula}
       wrapLines={true}
       wrapLongLines={true}

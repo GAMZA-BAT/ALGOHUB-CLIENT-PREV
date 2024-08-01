@@ -96,7 +96,7 @@ export const MetaContainer = css`
 `;
 
 export const TitleStyle = css`
-  font-family: 'Pretendard-semibold';
+  font-family: 'Pretendard-regular';
   font-weight: 600;
 
   font-size: 30px;

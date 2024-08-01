@@ -20,7 +20,7 @@ export const postCommentAxios = ({ solutionId, content }: CommentAPIPropType) =>
     {
       body: {
         solutionId,
-        content
+        content,
       }
     }
   )
