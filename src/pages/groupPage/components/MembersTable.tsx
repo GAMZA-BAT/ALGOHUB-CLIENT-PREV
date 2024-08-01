@@ -13,6 +13,7 @@ import {
 import * as React from 'react';
 import { forwardRef } from 'react';
 
+import { useDeleteGroupMember } from '@/hooks/query/useGroupMutation';
 import { useGroupMemberList } from '@/hooks/query/useGroupQuery';
 
 import { Theme } from '@/styles/theme';
@@ -30,6 +31,8 @@ const MembersTable = forwardRef((_props, _ref) => {
     error: memberError,
     isLoading: isMemberLoading,
   } = useGroupMemberList(groupId);
+
+  const deleteMutation = useDeleteGroupMember();
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -56,6 +59,15 @@ const MembersTable = forwardRef((_props, _ref) => {
     setPage(0);
   };
 
+  const handleDelete = (userId: number) => {
+    const userConfirmed = confirm('정말 삭제하시겠습니까?');
+    if (userConfirmed) {
+      deleteMutation.mutate({
+        userId,
+        groupId,
+      });
+    }
+  };
   if (isMemberLoading) return <></>;
   return (
     <Paper style={{ width: '100%', overflow: 'hidden' }}>
@@ -98,7 +110,9 @@ const MembersTable = forwardRef((_props, _ref) => {
                     );
                   })}
                   <TableCell key={row + 'delete'} align={'center'}>
-                    <button css={DeleteBtnStyle}>멤버 삭제</button>
+                    <button css={DeleteBtnStyle} onClick={() => handleDelete(row.memberId)}>
+                      멤버 삭제
+                    </button>
                   </TableCell>
                 </TableRow>
               );

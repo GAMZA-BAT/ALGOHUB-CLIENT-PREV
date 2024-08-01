@@ -27,3 +27,8 @@ export interface GroupRankingType {
     solvedCount: number;
     userNickname: string;
 }
+
+export interface DeleteGroupMemberAPIType {
+    userId: number;
+    groupId: number;
+}

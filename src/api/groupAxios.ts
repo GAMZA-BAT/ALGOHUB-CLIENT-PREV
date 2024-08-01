@@ -1,5 +1,5 @@
 import { authAxios, formAxios } from "@/api"
-import { GroupMeta } from "@/type/group"
+import { DeleteGroupMemberAPIType, GroupMeta } from "@/type/group"
 import { imageUrlToBlob } from "@/utils/image"
 
 export const getGroupMemberListAxios = (groupId: number) => {
@@ -42,6 +42,18 @@ export const patchGroupInfo = async ({ id, name, startDate, endDate, introductio
     form.append('groupImage', await imageUrlToBlob(groupImage));
 
   return formAxios.patch(
-    '/group',form
+    '/group', form
+  )
+}
+
+export const deleteGroupMember = ({ userId, groupId }: DeleteGroupMemberAPIType) => {
+  return authAxios.delete(
+    '/group/delete',
+    {
+      params: {
+        userId,
+        groupId,
+      }
+    }
   )
 }
