@@ -52,7 +52,7 @@ const ProblemList = () => {
       </section>
       <hr css={seperator} />
       {problemData['inProgressProblems']
-        .filter((problem: ProblemDataType) => (isUnsolvedOnly ? problem.solved : true))
+        .filter((problem: ProblemDataType) => (isUnsolvedOnly ? !problem.solved : true))
         .map((problem: ProblemDataType) => (
           <ProblemBox key={problem.problemId} problem={problem} />
         ))}
