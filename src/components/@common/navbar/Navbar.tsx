@@ -23,7 +23,7 @@ const Navbar = ({ children, selectedTab, setSelectedTab }: NavbarProps) => {
         })}
       </div>
       <div css={seperator}>
-        <div css={highlight} style={{ left: selectedTab * 160 }} />
+        <div css={highlight} style={{ left: selectedTab * (160 + 12) }} />
       </div>
     </div>
   );
