@@ -20,6 +20,7 @@ import ModalTemplate from './ModalTemplate';
 const FindGroup = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [groupMeta, setGroupMeta] = useState<GroupMeta | null>(null);
+  const dispatch = useModalDispatch();
 
   const onChange = async () => {
     const code = inputRef.current?.value;
