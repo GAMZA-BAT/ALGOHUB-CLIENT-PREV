@@ -4,7 +4,6 @@ import { ChangeEvent, useState } from 'react';
 
 import CameraIc from '@/assets/svgs/ic_camera.svg?react';
 
-p;
 interface imgUploadPropType {
   imageFile: string;
   setImageFile: React.Dispatch<React.SetStateAction<string>>;

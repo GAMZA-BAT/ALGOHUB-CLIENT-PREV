@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 
 import MembersTable from '@/pages/groupPage/components/MembersTable';
@@ -10,6 +10,8 @@ import ImgUpload from '@/components/@common/ImgUpload';
 import { useGroupInfo, useGroupMemberList } from '@/hooks/query/useGroupQuery';
 
 import defaultImg from '@/assets/img/grayLogo.png';
+
+import { Theme } from '@/styles/theme';
 
 const GroupSetting = () => {
   const groupId = +(localStorage.getItem('groupId') || 0);
@@ -27,8 +29,7 @@ const GroupSetting = () => {
   const [endDate, setEndDate] = useState<Date | null>(new Date(groupData?.endDate + ''));
   const [description, setDescription] = useState(groupData?.introduction + '');
 
-  console.log({ memberData });
-
+  if (isMemberLoading || isGroupLoading) return <></>;
   return (
     <div css={Wrapper}>
       <section css={GroupInfoContainer}>
@@ -57,11 +58,12 @@ const GroupSetting = () => {
         </div>
         <h2 css={Meta}>Description</h2>
         <textarea
-          css={longTextArea}
+          css={LongTextArea}
           value={description}
           placeholder="그룹을 간단하게 소개해주세요."
           onChange={(event) => setDescription(event.target.value)}
         />
+        <button css={SaveBtnStyle}>SAVE</button>
       </section>
       <section css={MembersContainer}>
         <h2
@@ -113,7 +115,7 @@ const textArea = css`
   background-color: #fcfcfc;
 `;
 
-const longTextArea = css`
+const LongTextArea = css`
   width: 100%;
   height: 100%;
   padding: 10px;
@@ -121,6 +123,14 @@ const longTextArea = css`
   border-radius: 12px;
   letter-spacing: 2px;
   background-color: #fcfcfc;
+`;
+
+const SaveBtnStyle = css`
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 10px;
+  background-color: ${Theme.color.mediumGray};
+  color: white;
 `;
 
 const MembersContainer = css`
