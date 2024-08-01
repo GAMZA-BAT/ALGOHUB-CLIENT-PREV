@@ -2,10 +2,10 @@ import React from 'react';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-const CodeHighlighter = ({ code }: { code: string }) => {
+const CodeHighlighter = ({ code, language }: { code: string; language: string }) => {
   return (
     <SyntaxHighlighter
-      language="typescript"
+      language={language}
       style={dracula}
       wrapLines={true}
       wrapLongLines={true}
@@ -31,4 +31,6 @@ const CodeWrapper: React.CSSProperties = {
 
   borderRadius: '20px',
   fontSize: '20px',
+
+  overflowY: 'scroll',
 };

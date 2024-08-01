@@ -11,3 +11,11 @@ export interface SolutionDataType {
   solvedDate: string;
   commentCount: number;
 }
+
+export interface CommentDataType {
+  commentId: number;
+  writerNickname: string;
+  writerProfileImage: string;
+  content: string;
+  createdAt: string;
+}

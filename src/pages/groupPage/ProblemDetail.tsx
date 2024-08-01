@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import ProblemBox from '@/pages/groupPage/components/ProblemBox';
 import SubmitBox from '@/pages/groupPage/components/SubmitBox';

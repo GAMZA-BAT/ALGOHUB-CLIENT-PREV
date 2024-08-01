@@ -13,6 +13,7 @@ import LevelIcon from '@/components/@common/LevelIcon';
 import CodeHighlighter from '@/components/@common/modal/SolvedDetail/CodeHighlighter';
 import CommentBox from '@/components/@common/modal/SolvedDetail/CommentBox';
 
+import { useGetComment } from '@/hooks/query/useCommentQuery';
 import { useGetSolutionById } from '@/hooks/query/useSolutionQuery';
 
 import { ProblemDataType } from '@/type/problem';
@@ -30,13 +31,19 @@ const SolvedDetail = () => {
   const problem: ProblemDataType = JSON.parse(localStorage.getItem('problem') + '');
 
   const {
-    data: solutionsData,
-    error: solutionsError,
-    isLoading: isSolutionsLoading,
+    data: solutionData,
+    error: solutionError,
+    isLoading: isSolutionLoading,
   } = useGetSolutionById(+solutionId);
 
-  console.log({ solutionsData });
-  if (isSolutionsLoading) return <></>;
+  const {
+    data: commentData,
+    error: commentError,
+    isLoading: isCommentLoading,
+  } = useGetComment(+solutionId);
+
+  console.log({ commentData });
+  if (isSolutionLoading || isCommentLoading) return <></>;
   return (
     <div css={Wrapper}>
       <header css={HeaderContainer}>
@@ -46,13 +53,13 @@ const SolvedDetail = () => {
             <p css={TitleStyle}>{problem.title}</p>
             <p css={DurationStyle}>{`${problem.startDate} ~ ${problem.endDate}`}</p>
           </div>
-          <p css={HeaderInfoStyle}>{solutionsData?.nickname}</p>
-          <p css={HeaderInfoStyle}>{solutionsData?.solvedDate}</p>
-          <p css={HeaderInfoStyle}>{solutionsData?.memoryUsage}KB</p>
-          <p css={HeaderInfoStyle}>{solutionsData?.executionTime}ms</p>
-          <p css={HeaderInfoStyle}>{solutionsData?.language}</p>
-          <p css={HeaderInfoStyle}>{solutionsData?.codeLength}B</p>
-          <p css={HeaderInfoStyle}>{solutionsData?.isCorrect ? 'Correct!' : 'InCorrect!'}</p>
+          <p css={HeaderInfoStyle}>{solutionData?.nickname}</p>
+          <p css={HeaderInfoStyle}>{solutionData?.solvedDate}</p>
+          <p css={HeaderInfoStyle}>{solutionData?.memoryUsage}KB</p>
+          <p css={HeaderInfoStyle}>{solutionData?.executionTime}ms</p>
+          <p css={HeaderInfoStyle}>{solutionData?.language}</p>
+          <p css={HeaderInfoStyle}>{solutionData?.codeLength}B</p>
+          <p css={HeaderInfoStyle}>{solutionData?.isCorrect ? 'Correct!' : 'InCorrect!'}</p>
         </section>
         <CloseIcon
           width={30}
@@ -65,16 +72,17 @@ const SolvedDetail = () => {
         />
       </header>
       <body css={Container}>
-        <CodeHighlighter code={'const hello'} />
+        <CodeHighlighter code={solutionData?.content + ''} language={solutionData?.language + ''} />
         <section css={CommentWrapper}>
           <section css={CommentContainer}>
-            <CommentBox
-              imgSrc={testImg}
-              nickName={'rladmstn'}
-              comment={
-                '이 부분은 dfs 부분이군요! 잘 구현하셨네요 그런데 메모리 복잡도를 조금 더 신경 써보는 건 어떻게 생각하세요?'
-              }
-            />
+            {commentData?.map((comment) => (
+              <CommentBox
+                key={comment.commentId}
+                imgSrc={comment.writerProfileImage}
+                nickName={comment.writerNickname}
+                comment={comment.content}
+              />
+            ))}
           </section>
           <section css={InputContainer}>
             <textarea css={InputStyle} />
