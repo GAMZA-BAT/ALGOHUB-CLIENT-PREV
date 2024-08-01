@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 
-import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import ProblemBox from '@/pages/groupPage/components/ProblemBox';
 import RankingBox from '@/pages/groupPage/components/RankingBox';
@@ -15,6 +16,8 @@ import { ProblemDataType } from '@/type/problem';
 import AlgoHubLogoS from '@/assets/img/AlgoHubLogoS.png';
 
 const GroupDashboard = () => {
+  const [, setSearchParams] = useSearchParams();
+
   const groupId = +(localStorage.getItem('groupId') || '0');
   const {
     data: problemData,
@@ -27,6 +30,11 @@ const GroupDashboard = () => {
   //   error: rankingError,
   //   isLoading: isRankingLoading,
   // } = useGroupRanking(groupId);
+
+  useEffect(() => {
+    if (location.search) return;
+    setSearchParams({ id: `${groupId}` });
+  }, []);
 
   if (isProblemLoading) return <></>;
   return (

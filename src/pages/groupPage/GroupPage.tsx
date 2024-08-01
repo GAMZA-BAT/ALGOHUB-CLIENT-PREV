@@ -18,7 +18,6 @@ const GroupPage = () => {
   const [selectedTab, setSelectedTab] = useState<number>(0);
   const navigate = useNavigate();
   const location = useLocation();
-  const [, setSearchParams] = useSearchParams();
   const isSetting = location.pathname === '/group/setting';
   const groupId = +(localStorage.getItem('groupId') || '0');
 
@@ -34,11 +33,6 @@ const GroupPage = () => {
     isLoading: isRankingLoading,
   } = useGroupRanking(groupId);
   const { data: groupData, error: groupError, isLoading: isGroupLoading } = useGroupInfo(groupId);
-
-  useEffect(() => {
-    if (location.search) return;
-    setSearchParams({ id: `${groupId}` });
-  }, []);
 
   const handleSelect = (index: number) => {
     setSelectedTab(index);

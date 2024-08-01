@@ -59,7 +59,7 @@ const SubmitBox = ({ variant = 'default', solution, level }: submitBoxPropType) 
       </section>
       <div css={CommentWrapper}>
         <MessageIc width={30} height={30} />
-        <p>123</p>
+        <p>{solution.commentCount}</p>
       </div>
     </div>
   );

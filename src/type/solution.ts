@@ -9,4 +9,5 @@ export interface SolutionDataType {
   profileImage: string;
   solutionId: number;
   solvedDate: string;
+  commentCount: number;
 }
