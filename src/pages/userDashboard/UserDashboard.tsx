@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useState } from 'react';
 
 import SideContent from '@/components/@common/SideContent';
-import WithAuth from '@/components/@common/auth/withAuth';
+import WithAuth from '@/components/@common/auth/WithAuth';
 import Navbar from '@/components/@common/navbar/Navbar';
 import { TabList } from '@/components/tabs/TabList';
 
