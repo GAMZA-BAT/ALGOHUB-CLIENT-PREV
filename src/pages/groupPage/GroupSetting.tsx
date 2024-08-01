@@ -1,4 +1,6 @@
 import { css } from '@emotion/react';
+import { format } from 'date-fns';
+import { s } from 'vite/dist/node/types.d-aGj9QkWt';
 
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
@@ -33,8 +35,8 @@ const GroupSetting = () => {
   const initialImage = groupData?.groupImage || defaultImg;
   const [imageFile, setImageFile] = useState<string>(initialImage);
   const [groupName, setGroupName] = useState(groupData?.name + '');
-  const [startDate, setStartDate] = useState<Date | null>(new Date(groupData?.startDate + ''));
-  const [endDate, setEndDate] = useState<Date | null>(new Date(groupData?.endDate + ''));
+  const [startDate, setStartDate] = useState<Date>(new Date(groupData?.startDate + ''));
+  const [endDate, setEndDate] = useState<Date>(new Date(groupData?.endDate + ''));
   const [description, setDescription] = useState(groupData?.introduction + '');
   const [isSaveActive, setIsSaveActive] = useState(false);
 
@@ -44,8 +46,8 @@ const GroupSetting = () => {
     if (
       imageFile !== initialImage ||
       groupName !== groupData?.name + '' ||
-      startDate + '' !== groupData?.startDate + '' ||
-      endDate + '' !== groupData?.endDate + '' ||
+      format(startDate, 'yyyy-MM-dd') + '' !== groupData?.startDate + '' ||
+      format(endDate, 'yyyy-MM-dd') + '' !== groupData?.endDate + '' ||
       description !== groupData?.introduction + ''
     )
       setIsSaveActive(true);
