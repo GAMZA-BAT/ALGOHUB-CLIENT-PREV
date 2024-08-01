@@ -90,6 +90,7 @@ const Wrapper = css`
   width: 100%;
   height: 100%;
   gap: 12px;
+  padding: 10px;
 `;
 
 const HeaderContainer = css`
@@ -103,7 +104,7 @@ const HeaderContainer = css`
 const HeaderInfoStyle = css`
   font-family: 'Pretendard-regular';
   font-weight: 200;
-  font-size: 30px;
+  font-size: 25px;
   margin-left: 20px;
 `;
 

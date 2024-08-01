@@ -41,7 +41,7 @@ const SubmitBox = ({ variant = 'default', solution, level }: submitBoxPropType) 
       payload: {
         variant: 'solvedDetail',
         modalId: solution.solutionId + '',
-        style: { width: '1500px' },
+        style: { width: '95%', height: '85%' },
       },
     });
     setSearchParams({ solvedDetail: solution.solutionId + '' });
