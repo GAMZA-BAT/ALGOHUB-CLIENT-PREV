@@ -4,7 +4,14 @@ import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const CodeHighlighter = ({ code }: { code: string }) => {
   return (
-    <SyntaxHighlighter language="typescript" style={dracula} customStyle={CodeWrapper} PreTag="div">
+    <SyntaxHighlighter
+      language="typescript"
+      style={dracula}
+      wrapLines={true}
+      wrapLongLines={true}
+      customStyle={CodeWrapper}
+      PreTag="div"
+    >
       {code}
     </SyntaxHighlighter>
   );
@@ -20,6 +27,7 @@ const CodeWrapper: React.CSSProperties = {
 
   whiteSpace: 'pre-wrap',
   wordBreak: 'break-word',
+  overflowWrap: 'break-word',
 
   borderRadius: '20px',
   fontSize: '20px',
