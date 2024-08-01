@@ -18,10 +18,8 @@ export const postCommentAxios = ({ solutionId, content }: CommentAPIPropType) =>
   return authAxios.post(
     '/comment',
     {
-      body: {
-        solutionId,
-        content
-      }
+      solutionId,
+      content,
     }
   )
 };

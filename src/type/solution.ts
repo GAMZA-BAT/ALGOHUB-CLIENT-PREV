@@ -8,6 +8,14 @@ export interface SolutionDataType {
   nickname: string;
   profileImage: string;
   solutionId: number;
-  solvedDate: string;
+  solvedDateTime: string;
   commentCount: number;
+}
+
+export interface CommentDataType {
+  commentId: number;
+  writerNickname: string;
+  writerProfileImage: string;
+  content: string;
+  createdAt: string;
 }

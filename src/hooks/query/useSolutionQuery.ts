@@ -1,4 +1,5 @@
 import { getSolutionAxios, getSolutionByIdAxios } from "@/api/solutionAxios"
+import { SolutionDataType } from "@/type/solution"
 import { useQuery } from "@tanstack/react-query"
 
 export const useGetSolution = (problemId: number) => {
@@ -10,7 +11,7 @@ export const useGetSolution = (problemId: number) => {
 }
 
 export const useGetSolutionById = (solutionId: number) => {
-  return useQuery({
+  return useQuery<SolutionDataType, Error>({
     queryKey: ['solutionById', solutionId],
     queryFn: () => getSolutionByIdAxios(solutionId).then(res => res.data),
     refetchInterval: 10000,

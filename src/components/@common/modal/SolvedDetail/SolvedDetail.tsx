@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import {
@@ -13,9 +14,11 @@ import LevelIcon from '@/components/@common/LevelIcon';
 import CodeHighlighter from '@/components/@common/modal/SolvedDetail/CodeHighlighter';
 import CommentBox from '@/components/@common/modal/SolvedDetail/CommentBox';
 
+import { useGetComment, usePostComment } from '@/hooks/query/useCommentQuery';
 import { useGetSolutionById } from '@/hooks/query/useSolutionQuery';
 
-import testImg from '@/assets/img/ic_algohub_purple.png';
+import { ProblemDataType } from '@/type/problem';
+
 import CloseIcon from '@/assets/svgs/ic_close.svg?react';
 import SendIcon from '@/assets/svgs/ic_send_plane.svg?react';
 
@@ -24,31 +27,59 @@ import { useModalDispatch } from '@/contexts/modalContext';
 const SolvedDetail = () => {
   const dispatch = useModalDispatch();
   const [searchParams] = useSearchParams();
-  const solutionId = searchParams.get('solvedDetail') || 0;
+  const solutionId = searchParams.get('solvedDetail') || '0';
+  const problem: ProblemDataType = JSON.parse(localStorage.getItem('problem') + '');
+  const [comment, setComment] = useState('');
 
   const {
-    data: solutionsData,
-    error: solutionsError,
-    isLoading: isSolutionsLoading,
+    data: solutionData,
+    error: solutionError,
+    isLoading: isSolutionLoading,
   } = useGetSolutionById(+solutionId);
 
-  console.log({ solutionsData });
+  const {
+    data: commentData,
+    error: commentError,
+    isLoading: isCommentLoading,
+  } = useGetComment(+solutionId);
+
+  const commentMutation = usePostComment();
+
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (containerRef.current) {
+      const scrollHeight = containerRef.current.scrollHeight;
+      const height = containerRef.current.clientHeight;
+      const maxScrollTop = scrollHeight - height;
+      containerRef.current.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+    }
+  }, [commentData]);
+
+  const handleCommentSend = () => {
+    commentMutation.mutate({
+      solutionId: +solutionId,
+      content: comment,
+    });
+
+    setComment('');
+  };
+  if (isSolutionLoading || isCommentLoading) return <></>;
   return (
     <div css={Wrapper}>
       <header css={HeaderContainer}>
         <section css={MetaContainer}>
-          <LevelIcon level={13} />
+          <LevelIcon level={problem.level} />
           <div css={Twoline}>
-            <p css={TitleStyle}>{'ACM Craft'}</p>
-            <p css={DurationStyle}>{'2024-08-30 ~ 2024-09-21'}</p>
+            <p css={TitleStyle}>{problem.title}</p>
+            <p css={DurationStyle}>{`${problem.startDate} ~ ${problem.endDate}`}</p>
           </div>
-          <p css={HeaderInfoStyle}>j-nary</p>
-          <p css={HeaderInfoStyle}>2024.07.01 23:59:59</p>
-          <p css={HeaderInfoStyle}>2020KB</p>
-          <p css={HeaderInfoStyle}>0ms</p>
-          <p css={HeaderInfoStyle}>C++17</p>
-          <p css={HeaderInfoStyle}>467B</p>
-          <p css={HeaderInfoStyle}>Correct!</p>
+          <p css={HeaderInfoStyle}>{solutionData?.nickname}</p>
+          <p css={HeaderInfoStyle}>{solutionData?.solvedDateTime}</p>
+          <p css={HeaderInfoStyle}>{solutionData?.memoryUsage}KB</p>
+          <p css={HeaderInfoStyle}>{solutionData?.executionTime}ms</p>
+          <p css={HeaderInfoStyle}>{solutionData?.language}</p>
+          <p css={HeaderInfoStyle}>{solutionData?.codeLength}B</p>
+          <p css={HeaderInfoStyle}>{solutionData?.isCorrect ? 'Correct!' : 'InCorrect!'}</p>
         </section>
         <CloseIcon
           width={30}
@@ -61,20 +92,26 @@ const SolvedDetail = () => {
         />
       </header>
       <body css={Container}>
-        <CodeHighlighter code={'const hello'} />
+        <CodeHighlighter code={solutionData?.content + ''} language={solutionData?.language + ''} />
         <section css={CommentWrapper}>
-          <section css={CommentContainer}>
-            <CommentBox
-              imgSrc={testImg}
-              nickName={'rladmstn'}
-              comment={
-                '이 부분은 dfs 부분이군요! 잘 구현하셨네요 그런데 메모리 복잡도를 조금 더 신경 써보는 건 어떻게 생각하세요?'
-              }
-            />
+          <section css={CommentContainer} ref={containerRef}>
+            {commentData?.map((comment) => (
+              <CommentBox
+                key={comment.commentId}
+                imgSrc={comment.writerProfileImage}
+                nickName={comment.writerNickname}
+                comment={comment.content}
+              />
+            ))}
           </section>
           <section css={InputContainer}>
-            <textarea css={InputStyle} />
-            <SendIcon width={40} height={40} />
+            <textarea
+              css={InputStyle}
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              placeholder="댓글을 작성해주세요."
+            />
+            <SendIcon width={40} height={40} onClick={handleCommentSend} />
           </section>
         </section>
       </body>
@@ -90,6 +127,7 @@ const Wrapper = css`
   width: 100%;
   height: 100%;
   gap: 12px;
+  padding: 10px;
 `;
 
 const HeaderContainer = css`
@@ -103,7 +141,7 @@ const HeaderContainer = css`
 const HeaderInfoStyle = css`
   font-family: 'Pretendard-regular';
   font-weight: 200;
-  font-size: 30px;
+  font-size: 25px;
   margin-left: 20px;
 `;
 
@@ -120,7 +158,8 @@ const CommentWrapper = css`
 
 const CommentContainer = css`
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  justify-content: flex-end;
   height: 90%;
   overflow-y: scroll;
 `;

@@ -1,11 +1,12 @@
 import { CommentAPIPropType, deleteCommentAxios, getCommentAxios, postCommentAxios } from "@/api/commentAxios"
+import { CommentDataType } from "@/type/solution";
 import { useMutation, useQuery } from "@tanstack/react-query"
 
 export const useGetComment = (solutionId: number) => {
-  return useQuery({
+  return useQuery<CommentDataType[], Error>({
     queryKey: ['getComment', solutionId],
     queryFn: () => getCommentAxios(solutionId).then(res => res.data),
-    refetchInterval: 10000,
+    refetchInterval: 1,
   })
 };
 
