@@ -16,15 +16,13 @@ import AngleLeftIc from '@/assets/svgs/ic_angle_left.svg?react';
 
 const ProblemDetail = () => {
   const navigate = useNavigate();
-  const problem: ProblemDataType = useLocation().state.problem;
+  const problem: ProblemDataType = JSON.parse(localStorage.getItem('problem') + '');
 
   const {
     data: solutionsData,
     error: solutionsError,
     isLoading: isSolutionsLoading,
   } = useGetSolution(problem.problemId);
-
-  console.log({ solutionsData });
 
   if (isSolutionsLoading) return <></>;
   return (

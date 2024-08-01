@@ -23,7 +23,6 @@ const ProblemList = () => {
     isLoading: isProblemLoading,
   } = useProblem(groupId);
 
-  console.log({ problemData });
   const handleUnsolvedOnlyClick = () => {
     setIsUnsolvedOnly((prev) => !prev);
   };
