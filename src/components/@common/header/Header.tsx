@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 
 import { useNavigate } from 'react-router-dom';
 
+import Alarm from '@/components/Alarm';
 import MaskIcon from '@/components/icon/MaskIcon';
 
 import Logo from '@/assets/img/AlgoHubLogo.png';
@@ -23,7 +24,7 @@ const Header = () => {
           onClick={() => {
             sideDispatch({
               type: 'OPEN',
-              payload: <div>ㅎㅇㅎㅇㅎ</div>,
+              payload: <Alarm />,
             });
           }}
         >
