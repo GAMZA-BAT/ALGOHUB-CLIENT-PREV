@@ -11,7 +11,7 @@ interface rankingBoxPropType {
   src: string;
 }
 const RankingBox = ({ ranking, name, solved, src }: rankingBoxPropType) => {
-  const height = ['0', '170px', '135px', '80px'];
+  const height = ['0', '17rem', '13.5rem', '8rem'];
   return (
     <div css={Wrapper}>
       <MaskIcon width={150} height={150} src={src} isCircle={true} />
@@ -45,11 +45,11 @@ const Wrapper = css`
   gap: 10px;
 `;
 const Meta = css`
-  font-size: 1.3rem;
+  font-size: 2.5rem;
 `;
 
 const Description = css`
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   font-family: 'Pretendard-regular';
   font-weight: 200;
 `;

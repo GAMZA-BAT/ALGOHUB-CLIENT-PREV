@@ -146,7 +146,7 @@ const CrownIcon = css`
 `;
 
 const MemberName = css`
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-family: 'Pretendard-regular';
   font-weight: 200;
 `;
