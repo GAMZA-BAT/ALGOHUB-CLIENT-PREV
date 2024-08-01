@@ -1,18 +1,16 @@
 import { css } from '@emotion/react';
 
-import { useEffect, useState } from 'react';
-import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
-import SideContent, { Detail } from '@/components/@common/SideContent';
+import SideContent from '@/components/@common/SideContent';
 import Navbar from '@/components/@common/navbar/Navbar';
 import MaskIcon from '@/components/icon/MaskIcon';
 import { TabList } from '@/components/tabs/TabList';
 
 import { useGroupInfo, useGroupMemberList, useGroupRanking } from '@/hooks/query/useGroupQuery';
 
-import { MemberListAPI } from '@/type/group';
-
-import AlgoHubLogoS from '@/assets/img/AlgoHubLogoS.png';
+import { MemberDataType } from '@/type/group';
 
 const GroupPage = () => {
   const [selectedTab, setSelectedTab] = useState<number>(0);
@@ -73,7 +71,7 @@ const GroupPage = () => {
               <div css={MemberListWrapper}>
                 <h1>Members</h1>
                 <section css={MemberListContainer}>
-                  {memberData.map((member: MemberListAPI) => (
+                  {memberData?.map((member: MemberDataType) => (
                     <div key={member.id} css={MemberContainer}>
                       <MaskIcon width={80} height={80} src={member.profileImage} isCircle={true} />
                       <h3 css={MemberName}>{member.nickname}</h3>

@@ -1,17 +1,17 @@
 import { css } from '@emotion/react';
 
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import DatePicker from 'react-datepicker';
 
 import MembersTable from '@/pages/groupPage/components/MembersTable';
 
 import ImgUpload from '@/components/@common/ImgUpload';
 
-import { useGroupMemberList } from '@/hooks/query/useGroupQuery';
+import { useGroupInfo, useGroupMemberList } from '@/hooks/query/useGroupQuery';
+
+import defaultImg from '@/assets/img/grayLogo.png';
 
 const GroupSetting = () => {
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const [endDate, setEndDate] = useState<Date | null>(new Date());
   const groupId = +(localStorage.getItem('groupId') || 0);
   const {
     data: memberData,
@@ -19,13 +19,26 @@ const GroupSetting = () => {
     isLoading: isMemberLoading,
   } = useGroupMemberList(groupId);
 
+  const { data: groupData, error: groupError, isLoading: isGroupLoading } = useGroupInfo(groupId);
+
+  const [imageFile, setImageFile] = useState<string>(groupData?.groupImage || defaultImg);
+  const [groupName, setGroupName] = useState(groupData?.name + '');
+  const [startDate, setStartDate] = useState<Date | null>(new Date(groupData?.startDate + ''));
+  const [endDate, setEndDate] = useState<Date | null>(new Date(groupData?.endDate + ''));
+  const [description, setDescription] = useState(groupData?.introduction + '');
+
   console.log({ memberData });
+
   return (
     <div css={Wrapper}>
       <section css={GroupInfoContainer}>
-        <ImgUpload />
+        <ImgUpload imageFile={imageFile} setImageFile={setImageFile} />
         <h2 css={Meta}>Group name</h2>
-        <input css={textArea} />
+        <input
+          css={textArea}
+          value={groupName}
+          onChange={(event) => setGroupName(event.target.value)}
+        />
         <h2 css={Meta}>Duration</h2>
         <div css={DateWrapper}>
           <DatePicker
@@ -43,7 +56,12 @@ const GroupSetting = () => {
           />
         </div>
         <h2 css={Meta}>Description</h2>
-        <textarea css={longTextArea} placeholder="그룹을 간단하게 소개해주세요." />
+        <textarea
+          css={longTextArea}
+          value={description}
+          placeholder="그룹을 간단하게 소개해주세요."
+          onChange={(event) => setDescription(event.target.value)}
+        />
       </section>
       <section css={MembersContainer}>
         <h2

@@ -2,15 +2,14 @@ import { css } from '@emotion/react';
 
 import { ChangeEvent, useState } from 'react';
 
-import startImg from '@/assets/img/grayLogo.png';
 import CameraIc from '@/assets/svgs/ic_camera.svg?react';
 
+p;
 interface imgUploadPropType {
-  defaultImg?: string;
+  imageFile: string;
+  setImageFile: React.Dispatch<React.SetStateAction<string>>;
 }
-const ImgUpload = ({ defaultImg }: imgUploadPropType) => {
-  const [imageFile, setImageFile] = useState(defaultImg);
-
+const ImgUpload = ({ imageFile, setImageFile }: imgUploadPropType) => {
   const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     const file = e.target.files[0];
@@ -18,7 +17,6 @@ const ImgUpload = ({ defaultImg }: imgUploadPropType) => {
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setImageFile(URL.createObjectURL(file));
-      // profileMutation.mutate(file);
     };
   };
 
@@ -27,7 +25,7 @@ const ImgUpload = ({ defaultImg }: imgUploadPropType) => {
       <label css={ImageInputLabel}>
         <div css={ImgCircle}>
           <img
-            src={imageFile || startImg}
+            src={imageFile}
             alt="프로필 이미지"
             css={css`
               width: 100%;

@@ -12,7 +12,7 @@ export interface GroupMeta {
     introduction?: string;
 }
 
-export interface MemberListAPI {
+export interface MemberDataType {
     id: number;
     nickname: string;
     profileImage: string;
