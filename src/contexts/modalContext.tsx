@@ -1,4 +1,5 @@
-import { Dispatch, ReactNode, createContext, useContext, useReducer } from 'react';
+import { Dispatch, ReactNode, createContext, useContext, useEffect, useReducer } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import CreateGroup from '@/components/@common/modal/CreateGroup';
 import FindGroup from '@/components/@common/modal/FindGroup';
@@ -21,7 +22,10 @@ const initialState: ModalContextType = {
 type ModalAction =
   | {
       type: 'OPEN_MODAL';
-      payload: ModalType;
+      payload: {
+        variant: ModalType;
+        modalId: string;
+      };
     }
   | {
       type: 'CLOSE_MODAL';
@@ -52,7 +56,7 @@ const modalReducer = (state: ModalContextType, action: ModalAction): ModalContex
       return {
         ...state,
         isOpen: true,
-        children: getModal(action.payload),
+        children: getModal(action.payload.variant),
       };
     case 'CLOSE_MODAL':
       return {
@@ -66,6 +70,30 @@ const modalReducer = (state: ModalContextType, action: ModalAction): ModalContex
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(modalReducer, initialState);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  useEffect(() => {
+    const search = location.search.replace('?', '').split('=') as [ModalType, string];
+    const type = search?.[0];
+    const modalId = search?.[1];
+
+    // url로 접근할 때
+    if (!state.isOpen && type) {
+      dispatch({
+        type: 'OPEN_MODAL',
+        payload: {
+          variant: type,
+          modalId,
+        },
+      });
+    }
+
+    // 직접 열 때
+    else {
+      setSearchParams({[]});
+    }
+  },[state, searchParams, setSearchParams]);
   return (
     <modalContext.Provider value={state}>
       <modalDispatchContext.Provider value={dispatch}>{children}</modalDispatchContext.Provider>
