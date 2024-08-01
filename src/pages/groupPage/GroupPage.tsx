@@ -8,7 +8,7 @@ import Navbar from '@/components/@common/navbar/Navbar';
 import MaskIcon from '@/components/icon/MaskIcon';
 import { TabList } from '@/components/tabs/TabList';
 
-import { useGroupInfo, useGroupMemberList } from '@/hooks/query/useGroupQuery';
+import { useGroupInfo, useGroupMemberList, useGroupRanking } from '@/hooks/query/useGroupQuery';
 
 import { MemberListAPI } from '@/type/group';
 
@@ -28,6 +28,11 @@ const GroupPage = () => {
     isLoading: isMemberLoading,
   } = useGroupMemberList(groupId);
 
+  const {
+    data: rankingData,
+    error: rankingError,
+    isLoading: isRankingLoading,
+  } = useGroupRanking(groupId);
   const { data: groupData, error: groupError, isLoading: isGroupLoading } = useGroupInfo(groupId);
 
   useEffect(() => {
@@ -50,8 +55,8 @@ const GroupPage = () => {
     }
   };
 
-  if (isMemberLoading || isGroupLoading) return <></>;
-  console.log({ groupData });
+  if (isMemberLoading || isGroupLoading || isRankingLoading) return <></>;
+  console.log({ memberData });
   return (
     <>
       <Navbar selectedTab={selectedTab} setSelectedTab={handleSelect}>
@@ -74,19 +79,12 @@ const GroupPage = () => {
               <div css={MemberListWrapper}>
                 <h1>Members</h1>
                 <section css={MemberListContainer}>
-                  <section css={MemberContainer}>
-                    {memberData.map((member: MemberListAPI) => (
-                      <div key={member.id}>
-                        <MaskIcon
-                          width={80}
-                          height={80}
-                          src={member.profileImage}
-                          isCircle={true}
-                        />
-                        <h3 css={Detail}>{member.nickname}</h3>
-                      </div>
-                    ))}
-                  </section>
+                  {memberData.map((member: MemberListAPI) => (
+                    <div key={member.id} css={MemberContainer}>
+                      <MaskIcon width={80} height={80} src={member.profileImage} isCircle={true} />
+                      <h3 css={MemberName}>{member.nickname}</h3>
+                    </div>
+                  ))}
                 </section>
               </div>
             </section>
@@ -134,4 +132,12 @@ const MemberContainer = css`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 5px;
+`;
+
+const MemberName = css`
+  font-size: 1rem;
+  font-family: 'Pretendard-regular';
+  font-weight: 200;
 `;
