@@ -18,7 +18,10 @@ interface problemBoxPropType {
 const ProblemBox = ({ problem, isExpired = false, isClickActive = true }: problemBoxPropType) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    isClickActive && navigate('/group/problem-detail', { state: { problem: problem } });
+    if (isClickActive) {
+      localStorage.setItem('problem', JSON.stringify(problem));
+      navigate('/group/problem-detail');
+    }
   };
 
   return (
