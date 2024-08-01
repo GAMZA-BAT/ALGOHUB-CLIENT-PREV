@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 import MaskIcon from '@/components/icon/MaskIcon';
 
-import { Group } from '@/type/group';
+import { GroupType } from '@/type/group';
 
 import pin from '@/assets/img/pin.png';
 
@@ -10,7 +10,7 @@ import GroupItem from './GroupItem';
 
 interface GroupGridProps {
   title: string;
-  groupList?: Group[];
+  groupList?: GroupType[];
 }
 
 const GroupGrid = ({ title, groupList }: GroupGridProps) => {

@@ -1,7 +1,7 @@
 import { ContentType } from "@/constants/server";
 import { AuthManager } from "@/datamanager/authManager";
 import { ApiError } from "@/type/errorResponse";
-import { Group, GroupMeta } from "@/type/group";
+import { GroupType, GroupMeta } from "@/type/group";
 import { imageUrlToBlob } from "@/utils/image";
 import { jsonifyResponse, requestToGroup } from "@/utils/server";
 
@@ -12,18 +12,18 @@ export const getGroupList = async () => {
             'Content-Type': ContentType.JSON,
         },
     },
-    AuthManager.getInstance().getToken());
+        AuthManager.getInstance().getToken());
     if (!response.ok) {
         throw new ApiError(await response.json());
     }
-    return jsonifyResponse<Group[]>(response);
+    return jsonifyResponse<GroupType[]>(response);
 }
 
 export const getGroupMetaByCode = async (code: string) => {
     const response = await requestToGroup(`${code}`, {
         method: 'GET',
     },
-    AuthManager.getInstance().getToken());
+        AuthManager.getInstance().getToken());
     if (!response.ok) {
         throw new ApiError(await response.json());
     }
@@ -34,7 +34,7 @@ export const joinGroup = async (code: string) => {
     const response = await requestToGroup(`${code}/join`, {
         method: 'POST',
     },
-    AuthManager.getInstance().getToken());
+        AuthManager.getInstance().getToken());
     if (!response.ok) {
         throw new ApiError(await response.json());
     }
@@ -51,7 +51,7 @@ interface CreateGroupRequest {
 
 export const createGroup = async (createGroupRequest: CreateGroupRequest) => {
 
-    const {profileImage, ...requestWithoutProfileImage}: CreateGroupRequest = createGroupRequest;
+    const { profileImage, ...requestWithoutProfileImage }: CreateGroupRequest = createGroupRequest;
 
     const form = new FormData();
     form.append('request', JSON.stringify(requestWithoutProfileImage));
@@ -60,7 +60,7 @@ export const createGroup = async (createGroupRequest: CreateGroupRequest) => {
         method: 'POST',
         body: form,
     },
-    AuthManager.getInstance().getToken());
+        AuthManager.getInstance().getToken());
 
     if (!response.ok) {
         throw new ApiError(await response.json());

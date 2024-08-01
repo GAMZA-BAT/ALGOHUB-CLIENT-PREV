@@ -1,4 +1,4 @@
-export interface Group extends GroupMeta {
+export interface GroupType extends GroupMeta {
     ownerNickname: string;
     isOwner: boolean;
 }

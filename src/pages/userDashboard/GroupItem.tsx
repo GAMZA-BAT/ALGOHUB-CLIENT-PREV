@@ -2,11 +2,11 @@ import { css } from '@emotion/react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { Group } from '@/type/group';
+import { GroupType } from '@/type/group';
 
 import ic_crown from '@/assets/img/ic_crown.png';
 
-const GroupItem = ({ group }: { group: Group }) => {
+const GroupItem = ({ group }: { group: GroupType }) => {
   const navigate = useNavigate();
   const handleGroupClick = () => {
     localStorage.setItem('groupId', group.id + '');

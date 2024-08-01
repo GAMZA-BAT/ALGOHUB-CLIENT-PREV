@@ -21,3 +21,14 @@ export const getGroupRanking = (groupId: number) => {
     }
   )
 }
+
+export const getGroupInfo = (groupId: number) => {
+  return authAxios.get(
+    '/group/group-info',
+    {
+      params: {
+        groupId,
+      }
+    }
+  )
+}

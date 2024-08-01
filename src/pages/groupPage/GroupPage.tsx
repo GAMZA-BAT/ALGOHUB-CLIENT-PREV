@@ -8,7 +8,7 @@ import Navbar from '@/components/@common/navbar/Navbar';
 import MaskIcon from '@/components/icon/MaskIcon';
 import { TabList } from '@/components/tabs/TabList';
 
-import { useGroupMemberList } from '@/hooks/query/useGroupQuery';
+import { useGroupInfo, useGroupMemberList } from '@/hooks/query/useGroupQuery';
 
 import { MemberListAPI } from '@/type/group';
 
@@ -27,6 +27,8 @@ const GroupPage = () => {
     error: memberError,
     isLoading: isMemberLoading,
   } = useGroupMemberList(groupId);
+
+  const { data: groupData, error: groupError, isLoading: isGroupLoading } = useGroupInfo(groupId);
 
   useEffect(() => {
     if (location.search) return;
@@ -48,7 +50,8 @@ const GroupPage = () => {
     }
   };
 
-  if (isMemberLoading) return <></>;
+  if (isMemberLoading || isGroupLoading) return <></>;
+  console.log({ groupData });
   return (
     <>
       <Navbar selectedTab={selectedTab} setSelectedTab={handleSelect}>
@@ -63,10 +66,10 @@ const GroupPage = () => {
           <>
             <section css={GroupInfoContainer}>
               <SideContent
-                imageSrc={AlgoHubLogoS}
-                title="숭실대학교 여름방학 스터디"
-                detail="2024.07.01 - 2024.08.31"
-                description="애들아 열심히 하자 빠이팅"
+                imageSrc={groupData?.groupImage + ''}
+                title={groupData?.name + ''}
+                detail={`${groupData?.startDate} - ${groupData?.endDate}`}
+                description={groupData?.introduction}
               />
               <div css={MemberListWrapper}>
                 <h1>Members</h1>

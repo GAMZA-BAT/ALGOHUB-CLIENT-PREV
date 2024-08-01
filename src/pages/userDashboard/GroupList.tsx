@@ -6,7 +6,7 @@ import { getGroupList } from '@/api/getGroupList';
 
 import alertError from '@/utils/alertError';
 
-import { Group } from '@/type/group';
+import { GroupType } from '@/type/group';
 
 import GroupGrid from './GroupGrid';
 
@@ -25,7 +25,7 @@ const GroupList = () => {
 };
 
 const useFetchList = () => {
-  const [groupList, setGroupList] = useState<Group[]>([]);
+  const [groupList, setGroupList] = useState<GroupType[]>([]);
   useEffect(() => {
     const fetch = async () => {
       try {

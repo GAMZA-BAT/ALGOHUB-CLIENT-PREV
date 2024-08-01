@@ -7,10 +7,19 @@ import MembersTable from '@/pages/groupPage/components/MembersTable';
 
 import ImgUpload from '@/components/@common/ImgUpload';
 
+import { useGroupMemberList } from '@/hooks/query/useGroupQuery';
+
 const GroupSetting = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [endDate, setEndDate] = useState<Date | null>(new Date());
+  const groupId = +(localStorage.getItem('groupId') || 0);
+  const {
+    data: memberData,
+    error: memberError,
+    isLoading: isMemberLoading,
+  } = useGroupMemberList(groupId);
 
+  console.log({ memberData });
   return (
     <div css={Wrapper}>
       <section css={GroupInfoContainer}>
