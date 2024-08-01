@@ -7,7 +7,8 @@ const theme = createTheme();
 const CustomModal = () => {
   const modalContext = useModalContext();
   const dispatch = useModalDispatch();
-  const { isOpen, onClose, children } = modalContext;
+  const { isOpen, style, children } = modalContext;
+  const modalStyle = { ...baseStyle, ...style };
   return (
     <ThemeProvider theme={theme}>
       <Modal
@@ -18,13 +19,13 @@ const CustomModal = () => {
           });
         }}
       >
-        <Box sx={style}>{children}</Box>
+        <Box sx={modalStyle}>{children}</Box>
       </Modal>
     </ThemeProvider>
   );
 };
 
-const style = {
+const baseStyle = {
   position: 'absolute',
   top: '50%',
   left: '50%',

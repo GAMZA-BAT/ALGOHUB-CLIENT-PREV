@@ -29,7 +29,6 @@ const CreateGroup = () => {
   const [endDate, setEndDate] = useState<Date | null>(new Date());
 
   const { imageUrl, handleImageUpload } = useImageUploader();
-  const dispatch = useModalDispatch();
 
   const onClickCreate = async () => {
     const groupName = groupNameRef.current?.value;

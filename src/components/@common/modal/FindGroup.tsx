@@ -19,7 +19,6 @@ import ModalTemplate from './ModalTemplate';
 
 const FindGroup = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const dispatch = useModalDispatch();
   const [groupMeta, setGroupMeta] = useState<GroupMeta | null>(null);
 
   const onChange = async () => {

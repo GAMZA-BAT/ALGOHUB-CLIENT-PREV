@@ -10,13 +10,12 @@ const ModalTypeList: ModalType[] = ['findGroup', 'createGroup', 'solvedDetail'];
 interface ModalContextType {
   isOpen: boolean;
   children: ReactNode;
-  onClose: () => void;
+  style?: React.CSSProperties;
 }
 
 const initialState: ModalContextType = {
   isOpen: false,
   children: null,
-  onClose: () => {},
 };
 
 type ModalAction =
@@ -25,6 +24,7 @@ type ModalAction =
       payload: {
         variant: ModalType;
         modalId: string;
+        style?: React.CSSProperties;
       };
     }
   | {
@@ -57,6 +57,7 @@ const modalReducer = (state: ModalContextType, action: ModalAction): ModalContex
         ...state,
         isOpen: true,
         children: getModal(action.payload.variant),
+        style: action.payload.style,
       };
     case 'CLOSE_MODAL':
       return {

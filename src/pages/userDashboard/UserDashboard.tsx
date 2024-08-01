@@ -23,12 +23,7 @@ const UserDashboard = () => {
         <TabList.JoinGroup />
       </Navbar>
       <div css={Container}>
-        <SideContent
-          imageSrc={user.profileImage}
-          title={user.nickname}
-          detail={user.bjNickname}
-          description="이거 안쓴다는 소문이.."
-        />
+        <SideContent imageSrc={user.profileImage} title={user.nickname} detail={user.bjNickname} />
         <GroupList />
       </div>
     </>
