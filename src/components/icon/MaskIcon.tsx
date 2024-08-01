@@ -1,15 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
+import defaultImg from '@/assets/img/grayLogo.png';
+
 interface MaskIconProps {
   width: number;
   height: number;
-  src: string;
+  src?: string;
   maskColor?: string;
   isCircle?: boolean;
 }
 
-const MaskIcon = ({ width, height, src, maskColor, isCircle }: MaskIconProps) => {
+const MaskIcon = ({ width, height, src = defaultImg, maskColor, isCircle }: MaskIconProps) => {
   const style = css`
     width: ${width}px;
     height: ${height}px;

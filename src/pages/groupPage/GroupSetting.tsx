@@ -1,9 +1,7 @@
 import { css } from '@emotion/react';
 import { format } from 'date-fns';
-import { s } from 'vite/dist/node/types.d-aGj9QkWt';
 
 import { useEffect, useState } from 'react';
-import DatePicker from 'react-datepicker';
 
 import MembersTable from '@/pages/groupPage/components/MembersTable';
 
@@ -63,6 +61,7 @@ const GroupSetting = () => {
       introduction: description,
       groupImage: imageFile,
     });
+    setIsSaveActive(false);
   };
 
   if (isMemberLoading || isGroupLoading) return <></>;

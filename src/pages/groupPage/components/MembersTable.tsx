@@ -13,55 +13,38 @@ import {
 import * as React from 'react';
 import { forwardRef } from 'react';
 
+import { useGroupMemberList } from '@/hooks/query/useGroupQuery';
+
 import { Theme } from '@/styles/theme';
 
-interface Data {
-  ID: string;
-  JOIN: string;
-  ACHIVEMENT: number;
-  ROLE: 'Owner' | 'Participant';
-  DELETE: number;
-}
-
 interface Column {
-  id: 'ID' | 'JOIN' | 'ACHIVEMENT' | 'ROLE' | 'DELETE';
+  id: 'nickname' | 'joinDate' | 'achivement' | 'isOwner';
   label: string;
 }
 
 const MembersTable = forwardRef((_props, _ref) => {
+  const groupId = +(localStorage.getItem('groupId') || '0');
+
+  const {
+    data: memberData,
+    error: memberError,
+    isLoading: isMemberLoading,
+  } = useGroupMemberList(groupId);
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const columns: readonly Column[] = [
-    { id: 'ID', label: 'ID' },
-    { id: 'JOIN', label: 'JOIN' },
+    { id: 'nickname', label: 'ID' },
+    { id: 'joinDate', label: 'JOIN' },
     {
-      id: 'ACHIVEMENT',
+      id: 'achivement',
       label: 'ACHIVEMENT',
     },
     {
-      id: 'ROLE',
+      id: 'isOwner',
       label: 'ROLE',
     },
-  ];
-
-  const DELETE = '삭제버튼';
-  const rows = [
-    { ID: 'India', JOIN: 'IN', ACHIVEMENT: 1324171354, ROLE: 'Owner', DELETE },
-    { ID: 'China', JOIN: 'CN', ACHIVEMENT: 1403500365, ROLE: 'Participant', DELETE },
-    { ID: 'Italy', JOIN: 'IT', ACHIVEMENT: 60483973, ROLE: 'Participant', DELETE },
-    { ID: 'United States', JOIN: 'US', ACHIVEMENT: 327167434, ROLE: 'Participant', DELETE },
-    { ID: 'Canada', JOIN: 'CA', ACHIVEMENT: 37602103, ROLE: 'Participant', DELETE },
-    { ID: 'Australia', JOIN: 'AU', ACHIVEMENT: 25475400, ROLE: 'Participant', DELETE },
-    { ID: 'Germany', JOIN: 'DE', ACHIVEMENT: 83019200, ROLE: 'Participant', DELETE },
-    { ID: 'Ireland', JOIN: 'IE', ACHIVEMENT: 4857000, ROLE: 'Participant', DELETE },
-    { ID: 'Mexico', JOIN: 'MX', ACHIVEMENT: 126577691, ROLE: 'Participant', DELETE },
-    { ID: 'Japan', JOIN: 'JP', ACHIVEMENT: 126317000, ROLE: 'Participant', DELETE },
-    { ID: 'France', JOIN: 'FR', ACHIVEMENT: 67022000, ROLE: 'Participant', DELETE },
-    { ID: 'United Kingdom', JOIN: 'GB', ACHIVEMENT: 67545757, ROLE: 'Participant', DELETE },
-    { ID: 'Russia', JOIN: 'RU', ACHIVEMENT: 146793744, ROLE: 'Participant', DELETE },
-    { ID: 'Nigeria', JOIN: 'NG', ACHIVEMENT: 200962417, ROLE: 'Participant', DELETE },
-    { ID: 'Brazil', JOIN: 'BR', ACHIVEMENT: 210147125, ROLE: 'Participant', DELETE },
   ];
 
   const handleChangePage = (_event: unknown, newPage: number) => {
@@ -73,6 +56,7 @@ const MembersTable = forwardRef((_props, _ref) => {
     setPage(0);
   };
 
+  if (isMemberLoading) return <></>;
   return (
     <Paper style={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer style={{ maxHeight: '100%', minHeight: '100%' }}>
@@ -98,11 +82,15 @@ const MembersTable = forwardRef((_props, _ref) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+            {memberData?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.ID}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.memberId}>
                   {columns?.map((column) => {
-                    const value = row[column.id];
+                    let value = row[column.id];
+                    if (column.id === 'isOwner') {
+                      value = row[column.id] ? 'Owner' : 'Participant';
+                    }
+
                     return (
                       <TableCell key={column.id + value} align={'center'}>
                         {value ? value : ''}
@@ -121,7 +109,7 @@ const MembersTable = forwardRef((_props, _ref) => {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={memberData?.length || 1}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

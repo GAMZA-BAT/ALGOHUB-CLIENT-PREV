@@ -6,6 +6,7 @@ export const useGroupMemberList = (groupId: number) => {
   return useQuery<MemberDataType[], Error>({
     queryKey: ['groupMemberList', groupId],
     queryFn: () => getGroupMemberListAxios(groupId).then(res => res.data),
+    refetchInterval: 10000,
   })
 }
 
@@ -13,6 +14,7 @@ export const useGroupRankingList = (groupId: number) => {
   return useQuery<GroupRankingType[], Error>({
     queryKey: ['groupRanking', groupId],
     queryFn: () => getGroupRankingList(groupId).then(res => res.data),
+    refetchInterval: 10000,
   })
 }
 
@@ -20,5 +22,6 @@ export const useGetGroupInfo = (groupId: number) => {
   return useQuery<GroupType, Error>({
     queryKey: ['groupInfo', groupId],
     queryFn: () => getGroupInfo(groupId).then(res => res.data),
+    refetchInterval: 10000,
   })
 }

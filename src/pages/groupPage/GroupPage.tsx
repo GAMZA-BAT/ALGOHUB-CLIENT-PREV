@@ -12,6 +12,7 @@ import { useGetGroupInfo, useGroupMemberList } from '@/hooks/query/useGroupQuery
 
 import { MemberDataType } from '@/type/group';
 
+import defaultImg from '@/assets/img/grayLogo.png';
 import crownIc from '@/assets/img/ic_crown.png';
 
 const GroupPage = () => {
@@ -49,7 +50,7 @@ const GroupPage = () => {
   };
 
   if (isMemberLoading || isGroupLoading) return <></>;
-  console.log({ memberData });
+
   return (
     <>
       <Navbar selectedTab={selectedTab} setSelectedTab={handleSelect}>
@@ -74,7 +75,12 @@ const GroupPage = () => {
                 <section css={MemberListContainer}>
                   {memberData?.map((member: MemberDataType) => (
                     <div key={member.memberId} css={MemberContainer}>
-                      <MaskIcon width={80} height={80} src={member.profileImage} isCircle={true} />
+                      <MaskIcon
+                        width={80}
+                        height={80}
+                        src={member.profileImage || defaultImg}
+                        isCircle={true}
+                      />
                       {member.isOwner && <img src={crownIc} css={CrownIcon} />}
                       <h3 css={MemberName}>{member.nickname}</h3>
                     </div>

@@ -5,6 +5,7 @@ export const useProblemDeadlineReached = (groupId: number) => {
   return useQuery({
     queryKey: ['problemDeadlineReached', groupId],
     queryFn: () => getProblemDeadlineReachedAxios(groupId).then(res => res.data),
+    refetchInterval: 10000,
   })
 }
 
@@ -12,5 +13,6 @@ export const useProblem = (groupId: number) => {
   return useQuery({
     queryKey: ['problem', groupId],
     queryFn: () => getProblemAxios(groupId).then(res => res.data),
+    refetchInterval: 10000,
   })
 }

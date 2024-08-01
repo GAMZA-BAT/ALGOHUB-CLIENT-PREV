@@ -5,6 +5,7 @@ export const useGetComment = (solutionId: number) => {
   return useQuery({
     queryKey: ['getComment', solutionId],
     queryFn: () => getCommentAxios(solutionId).then(res => res.data),
+    refetchInterval: 10000,
   })
 };
 
