@@ -6,6 +6,8 @@ import { Outlet } from 'react-router-dom';
 import Header from '@/components/@common/header/Header';
 import CustomModal from '@/components/@common/modal/CustomModal';
 
+import { ModalProvider } from '@/contexts/modalContext';
+
 import { AuthManager } from './datamanager/authManager';
 
 function App() {
@@ -22,13 +24,13 @@ function App() {
     return null;
   }
   return (
-    <>
+    <ModalProvider>
       <div css={wrapper}>
         <Header />
         <Outlet />
       </div>
       <CustomModal />
-    </>
+    </ModalProvider>
   );
 }
 

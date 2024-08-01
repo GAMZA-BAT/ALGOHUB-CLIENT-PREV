@@ -6,7 +6,7 @@ import FindGroup from '@/components/@common/modal/FindGroup';
 import SolvedDetail from '@/components/@common/modal/SolvedDetail/SolvedDetail';
 
 export type ModalType = 'findGroup' | 'createGroup' | 'solvedDetail' | 'none';
-
+const ModalTypeList: ModalType[] = ['findGroup', 'createGroup', 'solvedDetail'];
 interface ModalContextType {
   isOpen: boolean;
   children: ReactNode;
@@ -77,9 +77,10 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
     const search = location.search.replace('?', '').split('=') as [ModalType, string];
     const type = search?.[0];
     const modalId = search?.[1];
-
+    console.log({ type });
+    console.log(type in ModalTypeList);
     // url로 접근할 때
-    if (!state.isOpen && type) {
+    if (!state.isOpen && type in ModalTypeList) {
       dispatch({
         type: 'OPEN_MODAL',
         payload: {
@@ -87,11 +88,6 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
           modalId,
         },
       });
-    }
-
-    // 직접 열 때
-    else {
-      setSearchParams({});
     }
   }, [state, searchParams, setSearchParams]);
 
@@ -113,26 +109,4 @@ const getModal = (type: ModalType) => {
     case 'none':
       return null;
   }
-};
-
-export const dispatchModalClose = () => {
-  const dispatch = useModalDispatch();
-  dispatch({
-    type: 'CLOSE_MODAL',
-  });
-};
-
-export const dispatchModalOpen = (variant: ModalType, modalId: string) => {
-  const dispatch = useModalDispatch();
-  const [, setSearchParams] = useSearchParams();
-
-  localStorage.setItem('solutionId', modalId);
-  dispatch({
-    type: 'OPEN_MODAL',
-    payload: {
-      variant,
-      modalId,
-    },
-  });
-  setSearchParams({ [variant]: modalId });
 };

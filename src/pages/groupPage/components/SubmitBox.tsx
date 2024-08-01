@@ -1,12 +1,14 @@
 import { css } from '@emotion/react';
 
+import { useSearchParams } from 'react-router-dom';
+
 import MaskIcon from '@/components/icon/MaskIcon';
 
 import { SolutionDataType } from '@/type/solution';
 
 import MessageIc from '@/assets/svgs/ic_message.svg?react';
 
-import { dispatchModalOpen, useModalDispatch } from '@/contexts/modalContext';
+import { useModalDispatch } from '@/contexts/modalContext';
 
 import { adjustBrightness } from '../../../utils/adjustBrightness';
 import { levelColor } from '../../../utils/level';
@@ -17,6 +19,9 @@ interface submitBoxPropType {
   level: number;
 }
 const SubmitBox = ({ variant = 'default', solution, level }: submitBoxPropType) => {
+  const dispatch = useModalDispatch();
+  const [, setSearchParams] = useSearchParams();
+
   const alpha = (): number => {
     switch (variant) {
       case 'first':
@@ -30,8 +35,19 @@ const SubmitBox = ({ variant = 'default', solution, level }: submitBoxPropType) 
     }
   };
 
+  const handleModalOpen = () => {
+    dispatch({
+      type: 'OPEN_MODAL',
+      payload: {
+        variant: 'solvedDetail',
+        modalId: solution.solutionId + '',
+      },
+    });
+    setSearchParams({ solvedDetail: solution.solutionId + '' });
+  };
+
   return (
-    <div css={Wrapper} onClick={() => dispatchModalOpen('solvedDetail', solution.solutionId + '')}>
+    <div css={Wrapper} onClick={handleModalOpen}>
       <MaskIcon width={50} height={50} src={solution.profileImage} isCircle={true} />
       <section
         css={[

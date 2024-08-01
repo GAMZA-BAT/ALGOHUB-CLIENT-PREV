@@ -17,9 +17,11 @@ import testImg from '@/assets/img/ic_algohub_purple.png';
 import CloseIcon from '@/assets/svgs/ic_close.svg?react';
 import SendIcon from '@/assets/svgs/ic_send_plane.svg?react';
 
-import { dispatchModalClose } from '@/contexts/modalContext';
+import { useModalDispatch } from '@/contexts/modalContext';
 
 const SolvedDetail = () => {
+  const dispatch = useModalDispatch();
+
   // const {
   //   data: solutionsData,
   //   error: solutionsError,
@@ -43,7 +45,15 @@ const SolvedDetail = () => {
           <p css={HeaderInfoStyle}>467B</p>
           <p css={HeaderInfoStyle}>Correct!</p>
         </section>
-        <CloseIcon width={30} height={30} onClick={dispatchModalClose} />
+        <CloseIcon
+          width={30}
+          height={30}
+          onClick={() =>
+            dispatch({
+              type: 'CLOSE_MODAL',
+            })
+          }
+        />
       </header>
       <body css={Container}>
         <CodeHighlighter code={'const hello'} />

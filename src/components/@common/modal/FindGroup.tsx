@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 
-import { ChangeEvent, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRef, useState } from 'react';
 
 import MaskIcon from '@/components/icon/MaskIcon';
 
@@ -13,7 +12,7 @@ import { GroupMeta } from '@/type/group';
 
 import ic_question from '@/assets/svgs/ic_question.svg';
 
-import { dispatchModalClose, useModalDispatch } from '@/contexts/modalContext';
+import { useModalDispatch } from '@/contexts/modalContext';
 
 import Button from '../Button/Button';
 import ModalTemplate from './ModalTemplate';
@@ -41,7 +40,9 @@ const FindGroup = () => {
     } catch (e) {
       alertError(e, '그룹 가입에 실패했습니다.');
     }
-    dispatchModalClose();
+    dispatch({
+      type: 'CLOSE_MODAL',
+    });
   };
 
   return (

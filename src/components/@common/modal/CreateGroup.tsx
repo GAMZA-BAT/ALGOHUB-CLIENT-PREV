@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { format } from 'date-fns';
 
-import { forwardRef, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -16,7 +16,7 @@ import alertError from '@/utils/alertError';
 import ic_pencil from '@/assets/svgs/ic_pencil.svg';
 import profileIcon from '@/assets/svgs/ic_profile_circle.svg';
 
-import { dispatchModalClose, useModalDispatch } from '@/contexts/modalContext';
+import { useModalDispatch } from '@/contexts/modalContext';
 
 import Button from '../Button/Button';
 import ModalTemplate from './ModalTemplate';
@@ -50,7 +50,9 @@ const CreateGroup = () => {
         introduction: groupDescription,
         profileImage: imageUrl ?? profileIcon,
       });
-      dispatchModalClose();
+      dispatch({
+        type: 'CLOSE_MODAL',
+      });
     } catch (e) {
       alertError(e, '그룹 생성에 실패했습니다.');
     }

@@ -6,14 +6,16 @@ import MaskIcon from '@/components/icon/MaskIcon';
 
 import ic_close from '@/assets/img/ic_close.png';
 
-import { dispatchModalClose, useModalDispatch } from '@/contexts/modalContext';
+import { useModalDispatch } from '@/contexts/modalContext';
 
 const ModalTemplate = ({ children, title }: { children: ReactNode; title: string }) => {
+  const dispatch = useModalDispatch();
+
   return (
     <div css={Container}>
       <div css={HeaderContainer}>
         <div>{title}</div>
-        <div style={{ cursor: 'pointer' }} onClick={dispatchModalClose}>
+        <div style={{ cursor: 'pointer' }} onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>
           <MaskIcon width={64} height={64} src={ic_close} />
         </div>
       </div>
