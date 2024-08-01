@@ -11,6 +11,6 @@ export const useProblemDeadlineReached = (groupId: number) => {
 export const useProblem = (groupId: number) => {
   return useQuery({
     queryKey: ['problem', groupId],
-    queryFn: () => getProblemAxios(groupId).then(res => res.data.content),
+    queryFn: () => getProblemAxios(groupId).then(res => res.data),
   })
 }
