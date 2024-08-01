@@ -15,6 +15,8 @@ import CommentBox from '@/components/@common/modal/SolvedDetail/CommentBox';
 
 import { useGetSolutionById } from '@/hooks/query/useSolutionQuery';
 
+import { ProblemDataType } from '@/type/problem';
+
 import testImg from '@/assets/img/ic_algohub_purple.png';
 import CloseIcon from '@/assets/svgs/ic_close.svg?react';
 import SendIcon from '@/assets/svgs/ic_send_plane.svg?react';
@@ -25,6 +27,7 @@ const SolvedDetail = () => {
   const dispatch = useModalDispatch();
   const [searchParams] = useSearchParams();
   const solutionId = searchParams.get('solvedDetail') || 0;
+  const problem: ProblemDataType = JSON.parse(localStorage.getItem('problem') + '');
 
   const {
     data: solutionsData,
@@ -33,22 +36,23 @@ const SolvedDetail = () => {
   } = useGetSolutionById(+solutionId);
 
   console.log({ solutionsData });
+  if (isSolutionsLoading) return <></>;
   return (
     <div css={Wrapper}>
       <header css={HeaderContainer}>
         <section css={MetaContainer}>
-          <LevelIcon level={13} />
+          <LevelIcon level={problem.level} />
           <div css={Twoline}>
-            <p css={TitleStyle}>{'ACM Craft'}</p>
-            <p css={DurationStyle}>{'2024-08-30 ~ 2024-09-21'}</p>
+            <p css={TitleStyle}>{problem.title}</p>
+            <p css={DurationStyle}>{`${problem.startDate} ~ ${problem.endDate}`}</p>
           </div>
-          <p css={HeaderInfoStyle}>j-nary</p>
-          <p css={HeaderInfoStyle}>2024.07.01 23:59:59</p>
-          <p css={HeaderInfoStyle}>2020KB</p>
-          <p css={HeaderInfoStyle}>0ms</p>
-          <p css={HeaderInfoStyle}>C++17</p>
-          <p css={HeaderInfoStyle}>467B</p>
-          <p css={HeaderInfoStyle}>Correct!</p>
+          <p css={HeaderInfoStyle}>{solutionsData?.nickname}</p>
+          <p css={HeaderInfoStyle}>{solutionsData?.solvedDate}</p>
+          <p css={HeaderInfoStyle}>{solutionsData?.memoryUsage}KB</p>
+          <p css={HeaderInfoStyle}>{solutionsData?.executionTime}ms</p>
+          <p css={HeaderInfoStyle}>{solutionsData?.language}</p>
+          <p css={HeaderInfoStyle}>{solutionsData?.codeLength}B</p>
+          <p css={HeaderInfoStyle}>{solutionsData?.isCorrect ? 'Correct!' : 'InCorrect!'}</p>
         </section>
         <CloseIcon
           width={30}
