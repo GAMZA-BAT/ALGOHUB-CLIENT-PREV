@@ -51,6 +51,8 @@ export class AuthManager {
     public setToken(token: string) {
         this.token = token;
         localStorage.setItem('token', token);
+        authAxios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
+        formAxios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
     }
 
     public clearToken() {
