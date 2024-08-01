@@ -38,12 +38,10 @@ export const getGroupInfo = (groupId: number) => {
 export const patchGroupInfo = async ({ id, name, startDate, endDate, introduction, groupImage }: GroupMeta) => {
   const form = new FormData();
   form.append('request', JSON.stringify({ id, name, startDate, endDate, introduction }));
-  form.append('groupImage', await imageUrlToBlob(groupImage));
+  if (groupImage)
+    form.append('groupImage', await imageUrlToBlob(groupImage));
 
   return formAxios.patch(
-    '/group',
-    {
-      body: form,
-    }
+    '/group',form
   )
 }
