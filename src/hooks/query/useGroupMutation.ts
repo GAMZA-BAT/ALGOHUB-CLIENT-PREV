@@ -1,4 +1,4 @@
-import { patchGroupInfo } from "@/api/getGroupAxios";
+import { patchGroupInfo } from "@/api/groupAxios";
 import { GroupMeta } from "@/type/group";
 import { useMutation } from "@tanstack/react-query";
 

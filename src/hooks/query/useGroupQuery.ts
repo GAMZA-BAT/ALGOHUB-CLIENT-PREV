@@ -1,4 +1,4 @@
-import { getGroupInfo, getGroupMemberListAxios, getGroupRanking } from "@/api/getGroupAxios"
+import { getGroupInfo, getGroupMemberListAxios, getGroupRanking } from "@/api/groupAxios"
 import { GroupType, MemberDataType } from "@/type/group"
 import { useQuery } from "@tanstack/react-query"
 

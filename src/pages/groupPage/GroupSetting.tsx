@@ -38,7 +38,6 @@ const GroupSetting = () => {
   const [description, setDescription] = useState(groupData?.introduction + '');
   const [isSaveActive, setIsSaveActive] = useState(false);
 
-  console.log({ imageFile });
   useEffect(() => {
     if (!groupData) return;
 
