@@ -1,3 +1,9 @@
+export interface GroupListResponse {
+    inProgress: GroupType[];
+    queued: GroupType[];
+    done: GroupType[];
+}
+
 export interface GroupType extends GroupMeta {
     ownerNickname: string;
     isOwner: boolean;

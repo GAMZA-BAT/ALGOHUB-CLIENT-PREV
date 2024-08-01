@@ -21,9 +21,11 @@ const GroupGrid = ({ title, groupList }: GroupGridProps) => {
         <div css={Title}>{title}</div>
       </div>
       <div css={GroupContainer}>
-        {groupList?.map((group) => {
-          return <GroupItem key={group.id} group={group} />;
-        })}
+        {groupList &&
+          groupList.length > 0 &&
+          groupList.map((group) => {
+            return <GroupItem key={group.id} group={group} />;
+          })}
       </div>
     </div>
   );

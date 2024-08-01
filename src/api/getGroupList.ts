@@ -1,7 +1,7 @@
 import { ContentType } from "@/constants/server";
 import { AuthManager } from "@/datamanager/authManager";
 import { ApiError } from "@/type/errorResponse";
-import { GroupType, GroupMeta } from "@/type/group";
+import { GroupType, GroupMeta, GroupListResponse } from "@/type/group";
 import { imageUrlToBlob } from "@/utils/image";
 import { jsonifyResponse, requestToGroup } from "@/utils/server";
 
@@ -16,7 +16,7 @@ export const getGroupList = async () => {
     if (!response.ok) {
         throw new ApiError(await response.json());
     }
-    return jsonifyResponse<GroupType[]>(response);
+    return jsonifyResponse<GroupListResponse>(response);
 }
 
 export const getGroupMetaByCode = async (code: string) => {

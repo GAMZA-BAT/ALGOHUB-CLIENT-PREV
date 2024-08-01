@@ -38,18 +38,3 @@ const Container = css`
   gap: 4px;
   padding: 8px;
 `;
-
-// const GroupContainer = css`
-//   display: flex;
-//   flex-direction: column;
-//   width: 72%;
-//   gap: 12px;
-//   padding: 25px;
-//   border: 1px solid black;
-//   border-radius: 12px;
-// `;
-
-// const Title = css`
-//   font-size: 28px;
-//   font-weight: 600;
-// `;

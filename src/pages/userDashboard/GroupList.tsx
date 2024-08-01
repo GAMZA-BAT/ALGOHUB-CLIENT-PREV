@@ -6,7 +6,7 @@ import { getGroupList } from '@/api/getGroupList';
 
 import alertError from '@/utils/alertError';
 
-import { GroupType } from '@/type/group';
+import { GroupListResponse, GroupType } from '@/type/group';
 
 import GroupGrid from './GroupGrid';
 
@@ -17,15 +17,15 @@ const GroupList = () => {
   return (
     <div css={Container}>
       <div css={MainTitle}>My Groups</div>
-      <GroupGrid title={'In progress'} groupList={groupList} />
-      <GroupGrid title={'Queued'} />
-      <GroupGrid title={'Done'} />
+      <GroupGrid title={'In progress'} groupList={groupList?.inProgress} />
+      <GroupGrid title={'Queued'} groupList={groupList?.queued} />
+      <GroupGrid title={'Done'} groupList={groupList?.done} />
     </div>
   );
 };
 
 const useFetchList = () => {
-  const [groupList, setGroupList] = useState<GroupType[]>([]);
+  const [groupList, setGroupList] = useState<GroupListResponse | null>(null);
   useEffect(() => {
     const fetch = async () => {
       try {
