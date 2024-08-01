@@ -1,3 +1,4 @@
+import { authAxios, formAxios } from "@/api";
 import getUserInfo from "@/api/user/getUserInfo";
 import User from "@/type/user";
 
@@ -23,14 +24,16 @@ export class AuthManager {
         return AuthManager.instance;
     }
 
-    public async init(){
+    public async init() {
         if (!AuthManager.instance) {
             throw new Error('AuthManager is not instantiated');
         }
         this.token = localStorage.getItem('token') ?? ANONYMOUS_AUTH_TOKEN;
         if (this.token !== ANONYMOUS_AUTH_TOKEN) {
             try {
-            this.user = await getUserInfo();
+                this.user = await getUserInfo();
+                authAxios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
+                formAxios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
             } catch (e) {
                 this.token = ANONYMOUS_AUTH_TOKEN;
             }
@@ -49,7 +52,7 @@ export class AuthManager {
         this.token = token;
         localStorage.setItem('token', token);
     }
-    
+
     public clearToken() {
         this.token = ANONYMOUS_AUTH_TOKEN;
         localStorage.removeItem('token');
