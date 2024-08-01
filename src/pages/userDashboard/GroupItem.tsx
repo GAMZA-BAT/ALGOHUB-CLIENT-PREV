@@ -36,10 +36,9 @@ const GroupWrapper = css`
 `;
 
 const GroupImage = css`
-  width: 100%;
-  height: 100%;
+  width: 330px;
+  height: 300px;
   border-radius: 12px;
-  background-size: cover;
 `;
 
 const TitleWrapper = css`

@@ -12,6 +12,7 @@ import { GlobalStyle } from '@/styles/GlobalStyle';
 import { Theme } from '@/styles/theme';
 
 import { ModalProvider } from './contexts/modalContext';
+import { SideProvider } from './contexts/sidePanelContext';
 
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -19,8 +20,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
     <ThemeProvider theme={Theme}>
       <ModalProvider>
-        <Global styles={GlobalStyle} />
-        <AppRouter />
+        <SideProvider>
+          <Global styles={GlobalStyle} />
+          <AppRouter />
+        </SideProvider>
       </ModalProvider>
     </ThemeProvider>
     <ReactQueryDevtools initialIsOpen={false} />

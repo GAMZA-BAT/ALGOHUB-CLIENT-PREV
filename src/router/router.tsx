@@ -10,6 +10,7 @@ import Onboarding from '@/pages/onboarding/Onboarding';
 import SignupPage from '@/pages/signupPage/SignupPage';
 import UserDashboard from '@/pages/userDashboard/UserDashboard';
 
+import SidePannel from '@/components/@common/SidePannel';
 import CustomModal from '@/components/@common/modal/CustomModal';
 import SolvedDetail from '@/components/@common/modal/SolvedDetail/SolvedDetail';
 
@@ -71,6 +72,7 @@ export const AppRouter = () => {
     <>
       <RouterProvider router={router} />
       <CustomModal />
+      <SidePannel />
     </>
   );
 };
