@@ -53,8 +53,10 @@ const ProblemList = () => {
         style: { width: '10%', height: '85%' },
       },
     });
-    setSearchParams({ solvedDetail: groupId + '' });
+    setSearchParams({ addProblem: groupId + '' });
   };
+
+  // const handleModifyProblem = () => {};
 
   if (isProblemLoading || isGroupLoading) return <></>;
   return (
