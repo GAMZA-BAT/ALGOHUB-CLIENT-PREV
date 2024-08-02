@@ -3,10 +3,24 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 
 import CreateGroup from '@/components/@common/modal/CreateGroup';
 import FindGroup from '@/components/@common/modal/FindGroup';
+import AddProblem from '@/components/@common/modal/ProblemModify/AddProblem';
+import ModifyProblem from '@/components/@common/modal/ProblemModify/ModifyProblem';
 import SolvedDetail from '@/components/@common/modal/SolvedDetail/SolvedDetail';
 
-export type ModalType = 'findGroup' | 'createGroup' | 'solvedDetail' | 'none';
-const ModalTypeList: ModalType[] = ['findGroup', 'createGroup', 'solvedDetail'];
+export type ModalType =
+  | 'findGroup'
+  | 'createGroup'
+  | 'solvedDetail'
+  | 'addProblem'
+  | 'modifyProblem'
+  | 'none';
+const ModalTypeList: ModalType[] = [
+  'findGroup',
+  'createGroup',
+  'solvedDetail',
+  'addProblem',
+  'modifyProblem',
+];
 interface ModalContextType {
   isOpen: boolean;
   children: ReactNode;
@@ -107,6 +121,10 @@ const getModal = (type: ModalType) => {
       return <CreateGroup />;
     case 'solvedDetail':
       return <SolvedDetail />;
+    case 'addProblem':
+      return <AddProblem />;
+    case 'modifyProblem':
+      return <ModifyProblem />;
     case 'none':
       return null;
   }

@@ -1,21 +1,38 @@
 import { css } from '@emotion/react';
 
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import ProblemBox from '@/pages/groupPage/components/ProblemBox';
 
 import { seperator } from '@/components/@common/SideContent';
 import CheckboxIcon from '@/components/icon/CheckboxIcon';
+import MaskIcon from '@/components/icon/MaskIcon';
 
+import { useGetGroupInfo } from '@/hooks/query/useGroupQuery';
 import { useProblem } from '@/hooks/query/useProblemQuery';
 
 import { ProblemDataType } from '@/type/problem';
 
+import pencilIcon from '@/assets/svgs/ic_pencil.svg';
+import plusIcon from '@/assets/svgs/ic_plus_circle.svg';
+
 import { Theme } from '@/styles/theme';
+
+import { useModalDispatch } from '@/contexts/modalContext';
 
 const ProblemList = () => {
   const [isUnsolvedOnly, setIsUnsolvedOnly] = useState(false);
   const groupId = +(localStorage.getItem('groupId') || '0');
+  const dispatch = useModalDispatch();
+  const [, setSearchParams] = useSearchParams();
+
+  const {
+    data: groupData,
+    error: groupError,
+    isLoading: isGroupLoading,
+  } = useGetGroupInfo(groupId);
+  const isOwner = !!groupData?.isOwner;
 
   const {
     data: problemData,
@@ -27,7 +44,19 @@ const ProblemList = () => {
     setIsUnsolvedOnly((prev) => !prev);
   };
 
-  if (isProblemLoading) return <></>;
+  const handleAddProblem = () => {
+    dispatch({
+      type: 'OPEN_MODAL',
+      payload: {
+        variant: 'addProblem',
+        modalId: groupId + '',
+        style: { width: '10%', height: '85%' },
+      },
+    });
+    setSearchParams({ solvedDetail: groupId + '' });
+  };
+
+  if (isProblemLoading || isGroupLoading) return <></>;
   return (
     <div css={Wrapper}>
       <section
@@ -37,7 +66,13 @@ const ProblemList = () => {
           padding-right: 20px;
         `}
       >
-        <h1 css={Meta}>In Progress</h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <h1 css={Meta}>In Progress</h1>
+          <div style={{ cursor: 'pointer', paddingBottom: '10px' }} onClick={handleAddProblem}>
+            {isOwner && <MaskIcon width={3} height={3} src={plusIcon} isCircle />}
+          </div>
+        </div>
+
         <div
           css={css`
             display: flex;
@@ -54,7 +89,10 @@ const ProblemList = () => {
       {problemData['inProgressProblems']
         .filter((problem: ProblemDataType) => (isUnsolvedOnly ? !problem.solved : true))
         .map((problem: ProblemDataType) => (
-          <ProblemBox key={problem.problemId} problem={problem} />
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            {isOwner && <MaskIcon width={3} height={3} src={pencilIcon} isCircle />}
+            <ProblemBox key={problem.problemId} problem={problem} />
+          </div>
         ))}
       <h1
         css={[
