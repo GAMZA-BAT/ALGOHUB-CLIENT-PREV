@@ -148,12 +148,14 @@ const HeaderInfoStyle = css`
 const Container = css`
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 90%;
 `;
 
 const CommentWrapper = css`
   width: 50%;
   height: 100%;
+  overflow: hidden;
+  padding-bottom: 10px;
 `;
 
 const CommentContainer = css`
@@ -161,7 +163,7 @@ const CommentContainer = css`
   flex-direction: column;
   justify-content: flex-end;
   height: 90%;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 const InputContainer = css`
