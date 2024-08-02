@@ -48,7 +48,7 @@ export default GroupList;
 const Container = css`
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
   gap: 22px;
   padding: 48px;
   border: 1.3px solid #000000;
@@ -56,6 +56,6 @@ const Container = css`
 `;
 
 const MainTitle = css`
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
 `;

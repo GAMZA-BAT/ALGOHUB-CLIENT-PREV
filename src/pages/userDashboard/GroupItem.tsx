@@ -28,33 +28,36 @@ const GroupWrapper = css`
   display: flex;
   flex-direction: column;
   position: relative;
-  gap: 4px;
-  padding: 8px;
+  gap: 1rem;
+
+  height: 30rem;
+  padding: 1rem;
+
   border: 1px solid #000000;
   border-radius: 12px;
   cursor: pointer;
 `;
 
 const GroupImage = css`
-  width: 330px;
-  height: 300px;
+  width: 100%;
+  height: 80%;
   border-radius: 12px;
 `;
 
 const TitleWrapper = css`
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   font-weight: 600;
 `;
 
 const dateWrapper = css`
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 300;
 `;
 
 const crown = css`
   position: absolute;
-  bottom: 8px;
-  right: 8px;
+  bottom: 1rem;
+  right: 1rem;
   width: 30px;
   height: 25px;
 `;

@@ -119,6 +119,8 @@ const Wrapper = css`
   padding: 2rem;
   width: 100%;
   height: 100%;
+  gap: 2rem;
+  margin: 1rem 2rem;
 `;
 
 const GroupInfoContainer = css`
@@ -136,7 +138,7 @@ const Meta = css`
 const TextArea = css`
   width: 100%;
   padding: 10px;
-  font-size: 25px;
+  font-size: 2rem;
   border-radius: 12px;
   letter-spacing: 2px;
   background-color: #fcfcfc;
@@ -146,7 +148,7 @@ const LongTextArea = css`
   width: 100%;
   height: 100%;
   padding: 10px;
-  font-size: 25px;
+  font-size: 2rem;
   border-radius: 12px;
   letter-spacing: 2px;
   background-color: #fcfcfc;

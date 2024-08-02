@@ -99,13 +99,13 @@ export const TitleStyle = css`
   font-family: 'Pretendard-regular';
   font-weight: 600;
 
-  font-size: 30px;
+  font-size: 2rem;
   cursor: pointer;
 `;
 export const DurationStyle = css`
   font-family: 'Pretendard-regular';
   font-weight: 200;
-  font-size: 20px;
+  font-size: 1.5rem;
 `;
 
 const SubStyle = css`

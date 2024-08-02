@@ -12,6 +12,7 @@ import { AuthManager } from './datamanager/authManager';
 
 function App() {
   const [isAuthInitialized, setIsAuthInitialized] = useState<boolean>(false);
+
   useEffect(() => {
     const init = async () => {
       await AuthManager.getInstance().init();
@@ -39,4 +40,6 @@ export default App;
 const wrapper = css`
   width: 100%;
   height: 100vh;
+
+  overflow-y: scroll;
 `;

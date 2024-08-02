@@ -76,8 +76,8 @@ const GroupPage = () => {
                   {memberData?.map((member: MemberDataType) => (
                     <div key={member.memberId} css={MemberContainer}>
                       <MaskIcon
-                        width={80}
-                        height={80}
+                        width={7}
+                        height={7}
                         src={member.profileImage || defaultImg}
                         isCircle={true}
                       />
@@ -102,7 +102,9 @@ export default GroupPage;
 
 const Wrapper = css`
   display: flex;
+  justify-content: space-between;
   width: 100%;
+  padding: 3rem 6rem 3rem 3rem;
 `;
 
 const GroupInfoContainer = css`
@@ -110,22 +112,22 @@ const GroupInfoContainer = css`
 `;
 
 const Container = css`
-  width: 75%;
-  padding: 0 1%;
+  width: 70%;
+  padding: 1%;
 `;
 
 const MemberListWrapper = css`
   width: 100%;
-  padding: 0 0 0 20px;
+  padding: 2rem 0 0 2rem;
 `;
 
 const MemberListContainer = css`
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 1.5rem;
 
   width: 100%;
-  padding-top: 10px;
+  padding: 1rem;
 `;
 
 const MemberContainer = css`
@@ -135,18 +137,19 @@ const MemberContainer = css`
   align-items: center;
   justify-content: center;
   gap: 5px;
+  width: 20%;
 `;
 
 const CrownIcon = css`
   position: absolute;
   top: 0;
   left: 0;
-  width: 30px;
-  height: 30px;
+  width: 3rem;
+  height: 3rem;
 `;
 
 const MemberName = css`
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-family: 'Pretendard-regular';
   font-weight: 200;
 `;

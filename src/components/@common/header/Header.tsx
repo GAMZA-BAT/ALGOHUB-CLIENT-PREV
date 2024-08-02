@@ -28,7 +28,7 @@ const Header = () => {
             });
           }}
         >
-          <MaskIcon width={64} height={64} src={bell} />
+          <MaskIcon width={4} height={4} src={bell} />
         </div>
       )}
     </div>

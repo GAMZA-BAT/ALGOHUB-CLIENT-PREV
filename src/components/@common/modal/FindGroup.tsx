@@ -55,8 +55,8 @@ const FindGroup = () => {
         <div css={GroupWrapper}>
           <div css={ProfileWrapper}>
             <MaskIcon
-              width={200}
-              height={200}
+              width={20}
+              height={20}
               isCircle
               src={groupMeta ? groupMeta.groupImage : ic_question}
             />
@@ -76,7 +76,7 @@ const FindGroup = () => {
           </div>
         </div>
         <Button
-          style={{ width: '60%', height: '50px', margin: 'auto', fontSize: '1rem' }}
+          style={{ width: '60%', height: '50px', margin: 'auto', fontSize: '3rem' }}
           onClick={onClickJoin}
         >
           Join
@@ -91,7 +91,7 @@ export default FindGroup;
 const BodyContainer = css`
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 2rem;
   gap: 80px;
 `;
 
@@ -102,16 +102,16 @@ const InputWrapper = css`
 `;
 
 const InputText = css`
-  font-size: 1.7rem;
+  font-size: 2rem;
 `;
 
 const InputBox = css`
   width: 100%;
-  height: 70px;
+  height: 7rem;
   border: 1px solid #000;
-  font-size: 50px;
+  font-size: 5rem;
   text-align: center;
-  letter-spacing: 12px;
+  letter-spacing: 1rem;
   border-radius: 4px;
   padding: 0 8px;
 `;
@@ -120,7 +120,7 @@ const GroupWrapper = css`
   display: flex;
   flex-direction: row;
   margin: auto;
-  gap: 12px;
+  gap: 1.2rem;
 `;
 
 const TextWrapper = css`
@@ -134,7 +134,7 @@ const TextWrapper = css`
 const DescWrapper = css`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 2.5rem;
   margin: auto;
   font-size: 1rem;
 `;

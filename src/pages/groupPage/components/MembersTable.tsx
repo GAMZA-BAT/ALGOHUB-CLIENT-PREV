@@ -77,7 +77,11 @@ const MembersTable = forwardRef((_props, _ref) => {
             <TableRow>
               {columns?.map((column) => (
                 <TableCell
-                  style={{ backgroundColor: Theme.color.mediumGray, color: 'white' }}
+                  style={{
+                    backgroundColor: Theme.color.mediumGray,
+                    color: 'white',
+                    fontSize: '2rem',
+                  }}
                   key={column.id}
                   align={'center'}
                 >
@@ -85,7 +89,11 @@ const MembersTable = forwardRef((_props, _ref) => {
                 </TableCell>
               ))}
               <TableCell
-                style={{ backgroundColor: Theme.color.mediumGray, color: 'white' }}
+                style={{
+                  backgroundColor: Theme.color.mediumGray,
+                  color: 'white',
+                  fontSize: '2rem',
+                }}
                 key={'DELETE'}
                 align={'center'}
               >
@@ -104,7 +112,11 @@ const MembersTable = forwardRef((_props, _ref) => {
                     }
 
                     return (
-                      <TableCell key={column.id + value} align={'center'}>
+                      <TableCell
+                        key={column.id + value}
+                        align={'center'}
+                        style={{ fontSize: '2rem' }}
+                      >
                         {value ? value : ''}
                       </TableCell>
                     );

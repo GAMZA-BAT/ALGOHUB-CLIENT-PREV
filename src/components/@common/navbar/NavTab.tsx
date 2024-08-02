@@ -11,7 +11,7 @@ interface NavTabProps {
 const NavTab = ({ src, title, onClick }: NavTabProps) => {
   return (
     <div css={Wrapper} onClick={onClick}>
-      <MaskIcon width={30} height={30} src={src} />
+      <MaskIcon width={3} height={3} src={src} />
       <div>{title}</div>
     </div>
   );

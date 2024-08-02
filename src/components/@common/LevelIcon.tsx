@@ -20,7 +20,7 @@ const LevelIcon = ({ level }: { level: number }) => {
 
   return (
     <div>
-      {LevelSVG ? <img width={'50px'} src={LevelSVG} alt={`Level ${level}`} /> : 'Loading...'}
+      {LevelSVG ? <img width={'35px'} src={LevelSVG} alt={`Level ${level}`} /> : 'Loading...'}
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import { Box, Modal, ThemeProvider, createTheme } from '@mui/material';
 
+import { removeLastQueryParam } from '@/utils/removeLastQueryParam';
+
 import { useModalContext, useModalDispatch } from '@/contexts/modalContext';
 
 const theme = createTheme();
@@ -9,16 +11,20 @@ const CustomModal = () => {
   const dispatch = useModalDispatch();
   const { isOpen, style, children } = modalContext;
   const modalStyle = { ...baseStyle, ...style };
+
+  const handleClose = () => {
+    const originalUrl = window.location.href;
+    const modifiedUrl = removeLastQueryParam(originalUrl);
+
+    window.history.pushState({}, '', modifiedUrl);
+    dispatch({
+      type: 'CLOSE_MODAL',
+    });
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      <Modal
-        open={isOpen}
-        onClose={() => {
-          dispatch({
-            type: 'CLOSE_MODAL',
-          });
-        }}
-      >
+      <Modal open={isOpen} onClose={handleClose}>
         <Box sx={modalStyle}>{children}</Box>
       </Modal>
     </ThemeProvider>

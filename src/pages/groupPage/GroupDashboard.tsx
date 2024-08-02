@@ -82,7 +82,7 @@ const Wrapper = css`
 `;
 
 const Title = css`
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 600;
 
   margin-bottom: 1rem;
@@ -94,6 +94,6 @@ const RankingWrapper = css`
   justify-content: center;
 
   gap: 10px;
-  padding-top: 20px;
-  padding-bottom: 80px;
+  padding-top: 2rem;
+  padding-bottom: 8rem;
 `;

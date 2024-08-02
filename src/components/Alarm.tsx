@@ -18,11 +18,11 @@ const Alarm = () => {
         <div key={idx} css={ItemWrapper}>
           <div css={HeadWrapper}>
             <div css={ImgWrapper}>
-              <MaskIcon width={72} height={72} isCircle src={item.groupImage} />
+              <MaskIcon width={7} height={7} isCircle src={item.groupImage} />
             </div>
             <div css={ContentWrapper}>
-              <div style={{ fontSize: '34px' }}>{item.groupName}</div>
-              <div style={{ fontSize: '24px' }}>{item.message}</div>
+              <div style={{ fontSize: '3rem' }}>{item.groupName}</div>
+              <div style={{ fontSize: '2rem' }}>{item.message}</div>
             </div>
           </div>
           <div css={SubContentWrapper}>{item.subContent}</div>
@@ -56,7 +56,8 @@ const Container = css`
   height: 100%;
   gap: 1rem;
   flex-direction: column;
-  padding: 12px;
+  padding: 10rem 2rem 1rem;
+  overflow-y: scroll;
 `;
 
 const ItemWrapper = css`
@@ -65,13 +66,14 @@ const ItemWrapper = css`
   flex-direction: column;
   border: 1px solid ${Theme.color.black};
   border-radius: 8px;
-  padding: 24px;
-  gap: 24px;
+  padding: 2rem;
+  gap: 2rem;
 `;
 
 const HeadWrapper = css`
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 2rem;
   width: 100%;
 `;
 const ImgWrapper = css``;
@@ -83,5 +85,5 @@ const ContentWrapper = css`
 `;
 
 const SubContentWrapper = css`
-  font-size: 20px;
+  font-size: 2rem;
 `;
