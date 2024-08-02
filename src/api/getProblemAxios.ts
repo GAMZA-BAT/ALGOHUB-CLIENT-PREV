@@ -21,3 +21,21 @@ export const getProblemAxios = (groupId: number) => {
     }
   )
 }
+
+export interface postProblemAPIType {
+  groupId: number;
+  link: string;
+  startDate: string;
+  endDate: string;
+}
+export const postProblemAxios = ({ groupId, link, startDate, endDate }: postProblemAPIType) => {
+  return authAxios.post(
+    '/problem',
+    {
+      groupId,
+      link,
+      startDate,
+      endDate,
+    }
+  )
+}
