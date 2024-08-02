@@ -34,30 +34,32 @@ const GroupDashboard = () => {
     if (location.search) return;
     setSearchParams({ id: `${groupId}` });
   }, []);
-
-  if (!rankingData || isProblemLoading || isRankingLoading) return <></>;
+  console.log({ rankingData });
+  if (isProblemLoading || isRankingLoading) return <></>;
   return (
     <div css={Wrapper}>
-      <section css={RankingWrapper}>
-        <RankingBox
-          ranking={2}
-          name={rankingData[1].userNickname + ''}
-          solved={+rankingData[1].solvedCount}
-          src={rankingData[1].profileImage}
-        />
-        <RankingBox
-          ranking={1}
-          name={rankingData[0].userNickname}
-          solved={rankingData[0].solvedCount}
-          src={rankingData[0].profileImage}
-        />
-        <RankingBox
-          ranking={3}
-          name={rankingData[2].userNickname}
-          solved={rankingData[2].solvedCount}
-          src={rankingData[2].profileImage}
-        />
-      </section>
+      {rankingData && (
+        <section css={RankingWrapper}>
+          <RankingBox
+            ranking={2}
+            name={rankingData[1].userNickname + ''}
+            solved={+rankingData[1].solvedCount}
+            src={rankingData[1].profileImage}
+          />
+          <RankingBox
+            ranking={1}
+            name={rankingData[0].userNickname}
+            solved={rankingData[0].solvedCount}
+            src={rankingData[0].profileImage}
+          />
+          <RankingBox
+            ranking={3}
+            name={rankingData[2].userNickname}
+            solved={rankingData[2].solvedCount}
+            src={rankingData[2].profileImage}
+          />
+        </section>
+      )}
       <p css={Title}>Today's Problem</p>
       <hr css={seperator} />
       {problemData.map((problem: ProblemDataType) => (
