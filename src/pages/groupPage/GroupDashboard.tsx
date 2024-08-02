@@ -38,7 +38,7 @@ const GroupDashboard = () => {
   if (isProblemLoading || isRankingLoading) return <></>;
   return (
     <div css={Wrapper}>
-      {rankingData && (
+      {rankingData && rankingData.length > 2 && (
         <section css={RankingWrapper}>
           <RankingBox
             ranking={2}
@@ -62,7 +62,7 @@ const GroupDashboard = () => {
       )}
       <p css={Title}>Today's Problem</p>
       <hr css={seperator} />
-      {problemData.map((problem: ProblemDataType) => (
+      {problemData?.map((problem: ProblemDataType) => (
         <ProblemBox key={problem.problemId} problem={problem} />
       ))}
     </div>
