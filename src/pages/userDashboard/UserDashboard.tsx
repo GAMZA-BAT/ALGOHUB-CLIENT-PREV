@@ -23,8 +23,16 @@ const UserDashboard = () => {
         <TabList.JoinGroup />
       </Navbar>
       <div css={Container}>
-        <SideContent imageSrc={user.profileImage} title={user.nickname} detail={user.bjNickname} />
-        <GroupList />
+        <section css={sideContainer}>
+          <SideContent
+            imageSrc={user.profileImage}
+            title={user.nickname}
+            detail={user.bjNickname}
+          />
+        </section>
+        <section css={mainContainer}>
+          <GroupList />
+        </section>
       </div>
     </>
   );
@@ -36,5 +44,12 @@ const Container = css`
   display: flex;
   width: 100%;
   gap: 4px;
-  padding: 8px;
+  padding: 2rem;
+`;
+
+const sideContainer = css`
+  width: 30%;
+`;
+const mainContainer = css`
+  width: 70%;
 `;

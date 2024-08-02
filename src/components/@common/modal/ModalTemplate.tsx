@@ -14,9 +14,9 @@ const ModalTemplate = ({ children, title }: { children: ReactNode; title: string
   return (
     <div css={Container}>
       <div css={HeaderContainer}>
-        <div>{title}</div>
+        <div css={titleStyle}>{title}</div>
         <div style={{ cursor: 'pointer' }} onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>
-          <MaskIcon width={64} height={64} src={ic_close} />
+          <MaskIcon width={6.4} height={6.4} src={ic_close} />
         </div>
       </div>
       <div css={seperator}></div>
@@ -33,6 +33,7 @@ const Container = css`
   width: 100%;
   height: 100%;
   gap: 12px;
+  padding: 2rem;
 `;
 
 const HeaderContainer = css`
@@ -42,6 +43,10 @@ const HeaderContainer = css`
   justify-content: space-between;
   align-items: center;
   font-size: 2rem;
+`;
+
+const titleStyle = css`
+  font-size: 3rem;
 `;
 
 const seperator = css`

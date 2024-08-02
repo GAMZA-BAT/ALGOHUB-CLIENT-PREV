@@ -49,7 +49,7 @@ const SubmitBox = ({ variant = 'default', solution, level }: submitBoxPropType) 
 
   return (
     <div css={Wrapper} onClick={handleModalOpen}>
-      <MaskIcon width={50} height={50} src={solution.profileImage} isCircle={true} />
+      <MaskIcon width={5} height={5} src={solution.profileImage} isCircle={true} />
       <section
         css={[
           Container,

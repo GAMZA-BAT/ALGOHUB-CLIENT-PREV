@@ -14,7 +14,7 @@ const RankingBox = ({ ranking, name, solved, src }: rankingBoxPropType) => {
   const height = ['0', '17rem', '13.5rem', '8rem'];
   return (
     <div css={Wrapper}>
-      <MaskIcon width={150} height={150} src={src} isCircle={true} />
+      <MaskIcon width={15} height={15} src={src} isCircle={true} />
       <div
         css={css`
           display: flex;

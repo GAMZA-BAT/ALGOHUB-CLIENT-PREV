@@ -64,7 +64,7 @@ const SignupPage = () => {
           <div css={inputCss}>
             <div style={{ fontSize: '25px' }}>Profile Image (optional)</div>
             <div css={ProfileWrapper}>
-              <MaskIcon width={65} height={65} isCircle={true} src={imageUrl ?? profileIcon} />
+              <MaskIcon width={6.5} height={6.5} isCircle={true} src={imageUrl ?? profileIcon} />
               <input type="file" accept="image/*" onChange={handleImageUpload} />
             </div>
           </div>

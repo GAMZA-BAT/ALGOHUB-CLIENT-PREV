@@ -15,7 +15,7 @@ interface SideContentProps {
 const SideContent = (props: SideContentProps) => {
   return (
     <div css={Container}>
-      <MaskIcon width={350} height={350} src={props.imageSrc} isCircle={true} />
+      <MaskIcon width={35} height={35} src={props.imageSrc} isCircle={true} />
       <div css={TitleContainer}>
         <div css={TitleWrapper}>
           <div css={Title}>{props.title}</div>
@@ -47,8 +47,8 @@ const TitleContainer = css`
   display: flex;
   width: 100%;
   flex-direction: column;
-  padding-top: 16px;
-  padding-left: 12px;
+  padding-top: 1.6rem;
+  padding-left: 1.2rem;
 `;
 
 const TitleWrapper = css`
@@ -68,12 +68,13 @@ const PencilWrapper = css`
 `;
 
 export const Title = css`
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 600;
+  padding-bottom: 1rem;
 `;
 
 export const Detail = css`
-  font-size: 1.3rem;
+  font-size: 2rem;
   font-family: 'Pretendard-regular';
   font-weight: 200;
 `;
@@ -81,9 +82,9 @@ export const Detail = css`
 const DescriptionWrapper = css`
   display: flex;
   flex-direction: column;
-  padding-top: 30px;
+  padding-top: 3rem;
   gap: 4px;
-  padding-left: 12px;
+  padding-left: 1.2rem;
 `;
 
 export const seperator = css`

@@ -13,8 +13,8 @@ interface MaskIconProps {
 
 const MaskIcon = ({ width, height, src = defaultImg, maskColor, isCircle }: MaskIconProps) => {
   const style = css`
-    width: ${width}px;
-    height: ${height}px;
+    width: ${width}rem;
+    height: ${height}rem;
     background: ${maskColor || 'none'};
     ${maskColor
       ? `

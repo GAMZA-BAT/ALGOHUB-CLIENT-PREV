@@ -76,8 +76,8 @@ const GroupPage = () => {
                   {memberData?.map((member: MemberDataType) => (
                     <div key={member.memberId} css={MemberContainer}>
                       <MaskIcon
-                        width={80}
-                        height={80}
+                        width={8}
+                        height={8}
                         src={member.profileImage || defaultImg}
                         isCircle={true}
                       />

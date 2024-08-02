@@ -12,7 +12,7 @@ const CommentBox = ({ imgSrc, nickName, comment }: commentBoxPropType) => {
   return (
     <div css={Wrapper}>
       <section css={Header}>
-        <MaskIcon width={55} height={55} src={imgSrc} isCircle={true} />
+        <MaskIcon width={5.5} height={5.5} src={imgSrc} isCircle={true} />
         <p css={NameStyle}>{nickName}</p>
       </section>
       <p css={CommentStyle}>{comment}</p>

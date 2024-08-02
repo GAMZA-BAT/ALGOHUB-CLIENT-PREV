@@ -18,7 +18,7 @@ const Alarm = () => {
         <div key={idx} css={ItemWrapper}>
           <div css={HeadWrapper}>
             <div css={ImgWrapper}>
-              <MaskIcon width={72} height={72} isCircle src={item.groupImage} />
+              <MaskIcon width={7.2} height={7.2} isCircle src={item.groupImage} />
             </div>
             <div css={ContentWrapper}>
               <div style={{ fontSize: '34px' }}>{item.groupName}</div>

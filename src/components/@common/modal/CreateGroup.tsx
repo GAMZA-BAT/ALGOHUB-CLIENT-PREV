@@ -2,7 +2,6 @@ import { css } from '@emotion/react';
 import { format } from 'date-fns';
 
 import { useRef, useState } from 'react';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import MaskIcon from '@/components/icon/MaskIcon';
@@ -70,7 +69,7 @@ const CreateGroup = () => {
           <div css={GroupImageWrapper}>
             <div>Group Image</div>
             <div css={GroupImage} onClick={onClickImage}>
-              <MaskIcon width={250} height={250} isCircle src={imageUrl ?? ic_pencil} />
+              <MaskIcon width={25} height={25} isCircle src={imageUrl ?? ic_pencil} />
               <input
                 type="file"
                 accept="image/*"
@@ -117,7 +116,7 @@ export default CreateGroup;
 const Container = css`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 2rem;
   align-items: center;
   height: 100%;
   width: 100%;
@@ -127,7 +126,7 @@ const GroupContainer = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 72px;
+  gap: 7rem;
   height: 100%;
   width: 100%;
 `;
@@ -137,7 +136,7 @@ const GroupImageWrapper = css`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 1.2rem;
   font-size: 1.7rem;
 `;
 
@@ -154,7 +153,7 @@ const GroupImage = css`
 const inputContainer = css`
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 3.6rem;
 `;
 
 const inputWrapper = css`
@@ -172,8 +171,8 @@ const textArea = css`
   width: 100%;
   height: 50px;
   padding: 10px;
-  font-size: 25px;
-  border-radius: 12px;
+  font-size: 2.5rem;
+  border-radius: 1.2rem;
   letter-spacing: 2px;
   background-color: #fcfcfc;
 `;
@@ -181,5 +180,5 @@ const textArea = css`
 const buttonCss = css`
   width: 60%;
   height: 50px;
-  font-size: 1.5rem;
+  font-size: 3rem;
 `;
