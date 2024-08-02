@@ -23,7 +23,7 @@ const RankingBox = ({ ranking, name, solved, src }: rankingBoxPropType) => {
           justify-content: end;
           padding-bottom: 10px;
           gap: 5px;
-          width: 240px;
+          width: 20rem;
           height: ${height[ranking]};
           color: white;
           background-color: ${Theme.color.mainBlue};

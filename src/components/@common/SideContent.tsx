@@ -15,7 +15,9 @@ interface SideContentProps {
 const SideContent = (props: SideContentProps) => {
   return (
     <div css={Container}>
-      <MaskIcon width={35} height={35} src={props.imageSrc} isCircle={true} />
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <MaskIcon width={30} height={30} src={props.imageSrc} isCircle={true} />
+      </div>
       <div css={TitleContainer}>
         <div css={TitleWrapper}>
           <div css={Title}>{props.title}</div>
@@ -23,12 +25,10 @@ const SideContent = (props: SideContentProps) => {
         </div>
         <div css={Detail}>{props.detail}</div>
       </div>
-      {props.description && (
-        <div css={DescriptionWrapper}>
-          <div css={Detail}> {props.description}</div>
-          <hr css={seperator} />
-        </div>
-      )}
+      <div css={DescriptionWrapper}>
+        {props.description && <div css={Detail}> {props.description}</div>}
+        <hr css={seperator} />
+      </div>
       {props.children}
     </div>
   );
@@ -39,8 +39,8 @@ export default SideContent;
 const Container = css`
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 8px;
+  gap: 1rem;
+  padding: 1rem;
 `;
 
 const TitleContainer = css`
