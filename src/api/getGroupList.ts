@@ -1,7 +1,7 @@
 import { ContentType } from "@/constants/server";
 import { AuthManager } from "@/datamanager/authManager";
 import { ApiError } from "@/type/errorResponse";
-import { GroupType, GroupMeta, GroupListResponse } from "@/type/group";
+import { GroupMeta, GroupListResponse } from "@/type/group";
 import { imageUrlToBlob } from "@/utils/image";
 import { jsonifyResponse, requestToGroup } from "@/utils/server";
 

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 
 import CameraIc from '@/assets/svgs/ic_camera.svg?react';
 
